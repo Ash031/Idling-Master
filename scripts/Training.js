@@ -11,6 +11,13 @@ function train(){
     trainSleep();
 }
 
+function unlockedTraining(string){
+    if(string=="Punch") return (player.train.attack.scream.level>10||player.train.defense.eat>10);
+    if(string=="Kick") return (player.train.attack.punch>100||player.train.defense.rest>100);
+    if(string=="JumpKick") return (player.train.attack.kick>1000||player.train.defense.sleep>1000);
+    return (player.train.attack.jumpKick>10000||player.train.defense.fall>10000);
+}
+
 function trainScream(){
     player.train.attack.scream.progress+=player.train.mult*assignedClones.train.attack.scream*10000;
     if(player.train.attack.scream.progress>=100000){
@@ -25,7 +32,7 @@ function trainPunch(){
     if(player.train.attack.punch.progress>=100000){
         player.train.attack.punch.progress=0;
         player.train.attack.punch.level++;
-        player.strength+=9;
+        player.strength+=11;
     }
 }
 
@@ -34,7 +41,7 @@ function trainKick(){
     if(player.train.attack.kick.progress>=100000){
         player.train.attack.kick.progress=0;
         player.train.attack.kick.level++;
-        player.strength+=81;
+        player.strength+=121;
     }
 }
 
@@ -43,7 +50,7 @@ function trainJumpKick(){
     if(player.train.attack.jumpKick.progress>=100000){
         player.train.attack.jumpKick.progress=0;
         player.train.attack.jumpKick.level++;
-        player.strength+=729;
+        player.strength+=1331;
     }
 }
 
@@ -52,7 +59,7 @@ function trainTornadoKick(){
     if(player.train.attack.tornadoKick.progress>=100000){
         player.train.attack.tornadoKick.progress=0;
         player.train.attack.tornadoKick.level++;
-        player.strength+=6561;
+        player.strength+=14641;
     }
 }
 
@@ -71,7 +78,7 @@ function trainRest(){
     if(player.train.defense.rest.progress>=100000){
         player.train.defense.rest.progress=0;
         player.train.defense.rest.level++;
-        player.defense+=9;
+        player.defense+=11;
         player.hp++;
     }
 }
@@ -81,8 +88,8 @@ function trainSleep(){
     if(player.train.defense.sleep.progress>=100000){
         player.train.defense.sleep.progress=0;
         player.train.defense.sleep.level++;
-        player.defense+=81;
-        player.hp+=5;
+        player.defense+=121;
+        player.hp+=4;
         player.hpRegen++;
     }
 }
@@ -92,8 +99,8 @@ function trainFall(){
     if(player.train.defense.fall.progress>=100000){
         player.train.defense.fall.progress=0;
         player.train.defense.fall.level++;
-        player.defense+=729;
-        player.hp+=25;
+        player.defense+=1331;
+        player.hp+=16;
         player.hpRegen+=2;
     }
 }
@@ -103,8 +110,8 @@ function trainBeat(){
     if(player.train.defense.beat.progress>=100000){
         player.train.defense.beat.progress=0;
         player.train.defense.beat.level++;
-        player.defense+=6561;
-        player.hp+=125;
+        player.defense+=14641;
+        player.hp+=64;
         player.hpRegen+=4;
     }
 }
