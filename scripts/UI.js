@@ -1,17 +1,55 @@
-function goToBosses(){
-    options.menu="Bosses";
-    loadScreen();
-}
-
 function loadScreen(){
     loadPlayerScreen();
     if(options.menu=="Bosses"){
         printBoss();
     }
     else if(options.menu=="Training"){
-        var string = '<h1>Training</h1><hr/>';
-        document.getElementById('Screen').innerHTML=string;
+        printTraining();
     }
+}
+
+function printTraining(){
+    var string = '<h1>Training</h1><hr/>';
+    //ATACK TRAINING
+    string += '<div class="w3-col m6 l6"><h1>Attack</h1><hr/>';
+    
+    string += '<p>Scream(Level '+player.train.attack.scream.level+'):'+assignedClones.train.attack.scream+' clones assigned</p>';
+    string += '<button style="height: 5%" class="w3-button w3-green" onclick="assignClonesScream()">+</button>';
+    string += '<button style="height: 5%" class="w3-button w3-green" onclick="deAssignClonesScream()">-</button>'+parseInt(player.train.attack.scream.progress/1000)+'% to Next level<br/>';
+    string += '<p>Punch(Level '+player.train.attack.punch.level+'):'+assignedClones.train.attack.punch+' clones assigned</p>';
+    string += '<button style="height: 5%" class="w3-button w3-green" onclick="assignClonesPunch()">+</button>';
+    string += '<button style="height: 5%" class="w3-button w3-green" onclick="deAssignClonesPunch()">-</button>'+parseInt(player.train.attack.punch.progress/1000)+'% to Next level<br/>';
+    string += '<p>Kick(Level '+player.train.attack.kick.level+'):'+assignedClones.train.attack.kick+' clones assigned</p>';
+    string += '<button style="height: 5%" class="w3-button w3-green" onclick="assignClonesKick()">+</button>';
+    string += '<button style="height: 5%" class="w3-button w3-green" onclick="deAssignClonesKick()">-</button>'+parseInt(player.train.attack.kick.progress/1000)+'% to Next level<br/>';
+    string += '<p>JumpKick(Level '+player.train.attack.jumpKick.level+'):'+assignedClones.train.attack.jumpKick+' clones assigned</p>';
+    string += '<button style="height: 5%" class="w3-button w3-green" onclick="assignClonesJumpKick()">+</button>';
+    string += '<button style="height: 5%" class="w3-button w3-green" onclick="deAssignClonesJumpKick()">-</button>'+parseInt(player.train.attack.jumpKick.progress/1000)+'% to Next level<br/>';
+    string += '<p>TonadoKick(Level '+player.train.attack.tornadoKick.level+'):'+assignedClones.train.attack.tornadoKick+' clones assigned</p>';
+    string += '<button style="height: 5%" class="w3-button w3-green" onclick="assignClonesTornadoKick()">+</button>';
+    string += '<button style="height: 5%" class="w3-button w3-green" onclick="deAssignClonesTornadoKick()">-</button>'+parseInt(player.train.attack.tornadoKick.progress/1000)+'% to Next level<br/>';
+    
+    //DEFENSE TRAINING
+    string += '</div><div class="w3-col m6 l6"><h1>Defense</h1><hr/>';
+    
+    string += '<p>Eat(Level '+player.train.defense.eat.level+'):'+assignedClones.train.defense.eat+' clones assigned</p>';
+    string += '<button style="height: 5%" class="w3-button w3-green" onclick="assignClonesEat()">+</button>';
+    string += '<button style="height: 5%" class="w3-button w3-green" onclick="deAssignClonesEat()">-</button>'+parseInt(player.train.defense.eat.progress/1000)+'% to Next level<br/>';
+    string += '<p>Rest(Level '+player.train.defense.rest.level+'):'+assignedClones.train.defense.rest+' clones assigned</p>';
+    string += '<button style="height: 5%" class="w3-button w3-green" onclick="assignClonesRest()">+</button>';
+    string += '<button style="height: 5%" class="w3-button w3-green" onclick="deAssignClonesRest()">-</button>'+parseInt(player.train.defense.rest.progress/1000)+'% to Next level<br/>';
+    string += '<p>Sleep(Level '+player.train.defense.sleep.level+'):'+assignedClones.train.defense.sleep+' clones assigned</p>';
+    string += '<button style="height: 5%" class="w3-button w3-green" onclick="assignClonesSleep()">+</button>';
+    string += '<button style="height: 5%" class="w3-button w3-green" onclick="deAssignClonesSleep()">-</button>'+parseInt(player.train.defense.sleep.progress/1000)+'% to Next level<br/>';
+    string += '<p>Fall(Level '+player.train.defense.fall.level+'):'+assignedClones.train.defense.fall+' clones assigned</p>';
+    string += '<button style="height: 5%" class="w3-button w3-green" onclick="assignClonesFall()">+</button>';
+    string += '<button style="height: 5%" class="w3-button w3-green" onclick="deAssignClonesFall()">-</button>'+parseInt(player.train.defense.fall.progress/1000)+'% to Next level<br/>';
+    string += '<p>Beat(Level '+player.train.defense.beat.level+'):'+assignedClones.train.defense.beat+' clones assigned</p>';
+    string += '<button style="height: 5%" class="w3-button w3-green" onclick="assignClonesBeat()">+</button>';
+    string += '<button style="height: 5%" class="w3-button w3-green" onclick="deAssignClonesBeat()">-</button>'+parseInt(player.train.defense.beat.progress/1000)+'% to Next level<br/>';
+    
+    string += '</div>';
+    document.getElementById('Screen').innerHTML=string;
 }
 
 function printBoss(){
@@ -19,13 +57,14 @@ function printBoss(){
     string += '<h1>Boss Number '+values.boss+'</h1>';
     string += '<h3>Boss Attack'+curBoss.attack+'</h3><br/>';
     string += '<h3>Boss Health'+curBoss.curhp+'/'+curBoss.hp+'</h2>';
-    string += '<button class="w3-button w3-red" onclick="action.attacking=true;">Figth</button>';
+    string += '<button class="w3-button w3-red" onclick="action.attacking=true;">Figth</button><hr/>';
+    string += pastConsole;
     document.getElementById('Screen').innerHTML=string;
 }
 
-function goToTraining(){
-    options.menu="Training";
-    loadScreen();
+function loadTutorial(){
+    var string = "<h1>Tutorial</h1><hr/>";
+    document.getElementById('Screen').innerHTML=string;
 }
 
 //Player UI

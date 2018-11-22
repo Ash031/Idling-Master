@@ -1,22 +1,27 @@
 <html>
     <head>
-        <title>Idle Game</title>
+        <title>Idling Master</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="scripts/Logic.js"></script>
         <script src="scripts/Variables.js"></script>
         <script src="scripts/UI.js"></script>
+        <script src="scripts/Training.js"></script>
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     </head>
     <body onload="initGame()">
         <div class="w3-row">
-            <div style="height:100%" class="w3-col m2 l1 w3-light-blue" height="100%">
+            <div style="height:100%" class="w3-col m3 l2 w3-light-blue">
                 <h1>Menu:</h1>
                 <hr/>
                 <button style="width: 100%" class="w3-button w3-green" onclick="goToBosses()">Bosses</button>
                 <button style="width: 100%" class="w3-button w3-green" onclick="goToTraining()">Training</button>
+                <hr/>
+                <h2>Clones:</h2>
+                <input style="width: 100%" type="text" id="NClones" placeholder="Number of Clones">
+                <button style="width: 100%" class="w3-button w3-green" onclick="assignAllClones()">Assign All Clones</button>
             </div>
-            <div style="height:100%" id="Screen" class="w3-col m7 l9">
-
+            <div style="height:100%" id="Screen" class="w3-col m6 l8">
+                
             </div>
             <div style="height:100%" id="Player" class="w3-col m3 l2 w3-light-blue">
                 
