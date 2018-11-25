@@ -6,6 +6,9 @@
         <script src="scripts/Variables.js"></script>
         <script src="scripts/UI.js"></script>
         <script src="scripts/Training.js"></script>
+        <script src="scripts/Dojo.js"></script>
+        <script src="scripts/Shop.js"></script>
+        <script src="scripts/Farm.js"></script>
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     </head>
     <body onload="initGame()">
@@ -15,6 +18,12 @@
                 <hr/>
                 <button style="width: 100%" class="w3-button w3-dark-gray" onclick="goToBosses()">Bosses</button>
                 <button style="width: 100%" class="w3-button w3-dark-gray" onclick="goToTraining()">Training</button>
+                <button id="Zone1" style="width: 100%" class="w3-button w3-dark-gray" onclick="goToDojo()" disabled>It's Locked Boys</button>
+                <button id="Zone2" style="width: 100%" class="w3-button w3-dark-gray" onclick="goToFarm()" disabled>No No No...</button>
+                <button id="Zone3" style="width: 100%" class="w3-button w3-dark-gray" onclick="goToDojo()" disabled>It's not for you today</button>
+                <button id="Zone4" style="width: 100%" class="w3-button w3-dark-gray" onclick="goToDojo()" disabled>Cmon, unlock me</button>
+                <button id="Zone5" style="width: 100%" class="w3-button w3-dark-gray" onclick="goToDojo()" disabled>Wow, I'm Locked</button>
+                <button style="width: 100%" class="w3-button w3-dark-gray" onclick="goToStats()">Statistics</button>
                 <hr/>
                 <h2>Clones:</h2>
                 <input style="width: 100%" type="text" id="NClones" placeholder="Number of Clones">

@@ -9,28 +9,20 @@ function getClones(){
     return clones;
 }
 
-//MENU SWITCHING
-function goToTraining(){
-    options.menu="Training";
-    loadScreen();
-}
-
-function goToBosses(){
-    options.menu="Bosses";
-    loadScreen();
-}
 
 //BOSS MENU
 function loadBoss(){
-    curBoss.attack = Math.pow(10,values.boss);
-    curBoss.hp = curBoss.curhp = Math.pow(10,values.boss+1);
+    if(values.boss>=3) unlockButton("Zone1");
+    if(values.boss>=5) unlockButton("Zone2");
+    curBoss.attack = Math.pow(10,values.boss-1);
+    curBoss.hp = curBoss.curhp = Math.pow(10,values.boss);
     action.attacking=false;
 }
 
 function attack(){
-    if(player.defense<curBoss.attack){
-        pastConsole = "<p style='font-size: small'>You took "+(curBoss.attack-player.defense)+' damage.</p>'+pastConsole;
-        player.curhp-=(curBoss.attack-player.defense);
+    if(getDefense()<curBoss.attack){
+        pastConsole = "<p style='font-size: small'>You took "+(curBoss.attack-getDefense())+' damage.</p>'+pastConsole;
+        player.curhp-=(curBoss.attack-getDefense());
         if(player.curhp<=0){
             player.curhp=0;
             killPlayer();
@@ -40,11 +32,15 @@ function attack(){
     else{
         pastConsole="<p style='font-size: small'>You didn't take any damage, NICE!</p>"+pastConsole;
     }
-    curBoss.curhp -= player.strength;
-    pastConsole="<p style='font-size: small'>The Boss took "+player.strength+" damage.</p>"+pastConsole;
+    curBoss.curhp -= getStrength();
+    pastConsole="<p style='font-size: small'>The Boss took "+getStrength()+" damage.</p>"+pastConsole;
     if(curBoss.curhp<=0) killBoss();
 }
 function killBoss(){
+    stats.totalBossesKilles++;
+    player.idleClones++;
+    player.maxClones++;
+    player.baseClones++;
     values.boss++;
     loadBoss();
 }
@@ -60,6 +56,18 @@ function load(){
         assignedClones = JSON.parse(localStorage.getItem('assignedClones'));
         options = JSON.parse(localStorage.getItem('options'));
         values = JSON.parse(localStorage.getItem('value'));
+        stats = JSON.parse(localStorage.getItem('stats'));
+        dojoStats = JSON.parse(localStorage.getItem('dojoStats'));
+        offlineTime = (new Date().getTime()/1000)-parseInt(JSON.parse(localStorage.getItem('time')));
+        generateOffline(offlineTime);
+    }
+}
+
+function generateOffline(offlineTime){
+    var i;
+    for(i=0;i<offlineTime;i++){
+        console.log("SecondPassed!");
+        passSecond();
     }
 }
 
@@ -68,10 +76,14 @@ function save(){
     localStorage.setItem('assignedClones',JSON.stringify(assignedClones));
     localStorage.setItem('options',JSON.stringify(options));
     localStorage.setItem('value',JSON.stringify(values));
+    localStorage.setItem('stats',JSON.stringify(stats));
+    localStorage.setItem('dojoStats',JSON.stringify(dojoStats));
+    localStorage.setItem('time',new Date().getTime() / 1000);
 }
 
 function newGame(){
     values.boss=1;
+    values.zone=0;
     loadBoss();
     resetAssignedClones();
     resetPlayer();
@@ -105,22 +117,37 @@ function resetPlayer(){
     player.train.defense.sleep.level=player.train.defense.sleep.progress=
     player.train.defense.fall.level=player.train.defense.fall.progress=
     player.train.defense.beat.level=player.train.defense.beat.progress=
+    stats.totalDojoEnemies=stats.totalBossesKilles=stats.totalSeconds=
     0;
+}
+
+
+// Get Stats with Multiplier
+function getStrength(){
+    return Math.floor(player.strength*(1+dojoStats.attack/100));
+}
+
+function getDefense(){
+    return Math.floor(player.defense*(1+dojoStats.defense/100));
 }
 
 //SET GAME INTERVAL
 function initGame(){
     load();
+    loadBoss();
     loadPlayerScreen();
     loadTutorial();
+    options.menu="none";
+    unlockButtons();
     setInterval(passSecond,1000);
     setInterval(save,10000);
 }
 
 function passSecond(){
+    stats.totalSeconds++;
+    dojoFight();
     loadScreen();
     train();
-    console.log()
     player.curhp+=player.hpRegen;
     if(player.curhp>player.hp)player.curhp=player.hp;
     if(action.attacking){
