@@ -13,7 +13,7 @@ function getClones(){
 //BOSS MENU
 function loadBoss(){
     if(values.boss>=3) unlockButton("Zone1");
-    if(values.boss>=5) unlockButton("Zone2");
+    if(values.boss>=8) unlockButton("Zone2");
     curBoss.attack = Math.pow(10,values.boss-1);
     curBoss.hp = curBoss.curhp = Math.pow(10,values.boss);
     action.attacking=false;
@@ -59,15 +59,16 @@ function load(){
         stats = JSON.parse(localStorage.getItem('stats'));
         dojoStats = JSON.parse(localStorage.getItem('dojoStats'));
         offlineTime = (new Date().getTime()/1000)-parseInt(JSON.parse(localStorage.getItem('time')));
+        ores = JSON.parse(localStorage.getItem('ores'));
         generateOffline(offlineTime);
     }
 }
 
 function generateOffline(offlineTime){
     var i;
+    mineOffline(offlineTime);
     for(i=0;i<offlineTime;i++){
-        console.log("SecondPassed!");
-        passSecond();
+        train();
     }
 }
 
@@ -79,6 +80,7 @@ function save(){
     localStorage.setItem('stats',JSON.stringify(stats));
     localStorage.setItem('dojoStats',JSON.stringify(dojoStats));
     localStorage.setItem('time',new Date().getTime() / 1000);
+    localStorage.setItem('ores',JSON.stringify(ores));
 }
 
 function newGame(){
@@ -123,12 +125,36 @@ function resetPlayer(){
 
 
 // Get Stats with Multiplier
+function getCraftingAttack(){
+    var ret = 1.0;
+    for(var i = 0;i<crafting.items.length;i++){
+        if(crafting.items[i].bonus=="Attack"){
+            ret += (crafting.items[i].level-1)*crafting.items[i].perLevel;
+        }
+    }
+    return ret;
+}
+
 function getStrength(){
-    return Math.floor(player.strength*(1+dojoStats.attack/100));
+    return Math.floor(player.strength
+        *(1+dojoStats.attack/100)
+        *getCraftingAttack());
+}
+
+function getCraftingDefense(){
+    var ret = 1.0;
+    for(var i = 0;i<crafting.items.length;i++){
+        if(crafting.items[i].bonus=="Defense"){
+            ret += (crafting.items[i].level-1)*crafting.items[i].perLevel;
+        }
+    }
+    return ret;
 }
 
 function getDefense(){
-    return Math.floor(player.defense*(1+dojoStats.defense/100));
+    return Math.floor(player.defense
+        *(1+dojoStats.defense/100)
+        *(getCraftingDefense()));
 }
 
 //SET GAME INTERVAL
@@ -138,7 +164,6 @@ function initGame(){
     loadPlayerScreen();
     loadTutorial();
     options.menu="none";
-    unlockButtons();
     setInterval(passSecond,1000);
     setInterval(save,10000);
 }
@@ -146,6 +171,7 @@ function initGame(){
 function passSecond(){
     stats.totalSeconds++;
     dojoFight();
+    mine();
     loadScreen();
     train();
     player.curhp+=player.hpRegen;

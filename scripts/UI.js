@@ -15,6 +15,12 @@ function loadScreen(){
     else if(options.menu=="Stats"){
         printStats();
     }
+    else if(options.menu=="Mine"){
+        printMine();
+    }
+    else if(options.menu=="Crafting"){
+        printCrafting();
+    }
     else if(options.menu=="Farm"){
         printFarm();
     }
@@ -24,7 +30,9 @@ function printStats(){
     var string = '<h1 style="text-align: center">Statistics</h1><hr/>';
     string += '<p><b>Total Bosses Defeated:</b>'+stats.totalBossesKilles+'</p>';
     string += '<p><b>Total Dojo Enemies Defeated:</b>'+stats.totalDojoEnemies+'</p>';
-    string += '<p><b>Total Seconds Online:</b>'+stats.totalSeconds+'</p>';
+    string += '<p><b>Total Seconds:</b>'+stats.totalSeconds+'</p>';
+    string += '<p><b>Total Ores Mined:</b>'+stats.totalOresMined+'</p>';
+    string+='<button style="width: 100%" class="w3-button w3-dark-gray" onclick="newGame()">Reset Save</button>';
     document.getElementById('Screen').innerHTML=string;
 }
 
@@ -38,6 +46,16 @@ function loadTutorial(){
 //MENU SWITCHING
 function goToTraining(){
     options.menu="Training";
+    loadScreen();
+}
+
+function goToMine(){
+    options.menu="Mine";
+    loadScreen();
+}
+
+function goToCrafting(){
+    options.menu="Crafting";
     loadScreen();
 }
 
@@ -86,8 +104,7 @@ function loadPlayerScreen(){
     string+= '<h4>Defense:'+getDefense()+'</h4>';
     string+= '<h4>Clone Counter:'+player.idleClones+'/'+player.maxClones+'</h4>';
     string+= '<h4>Moneys:'+player.money+'</h4>'
-    string+= '<button style="width: 100%" class="w3-button w3-dark-gray" onclick="rebirth()" disabled>Don\'t click me</button><hr/>'
-    string+='<button style="width: 100%" class="w3-button w3-dark-gray" onclick="newGame()">Reset Save</button>'
+    string+= '<button style="width: 100%" class="w3-button w3-dark-gray" onclick="rebirth()" disabled>Don\'t click me</button><hr/>';
     document.getElementById('Player').innerHTML=string;
 }
 
@@ -97,7 +114,7 @@ function unlockButton(string){
         document.getElementById(string).disabled=false;
     }
     if(string=="Zone2"){
-        document.getElementById(string).innerHTML="Farm";
+        document.getElementById(string).innerHTML="Mine";
         document.getElementById(string).disabled=false;
     }
 }

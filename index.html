@@ -8,32 +8,36 @@
         <script src="scripts/Training.js"></script>
         <script src="scripts/Dojo.js"></script>
         <script src="scripts/Shop.js"></script>
+        <script src="scripts/Mine.js"></script>
+        <script src="scripts/Crafting.js"></script>
         <script src="scripts/Farm.js"></script>
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     </head>
     <body onload="initGame()">
         <div class="w3-row">
             <div style="height:100%" class="w3-col m3 l2 w3-gray">
-                <h1>Menu:</h1>
-                <hr/>
+                <h3>Menu:</h3>
                 <button style="width: 100%" class="w3-button w3-dark-gray" onclick="goToBosses()">Bosses</button>
                 <button style="width: 100%" class="w3-button w3-dark-gray" onclick="goToTraining()">Training</button>
                 <button id="Zone1" style="width: 100%" class="w3-button w3-dark-gray" onclick="goToDojo()" disabled>It's Locked Boys</button>
-                <button id="Zone2" style="width: 100%" class="w3-button w3-dark-gray" onclick="goToFarm()" disabled>No No No...</button>
-                <button id="Zone3" style="width: 100%" class="w3-button w3-dark-gray" onclick="goToDojo()" disabled>It's not for you today</button>
-                <button id="Zone4" style="width: 100%" class="w3-button w3-dark-gray" onclick="goToDojo()" disabled>Cmon, unlock me</button>
-                <button id="Zone5" style="width: 100%" class="w3-button w3-dark-gray" onclick="goToDojo()" disabled>Wow, I'm Locked</button>
+                <button id="Zone2" style="width: 100%" class="w3-button w3-dark-gray" onclick="goToMine()" disabled>No No No...</button>
+                <button id="Zone3" style="width: 100%" class="w3-button w3-dark-gray" onclick="goToFarm()" disabled>It's not for you today</button>
+                <button id="Zone4" style="width: 100%" class="w3-button w3-dark-gray" onclick="goTo()" disabled>Cmon, unlock me</button>
+                <button id="Zone5" style="width: 100%" class="w3-button w3-dark-gray" onclick="goTo()" disabled>Wow, I'm Locked</button>
                 <button style="width: 100%" class="w3-button w3-dark-gray" onclick="goToStats()">Statistics</button>
                 <hr/>
-                <h2>Clones:</h2>
-                <input style="width: 100%" type="text" id="NClones" placeholder="Number of Clones">
-                <button style="width: 100%" class="w3-button w3-dark-gray" onclick="assignAllClones()">Assign All Clones</button>
+                
             </div>
             <div style="height:100%" id="Screen" class="w3-col m6 l8">
                 
             </div>
-            <div style="height:100%" id="Player" class="w3-col m3 l2 w3-gray">
+            <div style="height:100%" class="w3-col m3 l2 w3-gray">
+                <div id="Player">
                 
+                </div>
+                <div>    
+                    <h3>Clones:</h3><input style="width: 100%" type="text" id="NClones" placeholder="Number of Clones"><button style="width: 100%" class="w3-button w3-dark-gray" onclick="assignAllClones()">Assign All Clones</button>
+                </div>    
             </div>
         </div>
     </body>

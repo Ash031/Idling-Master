@@ -8,8 +8,13 @@ function printShop(){
     string += "<tr><td><p>+10 Strength</p><button class='w3-button w3-green' onclick='buy(4)'>200 Moneys</button></td><td>"
     string += "<p>+10 HP</p><button class='w3-button w3-green' onclick='buy(5)'>100 Moneys</button></td><td>"
     string += "<p>+10 Defense</p><button class='w3-button w3-green' onclick='buy(6)'>300 Moneys</button></td></tr>"
-    string += "<tr><td><p>+1 Clone</p><button class='w3-button w3-green' onclick='buy(7)'>15 Moneys</button>"
-    string += "</td><td></td><td></td></tr></table>";
+    string += "<tr><td><p>+100 Strength</p><button class='w3-button w3-green' onclick='buy(7)'>2000 Moneys</button></td><td>"
+    string += "<p>+100 HP</p><button class='w3-button w3-green' onclick='buy(8)'>1000 Moneys</button></td><td>"
+    string += "<p>+100 Defense</p><button class='w3-button w3-green' onclick='buy(9)'>3000 Moneys</button></td></tr>"
+    string += "<tr><td><p>+1 Clone</p><button class='w3-button w3-green' onclick='buy(10)'>15 Moneys</button></td>"
+    string += "<td><p>+10 Clone</p><button class='w3-button w3-green' onclick='buy(11)'>150 Moneys</button></td>"
+    string += "<td><p>+100 Clone</p><button class='w3-button w3-green' onclick='buy(12)'>1500 Moneys</button></td>"
+    string += "</tr></table>";
     document.getElementById('Screen').innerHTML=string;
 }
 
@@ -53,16 +58,46 @@ function buy(item){
             case(6):
                 if(player.money>=300){
                     player.money-=300;
-                    dojoStats.defense+=10;
-                    player.defense+=10;
+                    dojoStats.attack+=100;
+                    player.strength+=100;
                 }
                 break;
             case(7):
-            if(player.money>=15){
-                player.money-=15;
-                player.maxClones++;
-                player.idleClones++;
-            }
+                if(player.money>=1000){
+                    player.money-=1000;
+                    dojoStats.hp+=100;
+                    player.hp+=100;
+                }
+            case(8):
+                if(player.money>=3000){
+                    player.money-=3000;
+                    dojoStats.attack+=1000;
+                    player.strength+=1000;
+                }
+            case(9):
+                if(player.money>=1500){
+                    player.money-=1500;
+                    player.maxClones+=100;
+                    player.idleClones+=100;
+                }
+            case(10):
+                if(player.money>=15){
+                    player.money-=15;
+                    player.maxClones++;
+                    player.idleClones++;
+                }
+            case(11):
+                if(player.money>=150){
+                    player.money-=150;
+                    player.maxClones+=10;
+                    player.idleClones+=10;
+                }
+            case(12):
+                if(player.money>=1500){
+                    player.money-=1500;
+                    player.maxClones+=100;
+                    player.idleClones+=100;
+                }
             break;
     }
 }

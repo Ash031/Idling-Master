@@ -38,6 +38,7 @@ function previousZone(){
 function nextZone(){
     if(values.zone==0) values.zone++;
     else if(values.zone==1 && values.boss>=5) values.zone++;
+    else if(values.zone==2 && values.boss>=8) values.zone++;
     printDojo();
     generateEnemy();
 }
