@@ -41,44 +41,44 @@ function buy(item){
                 player.defense++;
             }
             break;
-            case(4):
-                if(player.money>=200){
-                    player.money-=200;
-                    dojoStats.attack+=10;
-                    player.strength+=10;
-                }
+        case(4):
+            if(player.money>=200){
+                player.money-=200;
+                dojoStats.attack+=10;
+                player.strength+=10;
+            }
+            break;
+        case(5):
+            if(player.money>=100){
+                player.money-=100;
+                dojoStats.hp+=10;
+                player.hp+=10;
+            }
+            break;
+        case(6):                
+            if(player.money>=300){
+                player.money-=300;
+                dojoStats.defense+=10;
+                player.defense+=10;
+            }
                 break;
-            case(5):
-                if(player.money>=100){
-                    player.money-=100;
-                    dojoStats.hp+=10;
-                    player.hp+=10;
-                }
-                break;
-            case(6):
-                if(player.money>=300){
-                    player.money-=300;
-                    dojoStats.attack+=100;
-                    player.strength+=100;
-                }
-                break;
-            case(7):
-                if(player.money>=1000){
-                    player.money-=1000;
-                    dojoStats.hp+=100;
-                    player.hp+=100;
-                }
-            case(8):
+        case(7):
+            if(player.money>=1000){
+                player.money-=1000;
+                dojoStats.hp+=100;
+                player.hp+=100;
+            }
+        case(8):
+            if(player.money>=3000){
+                player.money-=3000;
+                dojoStats.attack+=1000;
+                player.strength+=1000;
+            }
+            case(9):
                 if(player.money>=3000){
                     player.money-=3000;
-                    dojoStats.attack+=1000;
-                    player.strength+=1000;
-                }
-            case(9):
-                if(player.money>=1500){
-                    player.money-=1500;
-                    player.maxClones+=100;
-                    player.idleClones+=100;
+                    player.defense+=100;
+                    player.defense+=100;
                 }
             case(10):
                 if(player.money>=15){
