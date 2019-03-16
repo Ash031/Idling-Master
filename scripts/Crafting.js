@@ -12,7 +12,7 @@ function getCraftingTable(){
         var item = crafting.items[i];
         string += '<tr><td>'+item.name+'</td><td>';
         for(var j = 0;j<item.cost.length;j++){
-            string += '<p>'+Math.floor(Math.pow(item.level,1.5)*item.cost[j].baseCost)+' '+ ores[item.cost[j].ore].name+'</p>';
+            string += '<p>'+printNumber(Math.floor(Math.pow(item.level,1.5)*item.cost[j].baseCost))+' '+ ores[item.cost[j].ore].name+'</p>';
         }
         string += '</td><td>'+(item.level-1)*item.perLevel+' '+item.bonus+'</td><td><button class="w3-button w3-green" onclick="craft('+i+')">Craft</button></td></tr>';
     }

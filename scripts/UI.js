@@ -24,6 +24,17 @@ function loadScreen(){
     else if(options.menu=="Farm"){
         printFarm();
     }
+    else if(options.menu=="Regroup"){
+        printRegroup();
+    }
+    else if(options.menu=="RegroupShop"){
+        printRegroupShop();
+    }
+}
+
+function printNumber(number){
+    if(number<1000) return String(number);
+    return number.toPrecision(4);
 }
 
 function printStats(){
@@ -31,14 +42,13 @@ function printStats(){
     string += '<p><b>Total Bosses Defeated:</b>'+stats.totalBossesKilles+'</p>';
     string += '<p><b>Total Dojo Enemies Defeated:</b>'+stats.totalDojoEnemies+'</p>';
     string += '<p><b>Total Seconds:</b>'+stats.totalSeconds+'</p>';
-    string += '<p><b>Total Ores Mined:</b>'+stats.totalOresMined+'</p>';
+    string += '<p><b>Total Ores Mined:</b>'+printNumber(stats.totalOresMined)+'</p>';
     string+='<button style="width: 100%" class="w3-button w3-dark-gray" onclick="newGame()">Reset Save</button>';
     document.getElementById('Screen').innerHTML=string;
 }
 
-
 function loadTutorial(){
-    var string = '<h1 style="text-align: center">Tutorial</h1><hr/';
+    var string = '<h1 style="text-align: center">Tutorial</h1><hr/>';
     document.getElementById('Screen').innerHTML=string;
 }
 
@@ -84,11 +94,20 @@ function goToFarm(){
     loadScreen();
 }
 
+function goToRegroup(){
+    options.menu="Regroup";
+    loadScreen();
+}
+function goToRegroupShop(){
+    options.menu="RegroupShop";
+    loadScreen();
+}
+
 function printBoss(){
     var string = '<h1 style="text-align: center">Boss Menu</h1><hr/>';
     string += '<h1>Boss Number '+values.boss+'</h1>';
-    string += '<h3>Boss Attack: '+curBoss.attack+'</h3><br/>';
-    string += '<h3>Boss Health: '+curBoss.curhp+'/'+curBoss.hp+'</h2>';
+    string += '<h3>Boss Attack: '+printNumber(curBoss.attack)+'</h3><br/>';
+    string += '<h3>Boss Health: '+printNumber(curBoss.curhp)+'/'+printNumber(curBoss.hp)+'</h2>';
     string += '<button class="w3-button w3-red" onclick="action.attacking=true;">Figth</button><hr/>';
     string += pastConsole;
     document.getElementById('Screen').innerHTML=string;
@@ -99,12 +118,11 @@ function printBoss(){
 
 function loadPlayerScreen(){
     var string = "<h1>Player Stats:</h1><hr/>";
-    string+= '<h4>HP:'+player.curhp+'/'+player.hp+'</h4>';
-    string+= '<h4>Strength:'+getStrength()+'</h4>';
-    string+= '<h4>Defense:'+getDefense()+'</h4>';
-    string+= '<h4>Clone Counter:'+player.idleClones+'/'+player.maxClones+'</h4>';
-    string+= '<h4>Moneys:'+player.money+'</h4>'
-    string+= '<button style="width: 100%" class="w3-button w3-dark-gray" onclick="rebirth()" disabled>Don\'t click me</button><hr/>';
+    string+= '<h4>HP:'+printNumber(player.curhp)+'/'+printNumber(player.hp)+'</h4>';
+    string+= '<h4>Strength:'+printNumber(getStrength())+'</h4>';
+    string+= '<h4>Defense:'+printNumber(getDefense())+'</h4>';
+    string+= '<h4>Clone Counter:'+printNumber(player.idleClones)+'/'+printNumber(player.maxClones)+'</h4>';
+    string+= '<h4>Moneys:'+printNumber(player.money)+'</h4>'
     document.getElementById('Player').innerHTML=string;
 }
 
@@ -116,5 +134,11 @@ function unlockButton(string){
     if(string=="Zone2"){
         document.getElementById(string).innerHTML="Mine";
         document.getElementById(string).disabled=false;
+    }
+    if(string=="Rebirth"){
+        document.getElementById(string).innerHTML="Regroup";
+        document.getElementById(string).disabled=false;
+        document.getElementById("RebirthShop").innerHTML="Regroup Shop";
+        document.getElementById("RebirthShop").disabled=false;
     }
 }

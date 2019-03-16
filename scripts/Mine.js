@@ -15,7 +15,7 @@ function getOreTables(){
     for(var i = 0;i<4;i++){
         string += '<tr>';
         for(var j=0;j<3;j++){
-            string +='<td><p style="text-align:center">'+ores[i*3+j].name+'</p><button class="w3-button w3-green" onclick="removeCloneToOre('+i*3+j+');">-</button>'+ores[i*3+j].clones+'<button style="float:right"class="w3-button w3-green" onclick="addCloneToOre('+i*3+j+')">+</button></td>';
+            string +='<td><p style="text-align:center">'+ores[i*3+j].name+'</p><button class="w3-button w3-green" onclick="removeCloneToOre('+i*3+j+');">-</button>'+printNumber(ores[i*3+j].clones)+'<button style="float:right"class="w3-button w3-green" onclick="addCloneToOre('+i*3+j+')">+</button></td>';
         }
         string += '</tr>';
     }
@@ -40,7 +40,7 @@ function removeCloneToOre(ore){
 function getOres(){
     var string = '';
     for(var i = 0;i< 12; i++){
-        string += '<p>'+ores[i].name+':'+Math.floor(ores[i].quant)+'</p>'
+        string += '<p>'+ores[i].name+':'+printNumber(Math.floor(ores[i].quant))+'</p>'
     }
     return string;
 }
@@ -49,6 +49,7 @@ function mineOffline(time){
     for(var i=0;i<12;i++){
         ores[i].quant += time*ores[i].mult*ores[i].clones;
         stats.totalOresMined+=time*ores[i].mult*ores[i].clones;
+        lifeStats.totalOresMined+=time*ores[i].mult*ores[i].clones;
     }
 }
 
@@ -56,5 +57,6 @@ function mine(){
     for(var i=0;i<12;i++){
         ores[i].quant += ores[i].mult*ores[i].clones;
         stats.totalOresMined+=ores[i].mult*ores[i].clones;
+        lifeStats.totalOresMined+=ores[i].mult*ores[i].clones;
     }
 }

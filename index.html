@@ -11,6 +11,7 @@
         <script src="scripts/Mine.js"></script>
         <script src="scripts/Crafting.js"></script>
         <script src="scripts/Farm.js"></script>
+        <script src="scripts/Regroup.js"></script>
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     </head>
     <body onload="initGame()">
@@ -35,6 +36,9 @@
                 <div id="Player">
                 
                 </div>
+                <button style="width: 100%" class="w3-button w3-dark-gray" id="Rebirth"onclick="goToRegroup()" disabled>Don't click me</button>
+                <button style="width: 100%" class="w3-button w3-dark-gray" id="RebirthShop"onclick="goToRegroupShop()" disabled>Don't click me too</button>
+                <hr/>
                 <div>    
                     <h3>Clones:</h3><input style="width: 100%" type="text" id="NClones" placeholder="Number of Clones"><button style="width: 100%" class="w3-button w3-dark-gray" onclick="assignAllClones()">Assign All Clones</button>
                 </div>    
@@ -42,5 +46,3 @@
         </div>
     </body>
 </html>
-
-

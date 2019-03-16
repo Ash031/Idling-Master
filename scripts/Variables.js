@@ -1,3 +1,5 @@
+var version = "1.0"
+
 var player = {
     strength : 1,
     hp : 10,
@@ -56,6 +58,63 @@ var player = {
         }
     }
 }
+
+var rebirth = {
+    canRebirth: false,
+    rbPoints:0
+}
+
+var rebirthPerks = [
+    {
+        name:"Stronger Muscles",
+        basePrice:10,
+        lvl:0,
+        step:"*1",
+        Description:"Your strength goes up by 10% each Upgrade",
+        Bonus:0.1,
+        boss:5,
+        maxLevel:-1
+    },
+    {
+        name:"Harder Guts",
+        basePrice:10,
+        lvl:0,
+        step:"*1",
+        Description:"Your defense goes up by 10% each Upgrade",
+        Bonus:0.1,
+        boss:5,
+        maxLevel:-1
+    },
+    {
+        name:"XRay Vision",
+        basePrice:10,
+        lvl:0,
+        step:"^1",
+        Description:"You have 2% chance to deal double damage",
+        Bonus:0.02,
+        boss:5,
+        maxLevel:50
+    },
+    {
+        name:"Mining Expert",
+        basePrice:100,
+        lvl:0,
+        step:"*2",
+        Description:"You get 1% more ores",
+        Bonus:0.01,
+        boss:7,
+        maxLevel:-1
+    },
+    {
+        name:"Farming Master",
+        basePrice:50,
+        lvl:0,
+        Description:"Your crops weild % more",
+        Bonus:0.1,
+        boss:1000,
+        maxLevel:-1
+    }
+]
 
 var assignedClones = {
     train : {
@@ -136,7 +195,7 @@ var enemies = [
     {
         name : 'John, the Gardener',
         hp : 5,
-        attack : 3,
+        attack : 2,
         defense : 0,
         prize : 1
     },
@@ -177,28 +236,36 @@ var enemies = [
     },
     {
         name : 'Sainik, The Speeding Demon',
-        hp : 200,
-        attack : 50,
-        defense : 10,
-        prize : 10
+        hp : 2000,
+        attack : 500,
+        defense : 70,
+        prize : 20
     },
     {
         name : 'Goat, The Devil\'s Servant',
-        hp : 200,
-        attack : 50,
-        defense : 10,
-        prize : 10
+        hp : 1500,
+        attack : 500,
+        defense : 150,
+        prize : 25
     },
     {
         name : 'CupMan, The Devil\'s Helper',
-        hp : 200,
-        attack : 50,
-        defense : 10,
-        prize : 10
+        hp : 1750,
+        attack : 1000,
+        defense : 300,
+        prize : 30
     },
 ]
 
 var stats = {
+    totalBossesKilles : 0,
+    totalDojoEnemies : 0,
+    totalSeconds : 0,
+    totalOresMined : 0,
+    highestBoss: 0
+}
+
+var lifeStats = {
     totalBossesKilles : 0,
     totalDojoEnemies : 0,
     totalSeconds : 0,

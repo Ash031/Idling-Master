@@ -12,10 +12,12 @@ function getClones(){
 
 //BOSS MENU
 function loadBoss(){
+    if(values.boss>stats.highestBoss)stats.highestBoss=values.boss;
     if(values.boss>=3) unlockButton("Zone1");
+    if(values.boss>=5) unlockButton("Rebirth");
     if(values.boss>=8) unlockButton("Zone2");
-    curBoss.attack = Math.pow(10,values.boss-1);
-    curBoss.hp = curBoss.curhp = Math.pow(10,values.boss);
+    curBoss.attack = Math.pow(8,values.boss-1);
+    curBoss.hp = curBoss.curhp = Math.pow(9,values.boss);
     action.attacking=false;
 }
 
@@ -38,6 +40,7 @@ function attack(){
 }
 function killBoss(){
     stats.totalBossesKilles++;
+    lifeStats.totalBossesKilles++;
     player.idleClones++;
     player.maxClones++;
     player.baseClones++;
@@ -52,27 +55,37 @@ function killPlayer(){
 //GAME SAVING, LOADING AND RESETING
 function load(){
     if(localStorage.getItem('player')){
+        rebirthPerks = JSON.parse(localStorage.getItem('perks'))
         player = JSON.parse(localStorage.getItem('player'));
         assignedClones = JSON.parse(localStorage.getItem('assignedClones'));
         options = JSON.parse(localStorage.getItem('options'));
+        rebirth = JSON.parse(localStorage.getItem('Rebirth'));
         values = JSON.parse(localStorage.getItem('value'));
         stats = JSON.parse(localStorage.getItem('stats'));
         dojoStats = JSON.parse(localStorage.getItem('dojoStats'));
         offlineTime = (new Date().getTime()/1000)-parseInt(JSON.parse(localStorage.getItem('time')));
         ores = JSON.parse(localStorage.getItem('ores'));
+        lifeStats=JSON.parse(localStorage.getItem('lifeStat'));
+        updateVersion();
         generateOffline(offlineTime);
+    }
+}
+function updateVersion(){
+    if(localStorage.getItem('Version')){
+        versionUpdated = localStorage.getItem('Version');
+
     }
 }
 
 function generateOffline(offlineTime){
-    var i;
     mineOffline(offlineTime);
-    for(i=0;i<offlineTime;i++){
+    for(var i=0;i<offlineTime;i++){
         train();
     }
 }
 
 function save(){
+    localStorage.setItem('perks',JSON.stringify(rebirthPerks));
     localStorage.setItem('player',JSON.stringify(player));
     localStorage.setItem('assignedClones',JSON.stringify(assignedClones));
     localStorage.setItem('options',JSON.stringify(options));
@@ -81,11 +94,14 @@ function save(){
     localStorage.setItem('dojoStats',JSON.stringify(dojoStats));
     localStorage.setItem('time',new Date().getTime() / 1000);
     localStorage.setItem('ores',JSON.stringify(ores));
+    localStorage.setItem('Rebirth',JSON.stringify(rebirth));
+    localStorage.setItem('lifeStat',JSON.stringify(lifeStats));
 }
 
 function newGame(){
     values.boss=1;
     values.zone=0;
+    stats.highestBoss=0;
     loadBoss();
     resetAssignedClones();
     resetPlayer();
@@ -138,7 +154,9 @@ function getCraftingAttack(){
 function getStrength(){
     return Math.floor(player.strength
         *(1+dojoStats.attack/100)
-        *getCraftingAttack());
+        *getCraftingAttack()
+        *getRBAttack()
+        *crit());
 }
 
 function getCraftingDefense(){
@@ -154,7 +172,8 @@ function getCraftingDefense(){
 function getDefense(){
     return Math.floor(player.defense
         *(1+dojoStats.defense/100)
-        *(getCraftingDefense()));
+        *getCraftingDefense()
+        *getRBDefense());
 }
 
 //SET GAME INTERVAL
@@ -170,6 +189,7 @@ function initGame(){
 
 function passSecond(){
     stats.totalSeconds++;
+    lifeStats.totalSeconds++;
     dojoFight();
     mine();
     loadScreen();
