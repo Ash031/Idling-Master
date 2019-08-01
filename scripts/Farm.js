@@ -14,8 +14,15 @@ function printFarm(){
 
 function getFarmBonusesText(){
     string = '';
-    if(farmStats.attack>1)string+='<p>Attack Multi: '+printNumber(farmStats.attack)+"</p>"
-    if(farmStats.defense>1) string+="<p>Defense Mult: "+printNumber(farmStats.defense)+"</p>"
+    if(farmStats.attack>1)string+='<p>Attack Multiplier: '+printNumber(farmStats.attack)+"</p>"
+    if(farmStats.defense>1) string+="<p>Defense Multiplier: "+printNumber(farmStats.defense)+"</p>"
+    if(farmStats.mining>1) string+="<p>Mining Multiplier: "+printNumber(farmStats.defense)+"</p>"
+    if(farmStats.farmXPMult>1) string+="<p>Farming XP Multiplier: "+printNumber(farmStats.defense)+"</p>"
+    if(farmStats.farmDropMult>1) string+="<p>Farming Drops Multiplier: "+printNumber(farmStats.defense)+"</p>"
+    if(farmStats.GoldMult>1) string+="<p>Gold Multiplier: "+printNumber(farmStats.defense)+"</p>"
+    if(farmStats.ClonesAmountMult>1) string+="<p>Clones Gaining Multiplier: "+printNumber(farmStats.defense)+"</p>"
+    if(farmStats.ClonesPowerMult>1) string+="<p>Clones Power Multiplier: "+printNumber(farmStats.defense)+"</p>"
+    if(farmStats.dojoMult>1) string+="<p>Dojo Multiplier: "+printNumber(farmStats.defense)+"</p>"
     if (string == "") return "<p>No Bonuses for now bub.</p>";
     return string;
 }
@@ -70,8 +77,8 @@ function unlockPlot(plotN){
     if(player.money>=Math.pow(1000,plotN)){
         player.money-=Math.pow(1000,plotN);
         plots[plotN].got=true;
-        plots[plotN].xp = 1;
-        plots[plotN].level = 1;
+        plots[plotN].xp = Math.pow(1+getBonusRebirth("PlotLvl"),2);
+        plots[plotN].level = 1+getBonusRebirth("PlotLvl");
     }
 }
 
@@ -98,7 +105,7 @@ function giveXPToPlot(plotN,xp){
 function getCrop(cropN,time){
     var crop = crops[cropN];
     var growthAmount = getGrowth(crop.growthTime,time)
-    var bonus = crop.bonus * growthAmount * crop.level * farmStats.farmDropMult;
+    var bonus = crop.bonus * growthAmount * crop.level * farmStats.farmDropMult *getBonusRebirth("FarmDrops");
     var type = crop.type;
     if(type=="Attack")  farmStats.attack+=bonus;
     else if(type=="Defense")    farmStats.defense+=bonus;

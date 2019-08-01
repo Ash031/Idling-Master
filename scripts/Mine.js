@@ -44,19 +44,19 @@ function getOres(){
     }
     return string;
 }
-
+    
 function mineOffline(time){
     for(var i=0;i<12;i++){
-        ores[i].quant += time*ores[i].mult*ores[i].clones*farmStats.mining;
-        stats.totalOresMined+=time*ores[i].mult*ores[i].clones*farmStats.mining;
-        lifeStats.totalOresMined+=time*ores[i].mult*ores[i].clones*farmStats.mining;
+        ores[i].quant += time*ores[i].mult*ores[i].clones*farmStats.mining*getBonusRebirth("Mining");
+        stats.totalOresMined+=time*ores[i].mult*ores[i].clones*farmStats.mining*getBonusRebirth("Mining");
+        lifeStats.totalOresMined+=time*ores[i].mult*ores[i].clones*farmStats.mining*getBonusRebirth("Mining");
     }
 }
 
 function mine(){
     for(var i=0;i<12;i++){
-        ores[i].quant += (ores[i].mult*ores[i].clones*farmStats.mining*getBonusRebirth(3));
-        stats.totalOresMined+=(ores[i].mult*ores[i].clones*farmStats.mining*getBonusRebirth(3));
-        lifeStats.totalOresMined+=(ores[i].mult*ores[i].clones*farmStats.mining*getBonusRebirth(3));
+        ores[i].quant += (ores[i].mult*ores[i].clones*farmStats.mining*getBonusRebirth("Mining"));
+        stats.totalOresMined+=(ores[i].mult*ores[i].clones*farmStats.mining*getBonusRebirth("Mining"));
+        lifeStats.totalOresMined+=(ores[i].mult*ores[i].clones*farmStats.mining*getBonusRebirth("Mining"));
     }
 }

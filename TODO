@@ -1,13 +1,13 @@
 Areas:
 
 Rebirth:
-- [ ] Add New Multipliers
-- [ ] More Skills to buy (More XP per harvest, Increase initial Plot XP, Stronger Clones, More Clones)
+- [X] Add New Multipliers
+- [X] More Skills to buy (More XP per harvest, Increase initial Plot XP, Stronger Clones, More Clones)
 
 Farm:
 - [X] Add more Plants (T2, Dojo Stats, RBPoints Multiplier, Mining)
-- [ ] Sum the multipliers on the Stats
-- [ ] Rebirth
+- [X] Sum the multipliers on the Stats
+- [X] Rebirth
 
 Werehouse:
 - [ ] Trade gold and send clones for small bonuses
@@ -15,6 +15,10 @@ Werehouse:
 - [ ] Functionalities
 - [ ] Variables
 
+Statistics:
+-[X] Add Farm Stats
+
 Bugs:
 - [X] Buttons don't lock back on reset and rebirth 
 - [ ] Fighting text gets out of the page
+- [X] NaN Rebirth Points (Due to having 0 defeated dojo Enemies)

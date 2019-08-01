@@ -66,6 +66,17 @@ var rebirth = {
 
 var rebirthPerks = [
     {
+        name:"Cloning Machine",
+        basePrice:5,
+        lvl:0,
+        step:"*1",
+        Description:"Starts the Regroup with an extra clone",
+        Bonus:1,
+        boss:5,
+        maxLevel:50,
+        type: "StartClones"
+    },
+    {
         name:"Stronger Muscles",
         basePrice:10,
         lvl:0,
@@ -73,7 +84,8 @@ var rebirthPerks = [
         Description:"Your strength goes up by 10% each Upgrade",
         Bonus:0.1,
         boss:5,
-        maxLevel:-1
+        maxLevel:-1,
+        type: "Strength"
     },
     {
         name:"Harder Guts",
@@ -83,7 +95,8 @@ var rebirthPerks = [
         Description:"Your defense goes up by 10% each Upgrade",
         Bonus:0.1,
         boss:5,
-        maxLevel:-1
+        maxLevel:-1,
+        type: "Defense"
     },
     {
         name:"XRay Vision",
@@ -93,7 +106,8 @@ var rebirthPerks = [
         Description:"You have 2% chance to deal double damage",
         Bonus:0.02,
         boss:5,
-        maxLevel:50
+        maxLevel:50,
+        type:"CritChance"
     },
     {
         name:"Mining Expert",
@@ -103,16 +117,52 @@ var rebirthPerks = [
         Description:"You get 1% more ores",
         Bonus:0.01,
         boss:7,
-        maxLevel:-1
+        maxLevel:-1,
+        type: "Mining"
+    },
+    {
+        name:"Better Equipment",
+        basePrice:250,
+        lvl:0,
+        step:"^1",
+        Description:"Double your mining Income",
+        Bonus:1,
+        boss:13,
+        maxLevel:10,
+        type: "Mining"
     },
     {
         name:"Farming Master",
-        basePrice:50,
+        basePrice:10,
         lvl:0,
-        Description:"Your crops weild 10% more",
+        step:"*1",
+        Description:"Your plots weild 10% more crops",
         Bonus:0.1,
         boss:13,
-        maxLevel:-1
+        maxLevel:-1,
+        type: "FarmDrops"
+    },
+    {
+        name:"Plot Learner",
+        basePrice:10,
+        lvl:0,
+        step:"^1",
+        Description:"Your plots starts at a level higher",
+        Bonus:1,
+        boss:13,
+        maxLevel:-1,
+        type: "PlotLvl"
+    },
+    {
+        name:"Seeding Frenzy",
+        basePrice:200,
+        lvl:0,
+        step:"*2",
+        Description:"Your plots gain 10% more experience",
+        Bonus:0.1,
+        boss:13,
+        maxLevel:-1,
+        type: "FarmXP"
     }
 ]
 
@@ -368,14 +418,16 @@ var stats = {
     totalDojoEnemies : 0,
     totalSeconds : 0,
     totalOresMined : 0,
-    highestBoss: 0
+    highestBoss: 0,
+    totalCropsGrown : 0
 }
 
 var lifeStats = {
     totalBossesKilles : 0,
     totalDojoEnemies : 0,
     totalSeconds : 0,
-    totalOresMined : 0
+    totalOresMined : 0,
+    totalCropsGrown : 0
 }
 
 var curBoss = {

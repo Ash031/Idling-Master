@@ -45,6 +45,7 @@ function printStats(){
     string += '<p><b>Total Dojo Enemies Defeated:</b>'+stats.totalDojoEnemies+'</p>';
     string += '<p><b>Total Seconds:</b>'+stats.totalSeconds+'</p>';
     string += '<p><b>Total Ores Mined:</b>'+printNumber(stats.totalOresMined)+'</p>';
+    string += '<p><b>Total Crops Grown:</b>'+printNumber(stats.totalCropsGrown)+'</p>';
     string+='<button style="width: 100%" class="w3-button w3-dark-gray" onclick="newGame()">Reset Save</button>';
     document.getElementById('Screen').innerHTML=string;
 }

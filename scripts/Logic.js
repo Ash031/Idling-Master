@@ -175,10 +175,19 @@ function newGame(){
     loadBoss();
     resetAssignedClones();
     resetPlayer();
+    resetRebirth();
     lockAllButtons();
     resetMine();
     resetFarm();    
     save();
+}
+
+function resetRebirth(){
+    rebirth.canRebirth = false
+    rebirth.rbPoints=0
+    rebirthPerks.forEach(perk=>{
+        perk.lvl = 0;
+    })
 }
 
 function resetAssignedClones(){

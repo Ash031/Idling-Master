@@ -8,6 +8,16 @@ function printRegroup(){
     document.getElementById('Screen').innerHTML=string;
 }
 
+function getStartClones(){
+    var ret = 1;
+    rebirthPerks.forEach(perk=>{
+        if(perk.type=="StartClones"){
+            ret+=perk.Bonus*perk.lvl;
+        }
+    })
+    return ret;
+}
+
 function printRegroupShop(){
     var string = "<h1 style='text-align:center'>Regroup Shop</h1><hr/>";
     string+="<h2>You have "+rebirth.rbPoints+" Regroup Points</h2>";
@@ -43,14 +53,18 @@ function crit(){
 }
 
 function getRBAttack(){
-    return 1+(rebirthPerks[0].Bonus*rebirthPerks[0].lvl);
+    return getBonusRebirth("Strength")
 }
 function getRBDefense(){
-    return 1+(rebirthPerks[1].Bonus*rebirthPerks[1].lvl);
+    return getBonusRebirth("Defense")
 }
 
-function getBonusRebirth(perkN){
-    return 1+rebirthPerks[perkN].lvl*rebirthPerks[perkN].Bonus;
+function getBonusRebirth(perkType){
+    var ret = 1;
+    rebirthPerks.forEach(perk=>{
+        if(perk.type==perkType) ret *= (1+(perk.Bonus*perk.lvl));
+    })
+    return ret;
 }
 
 function getPrice(perk){
@@ -61,15 +75,35 @@ function getPrice(perk){
 
 function RBPointsAmount(){
     var mult = Math.log10(lifeStats.totalSeconds)*lifeStats.totalBossesKilles*Math.log10(lifeStats.totalDojoEnemies);
-    if(lifeStats.totalOresMined>0)mult*=Math.log10(lifeStats.totalOresMined);
+    if (isNaN(mult) || mult ==-Infinity) return 0;
+    if(lifeStats.totalOresMined>10)mult*=Math.log10(lifeStats.totalOresMined);
+    if(lifeStats.totalCropsGrown>10)mult*=Math.log10(lifeStats.totalCropsGrown);
     return Math.floor(mult);
 }
 
 function rebirthNow(){
     rebirth.rbPoints+=RBPointsAmount();
     resetTraining(); 
-    resetButtons();   
+    resetButtons();
+    rebirthFarm();
     loadBoss();
+}
+
+function rebirthFarm(){
+    plots.forEach(plot=>{
+        plot.crop=-1;
+        plot.curTime=plot.xp=plot.level=0;
+        plot.got=false;
+    })
+    farmStats.ClonesAmountMult=1;
+    farmStats.ClonesPowerMult=1;
+    farmStats.attack=1;
+    farmStats.defense=1;
+    farmStats.mining=1;
+    farmStats.farmXPMult=1;
+    farmStats.farmDropMult=1;
+    farmStats.GoldMult=1;
+    farmStats.dojoMult =1;
 }
 
 function resetButtons(){
@@ -107,9 +141,9 @@ function resetTraining(){
     hp : 10,
     curhp : 10,
     defense : 1,
-    maxClones : 1,
-    idleClones : 1,
-    baseClones : 1,
+    maxClones : getStartClones(),
+    idleClones : getStartClones(),
+    baseClones : getStartClones(),
     money : 0,
     hpRegen : 1,
     train : {
