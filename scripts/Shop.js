@@ -86,20 +86,17 @@ function buy(item){
             case(10):
                 if(player.money>=150){
                     player.money-=150;
-                    player.maxClones++;
-                    player.idleClones++;
+                    addClones(1);
                 }
             case(11):
                 if(player.money>=1500){
                     player.money-=1500;
-                    player.maxClones+=10;
-                    player.idleClones+=10;
+                    addClones(10);
                 }
             case(12):
                 if(player.money>=15000){
                     player.money-=15000;
-                    player.maxClones+=100;
-                    player.idleClones+=100;
+                    addClones(100);
                 }
             break;
             case(13):

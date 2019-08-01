@@ -92,22 +92,24 @@ function Harvest(plotN){
 
 function giveXPToPlot(plotN,xp){
     plots[plotN].xp += xp;
-    plots[plotN].level = Math.floor(Math.sqrt(plots[plotN].xp));
+    plots[plotN].level = Math.floor(Math.sqrt(plots[plotN].xp)*farmStats.farmXPMult);
 }
 
 function getCrop(cropN,time){
     var crop = crops[cropN];
     var growthAmount = getGrowth(crop.growthTime,time)
-    var bonus = crop.bonus * growthAmount * crop.level;
-    if(crop.type=="Attack"){
-        farmStats.attack+=bonus;
-    }
-    else if(crop.type=="Defense"){
-        farmStats.defense+=bonus;
-    }
-    else if(crop.type=="Gold"){
-        player.money+=bonus;
-    }
+    var bonus = crop.bonus * growthAmount * crop.level * farmStats.farmDropMult;
+    var type = crop.type;
+    if(type=="Attack")  farmStats.attack+=bonus;
+    else if(type=="Defense")    farmStats.defense+=bonus;
+    else if(type=="Gold")   player.money+=bonus;
+    else if(type=="Mining") farmStats.mining+=bonus;
+    else if(type=="FarmXP") farmStats.farmXPMult+=bonus;
+    else if(type=="FarmDrop") farmStats.farmDropMult+=bonus;
+    else if(type=="CloneAmount") farmStats.ClonesAmountMult+=bonus;
+    else if(type=="ClonePower") farmStats.ClonesPowerMult+=bonus;
+    else if(type=="GoldMult") farmStats.GoldMult+=bonus;
+    else if(type=="Dojo") farmStats.dojoMult+=bonus;
     else{
         alert("Bug found, please send the seed name to Ash031")
     }

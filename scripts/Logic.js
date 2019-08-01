@@ -9,6 +9,8 @@ function getClones(){
     return clones;
 }
 
+
+
 //GAME SAVING, LOADING AND RESETING
 function load(){
     if(localStorage.getItem('player')){
@@ -27,7 +29,6 @@ function load(){
         lifeStats=JSON.parse(localStorage.getItem('lifeStat'));
         updateVersion();
         generateOffline(offlineTime);
-        unlockButtons();
     }
 }
 function updateVersion(){
@@ -71,11 +72,21 @@ function getCraftingAttack(){
     return ret;
 }
 
+function getFarmAttack(){
+    return farmStats.attack;
+}
+
+function getFarmDefense(){
+    return farmStats.defense;
+}
+
+
 function getStrength(){
     return Math.floor(player.strength
         *(1+dojoStats.attack/100)
         *getCraftingAttack()
         *getRBAttack()
+        *getFarmAttack()
         *crit());
 }
 
@@ -83,6 +94,7 @@ function getRawStrength(){
     return Math.floor(player.strength
         *(1+dojoStats.attack/100)
         *getCraftingAttack()
+        *getFarmAttack()
         *getRBAttack());
 }
 
@@ -100,6 +112,7 @@ function getDefense(){
     return Math.floor(player.defense
         *(1+dojoStats.defense/100)
         *getCraftingDefense()
+        *getFarmDefense()
         *getRBDefense());
 }
 
@@ -107,7 +120,24 @@ function getRawDefense(){
     return Math.floor(player.defense
         *(1+dojoStats.defense/100)
         *getCraftingDefense()
+        *getFarmDefense()
         *getRBDefense());
+}
+
+//Add Values with multipliers
+
+function addClones(num){
+    num = Math.floor(num
+        *farmStats.ClonesAmountMult)
+    player.baseClones+=num;
+    player.idleClones+=num;
+    player.maxClones+=num;
+}
+
+function addMoney(num){
+    num = Math.floor(num
+        *farmStats.GoldMult);
+    player.money+=num;
 }
 
 //SET GAME INTERVAL

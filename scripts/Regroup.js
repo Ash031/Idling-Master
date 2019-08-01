@@ -67,8 +67,18 @@ function RBPointsAmount(){
 
 function rebirthNow(){
     rebirth.rbPoints+=RBPointsAmount();
-    resetTraining();    
+    resetTraining(); 
+    resetButtons();   
     loadBoss();
+}
+
+function resetButtons(){
+    document.getElementById("Zone1").innerHTML="It's Locked Boys";
+    document.getElementById("Zone1").disabled=true;
+    document.getElementById("Zone2").innerHTML="No No No...";
+    document.getElementById("Zone2").disabled=true;
+    document.getElementById("Zone3").innerHTML="It's not for you today";
+    document.getElementById("Zone3").disabled=true;
 }
 
 

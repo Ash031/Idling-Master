@@ -1,12 +1,20 @@
 Areas:
 
 Rebirth:
-More Skills to buy (More XP per plant, Increase initial Plot XP, Stronger Clones, More Clones)
+- [ ] Add New Multipliers
+- [ ] More Skills to buy (More XP per harvest, Increase initial Plot XP, Stronger Clones, More Clones)
 
 Farm:
-- Add more Plants (T2, Dojo Stats, RBPoints Multiplier, Mining (almost done!))
+- [X] Add more Plants (T2, Dojo Stats, RBPoints Multiplier, Mining)
+- [ ] Sum the multipliers on the Stats
+- [ ] Rebirth
 
 Werehouse:
-- Trade gold and clones for small bonuses
-- Upgrade your werehouse with time and get better bonuses and more space for upgrades!
+- [ ] Trade gold and send clones for small bonuses
+- [ ] Upgrade your werehouse with time and resources and get better bonuses and more space for upgrades!
+- [ ] Functionalities
+- [ ] Variables
 
+Bugs:
+- [X] Buttons don't lock back on reset and rebirth 
+- [ ] Fighting text gets out of the page

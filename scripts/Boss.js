@@ -2,9 +2,12 @@
 function loadBoss(){
     if(values.boss>stats.highestBoss)stats.highestBoss=values.boss;
     if(values.boss>=3) unlockButton("Zone1");
+    else lockButton("Zone1");
     if(stats.highestBoss>=5) unlockButton("Rebirth");
     if(values.boss>=8) unlockButton("Zone2");
+    else lockButton("Zone2");
     if(values.boss>=13) unlockButton("Zone3");
+    else lockButton("Zone3");
     curBoss.attack = Math.pow(8,values.boss-1);
     curBoss.hp = curBoss.curhp = Math.pow(9,values.boss);
     action.attacking=false;
@@ -30,9 +33,7 @@ function attack(){
 function killBoss(){
     stats.totalBossesKilles++;
     lifeStats.totalBossesKilles++;
-    player.idleClones++;
-    player.maxClones++;
-    player.baseClones++;
+    addClones(1);
     values.boss++;
     pastConsole = ""
     loadBoss();

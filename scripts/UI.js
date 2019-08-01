@@ -128,9 +128,6 @@ function loadPlayerScreen(){
     string+= '<h4>Moneys:'+printNumber(player.money)+'</h4>'
     document.getElementById('Player').innerHTML=string;
 }
-function unlockButtons(bossN){
-
-}
 
 function unlockButton(string){
     if(string=="Zone1"){
@@ -150,5 +147,20 @@ function unlockButton(string){
         document.getElementById(string).disabled=false;
         document.getElementById("RebirthShop").innerHTML="Regroup Shop";
         document.getElementById("RebirthShop").disabled=false;
+    }
+}
+
+function lockButton(string){
+    if(string=="Zone1"){
+        document.getElementById(string).innerHTML="It's Locked Boys";
+        document.getElementById(string).disabled=true;
+    }
+    if(string=="Zone2"){
+        document.getElementById(string).innerHTML="No No No...";
+        document.getElementById(string).disabled=true;
+    }
+    if(string=="Zone3"){
+        document.getElementById(string).innerHTML="It's not for you today";
+        document.getElementById(string).disabled=true;
     }
 }

@@ -47,16 +47,16 @@ function getOres(){
 
 function mineOffline(time){
     for(var i=0;i<12;i++){
-        ores[i].quant += time*ores[i].mult*ores[i].clones;
-        stats.totalOresMined+=time*ores[i].mult*ores[i].clones;
-        lifeStats.totalOresMined+=time*ores[i].mult*ores[i].clones;
+        ores[i].quant += time*ores[i].mult*ores[i].clones*farmStats.mining;
+        stats.totalOresMined+=time*ores[i].mult*ores[i].clones*farmStats.mining;
+        lifeStats.totalOresMined+=time*ores[i].mult*ores[i].clones*farmStats.mining;
     }
 }
 
 function mine(){
     for(var i=0;i<12;i++){
-        ores[i].quant += (ores[i].mult*ores[i].clones*getBonusRebirth(3));
-        stats.totalOresMined+=(ores[i].mult*ores[i].clones*getBonusRebirth(3));
-        lifeStats.totalOresMined+=(ores[i].mult*ores[i].clones*getBonusRebirth(3));
+        ores[i].quant += (ores[i].mult*ores[i].clones*farmStats.mining*getBonusRebirth(3));
+        stats.totalOresMined+=(ores[i].mult*ores[i].clones*farmStats.mining*getBonusRebirth(3));
+        lifeStats.totalOresMined+=(ores[i].mult*ores[i].clones*farmStats.mining*getBonusRebirth(3));
     }
 }

@@ -16,16 +16,29 @@ function getNextZoneInfo(){
     return string+= " so you can unlock the next zone!";
 }
 
+function getDojoAttackStatRaw(){
+    return dojoStats.attack
+        *farmStats.dojoMult;
+}
+
+function getDojoDefenseStatRaw(){
+    return dojoStats.defense
+        *farmStats.dojoMult;
+}
+
 function getDojoAttack(){
-    return dojoStats.attack*crit();
+    return getDojoAttackStatRaw()*crit();
 }
 
 function dojoFight(){
     if(dojoEnemy.curhp<=0) generateEnemy();
     else{
-        if(dojoEnemy.attack>dojoStats.defense)dojoStats.curhp-=(dojoEnemy.attack-dojoStats.defense);
+        if(dojoEnemy.attack>getDojoDefenseStatRaw())dojoStats.curhp-=(dojoEnemy.attack-getDojoDefenseStatRaw());
         if(dojoStats.curhp<=0) dojoDeath();
-        else if(getDojoAttack()>dojoEnemy.defense) dojoEnemy.curhp-= (getDojoAttack()-dojoEnemy.defense);
+        else {
+            var att = getDojoAttack();
+            if(att>dojoEnemy.defense) dojoEnemy.curhp-= (att-dojoEnemy.defense);
+        }
         if(dojoEnemy.curhp<=0) killDojoEnemy();
     }
     dojoStats.curhp+=Math.ceil(dojoStats.hp/60);
@@ -35,7 +48,7 @@ function dojoFight(){
 function killDojoEnemy(){
     stats.totalDojoEnemies++;
     lifeStats.totalDojoEnemies++;
-    player.money+=dojoEnemy.prize;
+    addMoney(dojoEnemy.prize);
     generateEnemy();
 }
 
@@ -76,7 +89,7 @@ function printDojoFight(){
     string += '<h1><b>You</b></h1>';
     string += '<h2><b>HP</b>: '+printNumber(dojoStats.curhp)+'/'+printNumber(dojoStats.hp)+'</h2>';
     string += '<h2><b>Attack</b>: '+printNumber(dojoStats.attack)+'</h2>';
-    string += '<h2><b>Defense</b>: '+printNumber(dojoStats.defense)+'</h2>';
+    string += '<h2><b>Defense</b>: '+printNumber(getDojoDefenseStatRaw())+'</h2>';
     if(stats.totalDojoEnemies>=10) string += '<button style="width: 100%" class="w3-button w3-green" onclick="goToShop()">Secret Shop</button>';
     string += '</div><div class="w3-col m6 l6">';
     string += '<h1><b>'+dojoEnemy.name+'</b></h>';
