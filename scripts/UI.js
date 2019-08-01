@@ -33,7 +33,9 @@ function loadScreen(){
 }
 
 function printNumber(number){
-    if(number<1000) return String(number);
+    if(number<10) return String(number).substr(0,4)
+    if(number<100) return String(number).substr(0,5)
+    if(number<1000) return String(number).substr(0,6);
     return number.toPrecision(4);
 }
 
@@ -48,7 +50,8 @@ function printStats(){
 }
 
 function loadTutorial(){
-    var string = '<h1 style="text-align: center">Tutorial</h1><hr/>';
+    var string = '<h1 style="text-align: center">Welcome to Idling Master</h1><hr/>';
+    string += "<p> Welcome, this game was created by Ash031, if you find any bugs or want to give new Ideas please send me a message on <a href=\"https://www.reddit.com/message/compose/?to=Ashzinho\">Reddit</a>.</p>"
     document.getElementById('Screen').innerHTML=string;
 }
 
@@ -119,11 +122,14 @@ function printBoss(){
 function loadPlayerScreen(){
     var string = "<h1>Player Stats:</h1><hr/>";
     string+= '<h4>HP:'+printNumber(player.curhp)+'/'+printNumber(player.hp)+'</h4>';
-    string+= '<h4>Strength:'+printNumber(getStrength())+'</h4>';
-    string+= '<h4>Defense:'+printNumber(getDefense())+'</h4>';
+    string+= '<h4>Strength:'+printNumber(getRawStrength())+'</h4>';
+    string+= '<h4>Defense:'+printNumber(getRawDefense())+'</h4>';
     string+= '<h4>Clone Counter:'+printNumber(player.idleClones)+'/'+printNumber(player.maxClones)+'</h4>';
     string+= '<h4>Moneys:'+printNumber(player.money)+'</h4>'
     document.getElementById('Player').innerHTML=string;
+}
+function unlockButtons(bossN){
+
 }
 
 function unlockButton(string){
@@ -133,6 +139,10 @@ function unlockButton(string){
     }
     if(string=="Zone2"){
         document.getElementById(string).innerHTML="Mine";
+        document.getElementById(string).disabled=false;
+    }
+    if(string=="Zone3"){
+        document.getElementById(string).innerHTML="Farm";
         document.getElementById(string).disabled=false;
     }
     if(string=="Rebirth"){

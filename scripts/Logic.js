@@ -9,52 +9,11 @@ function getClones(){
     return clones;
 }
 
-
-//BOSS MENU
-function loadBoss(){
-    if(values.boss>stats.highestBoss)stats.highestBoss=values.boss;
-    if(values.boss>=3) unlockButton("Zone1");
-    if(values.boss>=5) unlockButton("Rebirth");
-    if(values.boss>=8) unlockButton("Zone2");
-    curBoss.attack = Math.pow(8,values.boss-1);
-    curBoss.hp = curBoss.curhp = Math.pow(9,values.boss);
-    action.attacking=false;
-}
-
-function attack(){
-    if(getDefense()<curBoss.attack){
-        pastConsole = "<p style='font-size: small'>You took "+(curBoss.attack-getDefense())+' damage.</p>'+pastConsole;
-        player.curhp-=(curBoss.attack-getDefense());
-        if(player.curhp<=0){
-            player.curhp=0;
-            killPlayer();
-            return;
-        }
-    }
-    else{
-        pastConsole="<p style='font-size: small'>You didn't take any damage, NICE!</p>"+pastConsole;
-    }
-    curBoss.curhp -= getStrength();
-    pastConsole="<p style='font-size: small'>The Boss took "+getStrength()+" damage.</p>"+pastConsole;
-    if(curBoss.curhp<=0) killBoss();
-}
-function killBoss(){
-    stats.totalBossesKilles++;
-    lifeStats.totalBossesKilles++;
-    player.idleClones++;
-    player.maxClones++;
-    player.baseClones++;
-    values.boss++;
-    loadBoss();
-}
-
-function killPlayer(){
-    action.attacking=false;
-}
-
 //GAME SAVING, LOADING AND RESETING
 function load(){
     if(localStorage.getItem('player')){
+        plots = JSON.parse(localStorage.getItem('farm'))
+        farmStats=JSON.parse(localStorage.getItem('farmStats'))
         rebirthPerks = JSON.parse(localStorage.getItem('perks'))
         player = JSON.parse(localStorage.getItem('player'));
         assignedClones = JSON.parse(localStorage.getItem('assignedClones'));
@@ -68,6 +27,7 @@ function load(){
         lifeStats=JSON.parse(localStorage.getItem('lifeStat'));
         updateVersion();
         generateOffline(offlineTime);
+        unlockButtons();
     }
 }
 function updateVersion(){
@@ -85,6 +45,8 @@ function generateOffline(offlineTime){
 }
 
 function save(){
+    localStorage.setItem('farm',JSON.stringify(plots));
+    localStorage.setItem('farmStats',JSON.stringify(farmStats))
     localStorage.setItem('perks',JSON.stringify(rebirthPerks));
     localStorage.setItem('player',JSON.stringify(player));
     localStorage.setItem('assignedClones',JSON.stringify(assignedClones));
@@ -97,48 +59,6 @@ function save(){
     localStorage.setItem('Rebirth',JSON.stringify(rebirth));
     localStorage.setItem('lifeStat',JSON.stringify(lifeStats));
 }
-
-function newGame(){
-    values.boss=1;
-    values.zone=0;
-    stats.highestBoss=0;
-    loadBoss();
-    resetAssignedClones();
-    resetPlayer();
-    save();
-}
-
-function resetAssignedClones(){
-    assignedClones.train.attack.jumpKick=
-    assignedClones.train.attack.kick=
-    assignedClones.train.attack.punch=
-    assignedClones.train.attack.scream=
-    assignedClones.train.attack.tornadoKick=
-    assignedClones.train.defense.beat=
-    assignedClones.train.defense.eat=
-    assignedClones.train.defense.fall=
-    assignedClones.train.defense.rest=
-    assignedClones.train.defense.sleep=0;
-}
-
-function resetPlayer(){
-    player.curhp=player.hp=10;
-    player.strength=player.defense=player.hpRegen=player.idleClones=player.maxClones=player.train.mult=1;
-    player.money=0;
-    player.train.attack.scream.level=player.train.attack.scream.progress=
-    player.train.attack.punch.level=player.train.attack.punch.progress=
-    player.train.attack.kick.level=player.train.attack.kick.progress=
-    player.train.attack.jumpKick.level=player.train.attack.jumpKick.progress=
-    player.train.attack.tornadoKick.level=player.train.attack.tornadoKick.progress=
-    player.train.defense.eat.level=player.train.defense.eat.progress=
-    player.train.defense.rest.level=player.train.defense.rest.progress=
-    player.train.defense.sleep.level=player.train.defense.sleep.progress=
-    player.train.defense.fall.level=player.train.defense.fall.progress=
-    player.train.defense.beat.level=player.train.defense.beat.progress=
-    stats.totalDojoEnemies=stats.totalBossesKilles=stats.totalSeconds=
-    0;
-}
-
 
 // Get Stats with Multiplier
 function getCraftingAttack(){
@@ -159,6 +79,13 @@ function getStrength(){
         *crit());
 }
 
+function getRawStrength(){
+    return Math.floor(player.strength
+        *(1+dojoStats.attack/100)
+        *getCraftingAttack()
+        *getRBAttack());
+}
+
 function getCraftingDefense(){
     var ret = 1.0;
     for(var i = 0;i<crafting.items.length;i++){
@@ -176,6 +103,13 @@ function getDefense(){
         *getRBDefense());
 }
 
+function getRawDefense(){
+    return Math.floor(player.defense
+        *(1+dojoStats.defense/100)
+        *getCraftingDefense()
+        *getRBDefense());
+}
+
 //SET GAME INTERVAL
 function initGame(){
     load();
@@ -184,7 +118,7 @@ function initGame(){
     loadTutorial();
     options.menu="none";
     setInterval(passSecond,1000);
-    setInterval(save,10000);
+    setInterval(save,60000);
 }
 
 function passSecond(){
@@ -194,9 +128,92 @@ function passSecond(){
     mine();
     loadScreen();
     train();
+    grow();
     player.curhp+=player.hpRegen;
     if(player.curhp>player.hp)player.curhp=player.hp;
     if(action.attacking){
         attack();
     }
 }   
+
+//RESET GAME, DONT HOOK ANYTHING TO THESE
+
+function newGame(){
+    values.boss=1;
+    values.zone=0;
+    stats.highestBoss=0;
+    loadBoss();
+    resetAssignedClones();
+    resetPlayer();
+    lockAllButtons();
+    resetMine();
+    resetFarm();    
+    save();
+}
+
+function resetAssignedClones(){
+    assignedClones.train.attack.jumpKick=
+    assignedClones.train.attack.kick=
+    assignedClones.train.attack.punch=
+    assignedClones.train.attack.scream=
+    assignedClones.train.attack.tornadoKick=
+    assignedClones.train.defense.beat=
+    assignedClones.train.defense.eat=
+    assignedClones.train.defense.fall=
+    assignedClones.train.defense.rest=
+    assignedClones.train.defense.sleep=0;
+}
+
+function resetPlayer(){
+    stats.highestBoss=0;
+    player.curhp=player.hp=10;
+    player.strength=player.defense=player.hpRegen=player.idleClones=player.maxClones=player.train.mult=1;
+    player.money=0;
+    player.train.attack.scream.level=player.train.attack.scream.progress=
+    player.train.attack.punch.level=player.train.attack.punch.progress=
+    player.train.attack.kick.level=player.train.attack.kick.progress=
+    player.train.attack.jumpKick.level=player.train.attack.jumpKick.progress=
+    player.train.attack.tornadoKick.level=player.train.attack.tornadoKick.progress=
+    player.train.defense.eat.level=player.train.defense.eat.progress=
+    player.train.defense.rest.level=player.train.defense.rest.progress=
+    player.train.defense.sleep.level=player.train.defense.sleep.progress=
+    player.train.defense.fall.level=player.train.defense.fall.progress=
+    player.train.defense.beat.level=player.train.defense.beat.progress=
+    stats.totalDojoEnemies=stats.totalBossesKilles=stats.totalSeconds=
+    stats.totalOresMined=stats.highestBoss=lifeStats.totalBossesKilles=
+    lifeStats.totalDojoEnemies=lifeStats.totalOresMined=lifeStats.totalSeconds=
+    0;
+}
+
+function resetMine(){
+    ores.forEach(ore => {
+        ore.quant=0;
+        ore.clones=0;
+    });
+    crafting.items.forEach(item=>{
+        item.level=1;
+    })
+}
+
+function resetFarm(){
+    plots.forEach(plot=>{
+        plot.crop=-1;
+        plot.level=0;
+        plot.xp=0;
+        plot.curTime=0;
+        plot.got=false;
+    })
+}
+
+function lockAllButtons(){
+    document.getElementById("Zone1").innerHTML="It's Locked Boys";
+    document.getElementById("Zone1").disabled=true;
+    document.getElementById("Zone2").innerHTML="No No No...";
+    document.getElementById("Zone2").disabled=true;
+    document.getElementById("Zone3").innerHTML="It's not for you today";
+    document.getElementById("Zone3").disabled=true;
+    document.getElementById("Rebirth").innerHTML="don't click me";
+    document.getElementById("Rebirth").disabled=true;
+    document.getElementById("RebirthShop").innerHTML="Don't click me 2";
+    document.getElementById("RebirthShop").disabled=true;
+}

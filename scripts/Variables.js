@@ -109,9 +109,9 @@ var rebirthPerks = [
         name:"Farming Master",
         basePrice:50,
         lvl:0,
-        Description:"Your crops weild % more",
+        Description:"Your crops weild 10% more",
         Bonus:0.1,
-        boss:1000,
+        boss:13,
         maxLevel:-1
     }
 ]
@@ -181,6 +181,21 @@ var dojoZones = [
         name : 'First Corridor',
         desc : 'Some more stuff to collect, there is also a weird room here called \'Miner\'s Heaven\', I better check it out (Mining Unlocked)!',
         enemies : [7,8,9]
+    },
+    {
+        name : 'Kids\' Room',
+        desc : 'You just found out there are some kids entering and leaving a room, after sending them away you decide to go in',
+        enemies : [10,11,12,13]
+    },
+    {
+        name : 'Kitchen',
+        desc : 'The Last room somehow was connected to a kitchen, there you can find a Fridge, and the fridge is empty, someone has to pay for your meal!',
+        enemies : [14,15,16,17]
+    },
+    {
+        name : 'Garden',
+        desc : 'Connected to the kitchen you find an entrance to a backyard farm, seems like it is yours now (Farming Unlocked)!',
+        enemies : [14,15,16,17]
     }
 ]
 
@@ -189,8 +204,8 @@ var enemies = [
         name : 'Shady Guy',
         hp : 1,
         attack : 0,
-        defense : 1000,
-        prize : 10
+        defense : 1e300,
+        prize : 0
     },
     {
         name : 'John, the Gardener',
@@ -255,6 +270,97 @@ var enemies = [
         defense : 300,
         prize : 30
     },
+    {
+        name : 'Woodey Lucky, a Wooden Cowboy',
+        hp : 3500,
+        attack : 7000,
+        defense : 150,
+        prize : 50
+    },
+    {
+        name : 'Sonichu, The Electric Hedgehog',
+        hp : 4000,
+        attack : 5000,
+        defense : 700,
+        prize : 50
+    },
+    {
+        name : 'Power Dangers',
+        hp : 7000,
+        attack : 9000,
+        defense : 1000,
+        prize : 80
+    },
+    {
+        name : 'Angry Muscular Jerr',
+        hp : 15000,
+        attack : 5000,
+        defense : 1000,
+        prize : 85
+    },
+    {
+        name : 'Gordo Ramses, The egyptian Cook',
+        hp : 15000,
+        attack : 6000,
+        defense : 4000,
+        prize : 100
+    },
+    {
+        name : 'Knifu',
+        hp : 10000,
+        attack : 10000,
+        defense : 2000,
+        prize : 120
+    },
+    {
+        name : 'Hatchet',
+        hp : 15000,
+        attack : 5000,
+        defense : 5000,
+        prize : 90
+    },
+    {
+        name : 'Gluttony',
+        hp : 30000,
+        attack : 1000,
+        defense : 10000,
+        prize : 100
+    },
+    {
+        name : 'BoatCow, the Ghost Cow',
+        hp : 40000,
+        attack : 1500,
+        defense : 12000,
+        prize : 130
+    },
+    {
+        name : 'Joergan, the Ghost Horse',
+        hp : 50000,
+        attack : 1100,
+        defense : 11000,
+        prize : 130
+    },
+    {
+        name : 'Sven, the Immortal Dog',
+        hp : 300000,
+        attack : 1500,
+        defense : 99999,
+        prize : 150
+    },
+    {
+        name : 'WaterSheep, The Idol',
+        hp : 35000,
+        attack : 5000,
+        defense : 9000,
+        prize : 140
+    },
+    {
+        name : 'PeePeePooPoo Army',
+        hp : 300000,
+        attack : 10000,
+        defense : 100000,
+        prize : 200
+    }
 ]
 
 var stats = {
@@ -360,42 +466,88 @@ var ores = [
     }
 ]
 
+var cropSelected = 0;
+
+var farmStats = {
+    attack:1,
+    defense:1
+}
+
 var crops = [
+    { 
+        name : 'Barley',
+        growthTime : 300,
+        bonus:0.05,
+        type: "Attack",
+        unlockAt:1
+    },
     {
-        id : 1,
-        name : 'Weak Apple',
-        maxGrowth : 1,
-        temp : true,
-        stat : 'strength',
-        value : 100
+        name : 'Wheat',
+        growthTime : 300,
+        bonus:0.05,
+        type: "Defense",
+        unlockAt:1
+    },
+    { 
+        name : 'GoldFlower',
+        growthTime : 150,
+        bonus:10,
+        type: "Gold",
+        unlockAt:2
+    },
+    {
+        name : 'Chocolate',
+        growthTime : 3000,
+        bonus : 0.05,
+        type : "Mining",
+        unlockAt : 10
     }
 ]
 
-var farm = {
-    unlocked : 1,
-    crops : [
-        {crop : 0, time : 0},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {}
-    ]
-}
+var plots = [
+    {
+        got:false,
+        curTime:0,
+        xp:0,
+        level:0,
+        crop:-1
+    },
+    {
+        got:false,
+        curTime:0,
+        xp:0,
+        level:0,
+        crop:-1
+    },
+    {
+        got:false,
+        curTime:0,
+        xp:0,
+        level:0,
+        crop:-1
+    },
+    {
+        got:false,
+        curTime:0,
+        xp:0,
+        level:0,
+        crop:-1
+    },
+    {
+        got:false,
+        curTime:0,
+        xp:0,
+        level:0,
+        crop:-1
+    },
+    {
+        got:false,
+        curTime:0,
+        xp:0,
+        level:0,
+        crop:-1
+    },
+]
 
 
 var crafting = {

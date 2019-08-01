@@ -30,7 +30,7 @@ function getRBTable(){
 function upgradeRP(perkN){
     var obj = rebirthPerks[perkN];
     var price = getPrice(obj);
-    if(rebirth.rbPoints>=price){
+    if(rebirth.rbPoints>=price && (obj.lvl<obj.maxLevel || obj.maxLevel==-1)){
         rebirth.rbPoints-=price;
         rebirthPerks[perkN].lvl++;
     }
@@ -47,6 +47,10 @@ function getRBAttack(){
 }
 function getRBDefense(){
     return 1+(rebirthPerks[1].Bonus*rebirthPerks[1].lvl);
+}
+
+function getBonusRebirth(perkN){
+    return 1+rebirthPerks[perkN].lvl*rebirthPerks[perkN].Bonus;
 }
 
 function getPrice(perk){

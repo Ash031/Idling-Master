@@ -55,8 +55,8 @@ function mineOffline(time){
 
 function mine(){
     for(var i=0;i<12;i++){
-        ores[i].quant += ores[i].mult*ores[i].clones;
-        stats.totalOresMined+=ores[i].mult*ores[i].clones;
-        lifeStats.totalOresMined+=ores[i].mult*ores[i].clones;
+        ores[i].quant += (ores[i].mult*ores[i].clones*getBonusRebirth(3));
+        stats.totalOresMined+=(ores[i].mult*ores[i].clones*getBonusRebirth(3));
+        lifeStats.totalOresMined+=(ores[i].mult*ores[i].clones*getBonusRebirth(3));
     }
 }

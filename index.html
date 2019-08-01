@@ -1,10 +1,11 @@
 <html>
     <head>
+        <meta charset="UTF-8"/>
         <title>Idling Master</title>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="scripts/Logic.js"></script>
         <script src="scripts/Variables.js"></script>
         <script src="scripts/UI.js"></script>
+        <script src="scripts/Boss.js"></script>
         <script src="scripts/Training.js"></script>
         <script src="scripts/Dojo.js"></script>
         <script src="scripts/Shop.js"></script>
@@ -12,7 +13,7 @@
         <script src="scripts/Crafting.js"></script>
         <script src="scripts/Farm.js"></script>
         <script src="scripts/Regroup.js"></script>
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="style.css">
     </head>
     <body onload="initGame()">
         <div class="w3-row">
@@ -37,10 +38,13 @@
                 
                 </div>
                 <button style="width: 100%" class="w3-button w3-dark-gray" id="Rebirth"onclick="goToRegroup()" disabled>Don't click me</button>
-                <button style="width: 100%" class="w3-button w3-dark-gray" id="RebirthShop"onclick="goToRegroupShop()" disabled>Don't click me too</button>
+                <button style="width: 100%" class="w3-button w3-dark-gray" id="RebirthShop"onclick="goToRegroupShop()" disabled>Don't click me 2</button>
                 <hr/>
                 <div>    
                     <h3>Clones:</h3><input style="width: 100%" type="text" id="NClones" placeholder="Number of Clones"><button style="width: 100%" class="w3-button w3-dark-gray" onclick="assignAllClones()">Assign All Clones</button>
+                    <hr/>
+                    <button style="width: 100%" class="w3-button w3-dark-gray" onclick="save()">Save</button>
+                    <button style="width: 100%" class="w3-button w3-dark-gray" onclick="load()">Load</button>
                 </div>    
             </div>
         </div>

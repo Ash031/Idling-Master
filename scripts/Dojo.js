@@ -1,8 +1,19 @@
 function printDojo(){
     var string = '<h1 style="text-align: center">Dojo</h1><hr/>';
     string += '<button class="w3-button w3-red" onclick="previousZone();">&lt</button><button style="float:right"class="w3-button w3-red" onclick="nextZone()">&gt</button><h2 style="text-align:center">'+dojoZones[values.zone].name+'</h2><p>'+dojoZones[values.zone].desc+'</p><hr/><div id="Fight"></div>';
+    string += '<hr/><div><p><b>'+getNextZoneInfo()+'</b></p></div>'
     document.getElementById('Screen').innerHTML=string;   
     printDojoFight();
+}
+
+function getNextZoneInfo(){
+    var string = "Reach Boss #"
+    if(values.boss<5) string+= "5"
+    else if(values.boss<8) string+= "8"
+    else if(values.boss<10) string+= "10"
+    else if(values.boss<13) string+= "13"
+    else return "You have unlocked all zones, congratz?!?"
+    return string+= " so you can unlock the next zone!";
 }
 
 function getDojoAttack(){
@@ -44,6 +55,8 @@ function nextZone(){
     if(values.zone==0) values.zone++;
     else if(values.zone==1 && values.boss>=5) values.zone++;
     else if(values.zone==2 && values.boss>=8) values.zone++;
+    else if(values.zone==3 && values.boss>=10) values.zone++;
+    else if(values.zone==4 && values.boss>=13) values.zone++;
     printDojo();
     generateEnemy();
 }
