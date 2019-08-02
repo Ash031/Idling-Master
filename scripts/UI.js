@@ -30,6 +30,9 @@ function loadScreen(){
     else if(options.menu=="RegroupShop"){
         printRegroupShop();
     }
+    else if(options.menu=="Werehouse"){
+        printWerehouse();
+    }
 }
 
 function printNumber(number){
@@ -98,6 +101,11 @@ function goToFarm(){
     loadScreen();
 }
 
+function goToWerehouse(){
+    options.menu="Werehouse";
+    loadScreen();
+}
+
 function goToRegroup(){
     options.menu="Regroup";
     loadScreen();
@@ -141,6 +149,10 @@ function unlockButton(string){
     }
     if(string=="Zone3"){
         document.getElementById(string).innerHTML="Farm";
+        document.getElementById(string).disabled=false;
+    }
+    if(string=="Zone4"){
+        document.getElementById(string).innerHTML="Wherehouse";
         document.getElementById(string).disabled=false;
     }
     if(string=="Rebirth"){

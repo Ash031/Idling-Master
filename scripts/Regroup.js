@@ -67,6 +67,14 @@ function getBonusRebirth(perkType){
     return ret;
 }
 
+function getBonusRebirthSum(perkType,num){
+    var ret = num;
+    rebirthPerks.forEach(perk=>{
+        if(perk.type==perkType) ret += perk.Bonus*perk.lvl;
+    })
+    return ret;
+}
+
 function getPrice(perk){
     var priceUp = perk.step[0];
     if(priceUp=='*')return (perk.lvl+1)*perk.basePrice*Number(perk.step.slice(1));

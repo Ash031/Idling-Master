@@ -77,8 +77,8 @@ function unlockPlot(plotN){
     if(player.money>=Math.pow(1000,plotN)){
         player.money-=Math.pow(1000,plotN);
         plots[plotN].got=true;
-        plots[plotN].xp = Math.pow(1+getBonusRebirth("PlotLvl"),2);
-        plots[plotN].level = 1+getBonusRebirth("PlotLvl");
+        plots[plotN].xp = Math.pow(1+getBonusRebirthSum("PlotLvl",0),2);
+        plots[plotN].level = 1+getBonusRebirthSum("PlotLvl",0);
     }
 }
 
