@@ -66,7 +66,7 @@ function getCraftingAttack(){
     var ret = 1.0;
     for(var i = 0;i<crafting.items.length;i++){
         if(crafting.items[i].bonus=="Attack"){
-            ret += (crafting.items[i].level-1)*crafting.items[i].perLevel;
+            ret *= 1+(crafting.items[i].level-1)*crafting.items[i].perLevel;
         }
     }
     return ret;
@@ -87,6 +87,7 @@ function getStrength(){
         *getCraftingAttack()
         *getRBAttack()
         *getFarmAttack()
+        *getWerehouseStrength()
         *crit());
 }
 
@@ -95,7 +96,8 @@ function getRawStrength(){
         *(1+dojoStats.attack/100)
         *getCraftingAttack()
         *getFarmAttack()
-        *getRBAttack());
+        *getRBAttack()
+        *getWerehouseStrength());
 }
 
 function getCraftingDefense(){
@@ -113,7 +115,8 @@ function getDefense(){
         *(1+dojoStats.defense/100)
         *getCraftingDefense()
         *getFarmDefense()
-        *getRBDefense());
+        *getRBDefense()
+        *getWerehouseDefense());
 }
 
 function getRawDefense(){
@@ -121,7 +124,8 @@ function getRawDefense(){
         *(1+dojoStats.defense/100)
         *getCraftingDefense()
         *getFarmDefense()
-        *getRBDefense());
+        *getRBDefense()
+        *getWerehouseDefense());
 }
 
 //Add Values with multipliers

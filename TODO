@@ -4,6 +4,10 @@ Rebirth:
 - [X] Add New Multipliers
 - [X] More Skills to buy (More XP per harvest, Increase initial Plot XP, Stronger Clones, More Clones)
 
+Crafting:
+- [ ] Rework Crafting to unlock more recipes which will buff other aspects of the game
+- [X] Buff Crafting (Switch from addictive to Multiplicative)
+
 Farm:
 - [X] Add more Plants (T2, Dojo Stats, RBPoints Multiplier, Mining)
 - [X] Sum the multipliers on the Stats
@@ -11,12 +15,16 @@ Farm:
 
 Werehouse:
 - [X] Trade gold and send clones for small bonuses
-- [ ] Upgrade your werehouse with time and resources and get better bonuses and more space for upgrades!
+- [X] Upgrade your werehouse with time and resources and get better bonuses and more space for upgrades!
 - [ ] More Tiers
 - [ ] More Upgrades
 - [ ] Implement multipliers
-- [ ] Finish menu with all the relevant info
+- [X] Finish menu with all the relevant info
 
+Arena:
+- [ ] Defeat Stronger bosses to get Arena Points
+- [ ] Arena Points will buff the other stats and maybe even unlock other stuff on the other screens (like unlock special seeds or unlock a new Area on the Dojo)
+- [ ] Tiered Bosses, better tiers give more Arena Points and better Tier Points
 
 Statistics:
 -[X] Add Farm Stats

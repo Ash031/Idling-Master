@@ -4,7 +4,8 @@ var werehouse = {
     rank: 1,
     used: 0,
     level: 1,
-    upgradeCrates: 0
+    upgradeCrates: 0,
+    upgradesNeeded: 5
 }
 
 var werehouseStats = {
@@ -17,7 +18,7 @@ var werehouseStats = {
 }
 
 var choosableContracts = [
-    
+
 ]
 
 const Contrats = [
