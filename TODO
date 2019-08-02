@@ -10,15 +10,23 @@ Farm:
 - [X] Rebirth
 
 Werehouse:
-- [ ] Trade gold and send clones for small bonuses
+- [X] Trade gold and send clones for small bonuses
 - [ ] Upgrade your werehouse with time and resources and get better bonuses and more space for upgrades!
-- [ ] Functionalities
-- [ ] Variables
+- [ ] More Tiers
+- [ ] More Upgrades
+- [ ] Implement multipliers
+- [ ] Finish menu with all the relevant info
+
 
 Statistics:
 -[X] Add Farm Stats
+
+Others:
+-[X] Representing Time
 
 Bugs:
 - [X] Buttons don't lock back on reset and rebirth 
 - [ ] Fighting text gets out of the page
 - [X] NaN Rebirth Points (Due to having 0 defeated dojo Enemies)
+- [X] Always Critting
+- [ ] Bug displaying seconds when there is more than 1 minute left

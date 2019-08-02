@@ -48,7 +48,7 @@ function upgradeRP(perkN){
 
 function crit(){
     var r = Math.random(0,100);
-    if(r<(rebirthPerks[2].Bonus*rebirthPerks[2].lvl)) return 2;
+    if(r<(getBonusRebirthSum("CritChance",0))) return 2;
     return 1;
 }
 

@@ -133,6 +133,18 @@ function addClones(num){
     player.idleClones+=num;
     player.maxClones+=num;
 }
+function addClonesRaw(num){
+    player.baseClones+=num;
+    player.idleClones+=num;
+    player.maxClones+=num;
+}
+function putClonesToWork(num){
+    if(num<=player.idleClones){
+        player.idleClones-=num;
+        return true;
+    }
+    return false;
+}
 
 function addMoney(num){
     num = Math.floor(num
@@ -159,6 +171,7 @@ function passSecond(){
     loadScreen();
     train();
     grow();
+    workOnWerehouse();
     player.curhp+=player.hpRegen;
     if(player.curhp>player.hp)player.curhp=player.hp;
     if(action.attacking){
@@ -255,4 +268,13 @@ function lockAllButtons(){
     document.getElementById("Rebirth").disabled=true;
     document.getElementById("RebirthShop").innerHTML="Don't click me 2";
     document.getElementById("RebirthShop").disabled=true;
+}
+
+function clone(obj) {
+    if (null == obj || "object" != typeof obj) return obj;
+    var copy = obj.constructor();
+    for (var attr in obj) {
+        if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
+    }
+    return copy;
 }

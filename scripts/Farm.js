@@ -59,7 +59,7 @@ function printPlots(){
         str+="<tr><td>"
         if(p.crop==-1) str+="None</td>"
         else str+=(crops[p.crop].name+"</td>")
-        str+="<td>"+p.curTime+"</td><td>"+p.level+"</td>"
+        str+="<td>"+printTime(p.curTime)+"</td><td>"+p.level+"</td>"
         if(p.got){
             if(p.crop==-1) str+="<td><button onClick='Plant("+i+")'>Plant Crop</button></td></tr>"
             else{
@@ -90,7 +90,7 @@ function Plant(plotN){
 
 function Harvest(plotN){
     if (plots[plotN].crop!=-1){
-        var growth = getCrop(plots[plotN].crop,plots[plotN].curTime,plotN);
+        var growth = getCrop(plots[plotN].crop,plots[plotN].curTime,plotN,plots[plotN].level);
         giveXPToPlot(plotN,growth);
         plots[plotN].crop = -1;
         plots[plotN].curTime=0;
@@ -101,11 +101,10 @@ function giveXPToPlot(plotN,xp){
     plots[plotN].xp += xp;
     plots[plotN].level = Math.floor(Math.sqrt(plots[plotN].xp)*farmStats.farmXPMult);
 }
-
-function getCrop(cropN,time){
+function getCrop(cropN,time,lvl){
     var crop = crops[cropN];
     var growthAmount = getGrowth(crop.growthTime,time)
-    var bonus = crop.bonus * growthAmount * crop.level * farmStats.farmDropMult *getBonusRebirth("FarmDrops");
+    var bonus = crop.bonus * growthAmount * lvl * farmStats.farmDropMult *getBonusRebirth("FarmDrops");
     var type = crop.type;
     if(type=="Attack")  farmStats.attack+=bonus;
     else if(type=="Defense")    farmStats.defense+=bonus;

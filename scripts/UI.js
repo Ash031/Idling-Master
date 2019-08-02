@@ -46,7 +46,7 @@ function printStats(){
     var string = '<h1 style="text-align: center">Statistics</h1><hr/>';
     string += '<p><b>Total Bosses Defeated:</b>'+stats.totalBossesKilles+'</p>';
     string += '<p><b>Total Dojo Enemies Defeated:</b>'+stats.totalDojoEnemies+'</p>';
-    string += '<p><b>Total Seconds:</b>'+stats.totalSeconds+'</p>';
+    string += '<p><b>Total Time:</b>'+printTime(stats.totalSeconds)+'</p>';
     string += '<p><b>Total Ores Mined:</b>'+printNumber(stats.totalOresMined)+'</p>';
     string += '<p><b>Total Crops Grown:</b>'+printNumber(stats.totalCropsGrown)+'</p>';
     string+='<button style="width: 100%" class="w3-button w3-dark-gray" onclick="newGame()">Reset Save</button>';
@@ -125,6 +125,20 @@ function printBoss(){
     document.getElementById('Screen').innerHTML=string;
 }
 
+function printTime(seconds){
+    if(seconds<10) return "00:0"+seconds
+    if(seconds<60) return "00:"+seconds
+    if(seconds<600) return "0"+Math.floor(seconds/60)+":"+seconds%60
+    if(seconds<3600) {
+        var minutes = Math.floor(seconds/60)
+        seconds -= minutes*60;
+        if(seconds<10) return minutes+":0"+seconds
+        return minutes+":"+seconds%60
+    }
+    var hours = Math.floor(seconds/3600);
+    seconds-=hours*3600
+    return hours+":"+printTime(seconds)
+}
 
 //Player UI
 
