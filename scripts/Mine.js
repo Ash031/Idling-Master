@@ -46,7 +46,7 @@ function getOres(){
 }
     
 function minePerSec(i){
-    return ores[i].mult*ores[i].clones*farmStats.mining*getBonusRebirth("Mining")*getWerehouseMining();
+    return ores[i].mult*ores[i].clones*farmStats.mining*getBonusRebirth("Mining")*getWarehouseMining();
 }
 
 function mineOffline(time){

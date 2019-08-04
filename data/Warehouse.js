@@ -1,4 +1,4 @@
-var werehouse = {
+var warehouse = {
     capacity: 10,
     speed: 1,
     rank: 1,
@@ -8,7 +8,7 @@ var werehouse = {
     upgradesNeeded: 5
 }
 
-var werehouseStats = {
+var warehouseStats = {
     strength: 1,
     defense: 1,
     dojoAttack: 1,

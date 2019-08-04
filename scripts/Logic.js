@@ -87,7 +87,7 @@ function getStrength(){
         *getCraftingAttack()
         *getRBAttack()
         *getFarmAttack()
-        *getWerehouseStrength()
+        *getWarehouseStrength()
         *crit());
 }
 
@@ -97,7 +97,7 @@ function getRawStrength(){
         *getCraftingAttack()
         *getFarmAttack()
         *getRBAttack()
-        *getWerehouseStrength());
+        *getWarehouseStrength());
 }
 
 function getCraftingDefense(){
@@ -116,7 +116,7 @@ function getDefense(){
         *getCraftingDefense()
         *getFarmDefense()
         *getRBDefense()
-        *getWerehouseDefense());
+        *getWarehouseDefense());
 }
 
 function getRawDefense(){
@@ -125,7 +125,7 @@ function getRawDefense(){
         *getCraftingDefense()
         *getFarmDefense()
         *getRBDefense()
-        *getWerehouseDefense());
+        *getWarehouseDefense());
 }
 
 //Add Values with multipliers
@@ -175,7 +175,7 @@ function passSecond(){
     loadScreen();
     train();
     grow();
-    workOnWerehouse();
+    workOnWarehouse();
     player.curhp+=player.hpRegen;
     if(player.curhp>player.hp)player.curhp=player.hp;
     if(action.attacking){

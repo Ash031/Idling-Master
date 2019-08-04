@@ -1,4 +1,8 @@
-Areas:
+Boss:
+- [ ] Rework Boss, making them meaningull outside of unlocking areas and regroup Skills
+
+Dojo:
+- [ ] Add more Enemies and Routes
 
 Rebirth:
 - [X] Add New Multipliers
@@ -13,9 +17,9 @@ Farm:
 - [X] Sum the multipliers on the Stats
 - [X] Rebirth
 
-Werehouse:
+Warehouse:
 - [X] Trade gold and send clones for small bonuses
-- [X] Upgrade your werehouse with time and resources and get better bonuses and more space for upgrades!
+- [X] Upgrade your warehouse with time and resources and get better bonuses and more space for upgrades!
 - [ ] More Tiers
 - [ ] More Upgrades
 - [ ] Implement multipliers
@@ -38,3 +42,4 @@ Bugs:
 - [X] NaN Rebirth Points (Due to having 0 defeated dojo Enemies)
 - [X] Always Critting
 - [ ] Bug displaying seconds when there is more than 1 minute left
+- [X] Bug Buying clones

@@ -104,7 +104,7 @@ function giveXPToPlot(plotN,xp){
 function getCrop(cropN,time,lvl){
     var crop = crops[cropN];
     var growthAmount = getGrowth(crop.growthTime,time)
-    var bonus = crop.bonus * growthAmount * lvl * farmStats.farmDropMult *getBonusRebirth("FarmDrops");
+    var bonus = crop.bonus * growthAmount * lvl * farmStats.farmDropMult *getBonusRebirth("FarmDrops") *getWarehouseFarmingDrops();
     var type = crop.type;
     if(type=="Attack")  farmStats.attack+=bonus;
     else if(type=="Defense")    farmStats.defense+=bonus;

@@ -88,11 +88,13 @@ function buy(item){
                     player.money-=150;
                     addClones(1);
                 }
+                break;
             case(11):
                 if(player.money>=1500){
                     player.money-=1500;
                     addClones(10);
                 }
+                break;
             case(12):
                 if(player.money>=15000){
                     player.money-=15000;
@@ -105,12 +107,14 @@ function buy(item){
                     dojoStats.attack+=1000;
                     player.strength+=1000;
                 }
+                break;
             case(14):
                 if(player.money>=10000){
                     player.money-=10000;
                     dojoStats.hp+=1000;
                     player.hp+=1000;
                 }
+                break;
                 case(15):
                     if(player.money>=30000){
                         player.money-=30000;

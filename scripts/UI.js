@@ -30,8 +30,8 @@ function loadScreen(){
     else if(options.menu=="RegroupShop"){
         printRegroupShop();
     }
-    else if(options.menu=="Werehouse"){
-        printWerehouse();
+    else if(options.menu=="Warehouse"){
+        printWarehouse();
     }
 }
 
@@ -101,8 +101,8 @@ function goToFarm(){
     loadScreen();
 }
 
-function goToWerehouse(){
-    options.menu="Werehouse";
+function goToWarehouse(){
+    options.menu="Warehouse";
     loadScreen();
 }
 
@@ -166,7 +166,7 @@ function unlockButton(string){
         document.getElementById(string).disabled=false;
     }
     if(string=="Zone4"){
-        document.getElementById(string).innerHTML="Wherehouse";
+        document.getElementById(string).innerHTML="Warehouse";
         document.getElementById(string).disabled=false;
     }
     if(string=="Rebirth"){
@@ -188,6 +188,10 @@ function lockButton(string){
     }
     if(string=="Zone3"){
         document.getElementById(string).innerHTML="It's not for you today";
+        document.getElementById(string).disabled=true;
+    }
+    if(string=="Zone4"){
+        document.getElementById(string).innerHTML="Cmon, unlock me";
         document.getElementById(string).disabled=true;
     }
 }
