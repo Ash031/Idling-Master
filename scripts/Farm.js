@@ -99,12 +99,12 @@ function Harvest(plotN){
 
 function giveXPToPlot(plotN,xp){
     plots[plotN].xp += xp;
-    plots[plotN].level = Math.floor(Math.sqrt(plots[plotN].xp)*farmStats.farmXPMult);
+    plots[plotN].level = Math.floor(Math.sqrt(plots[plotN].xp)*farmStats.farmXPMult*getArenaFarmXPMultiplier());
 }
 function getCrop(cropN,time,lvl){
     var crop = crops[cropN];
     var growthAmount = getGrowth(crop.growthTime,time)
-    var bonus = crop.bonus * growthAmount * lvl * farmStats.farmDropMult *getBonusRebirth("FarmDrops") *getWarehouseFarmingDrops();
+    var bonus = crop.bonus * growthAmount * lvl * farmStats.farmDropMult *getBonusRebirth("FarmDrops") *getWarehouseFarmingDrops() *getArenaFarmDropMultiplier();
     var type = crop.type;
     if(type=="Attack")  farmStats.attack+=bonus;
     else if(type=="Defense")    farmStats.defense+=bonus;
@@ -124,6 +124,7 @@ function getCrop(cropN,time,lvl){
 
 function getGrowth(growth, time){
     var ret = 0;
+    time*=getArenaFarmTimeRedMultiplier();
     while(time>=growth){
         ret++;
         growth*=1.5;

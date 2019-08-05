@@ -15,7 +15,7 @@ function getOreTables(){
     for(var i = 0;i<4;i++){
         string += '<tr>';
         for(var j=0;j<3;j++){
-            string +='<td><p style="text-align:center">'+ores[i*3+j].name+'</p><button class="w3-button w3-green" onclick="removeCloneToOre('+i*3+j+');">-</button>'+printNumber(ores[i*3+j].clones)+'<button style="float:right"class="w3-button w3-green" onclick="addCloneToOre('+i*3+j+')">+</button></td>';
+            string +='<td><p style="text-align:center">'+ores[i*3+j].name+'</p><button class="w3-button w3-green" onclick="removeCloneToOre('+i*3+j+');">-</button>'+printNumber(ores[i*3+j].clones+getArenaMiners())+'<button style="float:right"class="w3-button w3-green" onclick="addCloneToOre('+i*3+j+')">+</button></td>';
         }
         string += '</tr>';
     }
@@ -46,7 +46,7 @@ function getOres(){
 }
     
 function minePerSec(i){
-    return ores[i].mult*ores[i].clones*farmStats.mining*getBonusRebirth("Mining")*getWarehouseMining();
+    return ores[i].mult*(ores[i].clones+getArenaMiners())*farmStats.mining*getBonusRebirth("Mining")*getWarehouseMining()*getArenaMineDropMultiplier();
 }
 
 function mineOffline(time){

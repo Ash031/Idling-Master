@@ -18,12 +18,14 @@ function getNextZoneInfo(){
 
 function getDojoAttackStatRaw(){
     return dojoStats.attack
-        *farmStats.dojoMult;
+        *farmStats.dojoMult
+        *getArenaDojoAttackMultiplier();
 }
 
 function getDojoDefenseStatRaw(){
     return dojoStats.defense
-        *farmStats.dojoMult;
+        *farmStats.dojoMult
+        *getArenaDojoDefenseMultiplier();
 }
 
 function getDojoAttack(){
@@ -88,8 +90,8 @@ function printDojoFight(){
     var string = '<div class="w3-col m6 l6">';
     string += '<h1><b>You</b></h1>';
     string += '<h2><b>HP</b>: '+printNumber(dojoStats.curhp)+'/'+printNumber(dojoStats.hp)+'</h2>';
-    string += '<h2><b>Attack</b>: '+printNumber(dojoStats.attack)+'</h2>';
-    string += '<h2><b>Defense</b>: '+printNumber(getDojoDefenseStatRaw())+'</h2>';
+    string += '<h2><b>Attack</b>: '+printNumber(getDojoRawAttack())+'</h2>';
+    string += '<h2><b>Defense</b>: '+printNumber(getDojoDefenseStat())+'</h2>';
     if(stats.totalDojoEnemies>=10) string += '<button style="width: 100%" class="w3-button w3-green" onclick="goToShop()">Secret Shop</button>';
     string += '</div><div class="w3-col m6 l6">';
     string += '<h1><b>'+dojoEnemy.name+'</b></h>';

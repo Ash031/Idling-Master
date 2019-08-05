@@ -17,7 +17,7 @@ var dojoZones = [
     },
     {
         name : 'First Corridor',
-        desc : 'Some more stuff to collect, there is also a weird room here called \'Miner\'s Heaven\', I better check it out (Mining Unlocked)!',
+        desc : 'Some more stuff to collect, there is also a weird room here called \'Miner\'s Heaven\', I better check it out (Mining and Arena Unlocked)!',
         enemies : [7,8,9]
     },
     {

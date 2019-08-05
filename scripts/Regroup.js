@@ -43,6 +43,7 @@ function upgradeRP(perkN){
     if(rebirth.rbPoints>=price && (obj.lvl<obj.maxLevel || obj.maxLevel==-1)){
         rebirth.rbPoints-=price;
         rebirthPerks[perkN].lvl++;
+        if(perkN==0) addClonesRaw(1)
     }
 }
 
@@ -73,12 +74,6 @@ function getBonusRebirthSum(perkType,num){
         if(perk.type==perkType) ret += perk.Bonus*perk.lvl;
     })
     return ret;
-}
-
-function getPrice(perk){
-    var priceUp = perk.step[0];
-    if(priceUp=='*')return (perk.lvl+1)*perk.basePrice*Number(perk.step.slice(1));
-    if(priceUp=='^')return Math.pow(perk.basePrice,perk.lvl+1*Number(perk.step.slice(1)));
 }
 
 function RBPointsAmount(){

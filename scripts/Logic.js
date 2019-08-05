@@ -9,8 +9,6 @@ function getClones(){
     return clones;
 }
 
-
-
 //GAME SAVING, LOADING AND RESETING
 function load(){
     if(localStorage.getItem('player')){
@@ -154,6 +152,12 @@ function addMoney(num){
     num = Math.floor(num
         *farmStats.GoldMult);
     player.money+=num;
+}
+
+function getPrice(perk){
+    var priceUp = perk.step[0];
+    if(priceUp=='*')return (perk.lvl+1)*perk.basePrice*Number(perk.step.slice(1));
+    if(priceUp=='^')return Math.pow(perk.basePrice,perk.lvl+1*Number(perk.step.slice(1)));
 }
 
 //SET GAME INTERVAL

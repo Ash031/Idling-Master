@@ -9,19 +9,19 @@ function printWarehouse(){
 }
 
 function getWarehouseInfo(){
-    var string = "<p><b>Warehouse Info:</b></p><p>Rank:"+warehouse.rank+" ("+warehouse.upgradeCrates+"/"+warehouse.upgradesNeeded+")</p>"
+    var string = "<p><b>Warehouse Info:</b></p><p>Rank:"+warehouse.rank+" ("+warehouse.upgradeCrates+"/"+(warehouse.upgradesNeeded-getArenaWarehouseUpgradesDecMultiplier())+")</p>"
     string += "<p>Capacity: "+warehouse.used+"/"+warehouse.capacity+"</p>"
     return string;
 }
 
 function getWarehouseMult(){
     var string = ""
-    if(warehouseStats.strength!=1) string += "<p>Strength Multiplier: "+warehouseStats.strength+"</p>"
-    if(warehouseStats.defense!=1) string += "<p>Mining Multiplier: "+warehouseStats.defense+"</p>"
-    if(warehouseStats.dojoAttack!=1) string += "<p>Mining Multiplier: "+warehouseStats.dojoAttack+"</p>"
-    if(warehouseStats.dojoDefense!=1) string += "<p>Mining Multiplier: "+warehouseStats.dojoDefense+"</p>"
-    if(warehouseStats.Mining!=1) string += "<p>Mining Multiplier: "+warehouseStats.Mining+"</p>"
-    if(warehouseStats.farmDrop!=1) string += "<p>Mining Multiplier: "+warehouseStats.farmDrop+"</p>"
+    if(getWarehouseStrength()!=1) string += "<p>Strength Multiplier: "+getWarehouseStrength()+"</p>"
+    if(getWarehouseDefense()!=1) string += "<p>Mining Multiplier: "+getWarehouseDefense()+"</p>"
+    if(getWarehouseDojoAttack()!=1) string += "<p>Mining Multiplier: "+getWarehouseDojoAttack()+"</p>"
+    if(getWarehouseDojoDefense()!=1) string += "<p>Mining Multiplier: "+getWarehouseDojoDefense()+"</p>"
+    if(getWarehouseMining()!=1) string += "<p>Mining Multiplier: "+getWarehouseMining()+"</p>"
+    if(getWarehouseFarmingDrops()!=1) string += "<p>Mining Multiplier: "+getWarehouseFarmingDrops()+"</p>"
     if(string=="") return "<p>I'm sorry, but there is nothing here :(</p>"
     return string;
 }
@@ -97,7 +97,7 @@ function reedemContract(i){
     if(contract.type == "DojoDefense") warehouseStats.dojoDefense += contract.bonus;
     if(contract.type == "Upgrade") {
         warehouse.upgradeCrates += contract.bonus;
-        if( warehouse.upgradeCrates >= warehouse.upgradesNeeded){
+        if( warehouse.upgradeCrates >= (warehouse.upgradesNeeded-getArenaWarehouseUpgradesDecMultiplier())){
             warehouse.rank++;
             warehouse.capacity*=5;
             warehouse.upgradesNeeded*=5;
@@ -119,20 +119,20 @@ function ChooseRandomContract(){
 }
 
 function getWarehouseMining(){
-    return warehouseStats.Mining;
+    return 1+((1-warehouseStats.Mining)*getArenaWarehouseMultiplier());
 }
 function getWarehouseFarmingDrops(){
-    return warehouseStats.farmDrop;
+    return 1+((1-warehouseStats.farmDrop)*getArenaWarehouseMultiplier());
 }
 function getWarehouseStrength(){
-    return warehouseStats.strength;
+    return 1+((1-warehouseStats.strength)*getArenaWarehouseMultiplier());
 }
 function getWarehouseDefense(){
-    return warehouseStats.defense;
+    return 1+((1-warehouseStats.defense)*getArenaWarehouseMultiplier());
 }
 function getWarehouseDojoAttack(){
-    return warehouseStats.dojoAttack;
+    return 1+((1-warehouseStats.dojoAttack)*getArenaWarehouseMultiplier());
 }
 function getWarehouseDojoDefense(){
-    return warehouseStats.dojoDefense;
+    return 1+((1-warehouseStats.dojoDefense)*getArenaWarehouseMultiplier());
 }

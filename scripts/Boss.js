@@ -4,8 +4,14 @@ function loadBoss(){
     if(values.boss>=3) unlockButton("Zone1");
     else lockButton("Zone1");
     if(stats.highestBoss>=5) unlockButton("Rebirth");
-    if(values.boss>=8) unlockButton("Zone2");
-    else lockButton("Zone2");
+    if(values.boss>=8){
+        unlockButton("Zone2");
+        unlockButton("Zone5");
+    }
+    else {
+        lockButton("Zone2");
+        lockButton("Zone5");
+    }
     if(values.boss>=13) unlockButton("Zone3");
     else lockButton("Zone3");
     if(values.boss>=20) unlockButton("Zone4");

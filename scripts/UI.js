@@ -33,6 +33,9 @@ function loadScreen(){
     else if(options.menu=="Warehouse"){
         printWarehouse();
     }
+    else if(options.menu=="Arena"){
+        printArena();
+    }
 }
 
 function printNumber(number){
@@ -106,6 +109,11 @@ function goToWarehouse(){
     loadScreen();
 }
 
+function goToArena(){
+    options.menu="Arena";
+    loadScreen();
+}
+
 function goToRegroup(){
     options.menu="Regroup";
     loadScreen();
@@ -169,6 +177,10 @@ function unlockButton(string){
         document.getElementById(string).innerHTML="Warehouse";
         document.getElementById(string).disabled=false;
     }
+    if(string=="Zone5"){
+        document.getElementById(string).innerHTML="Arena";
+        document.getElementById(string).disabled=false;
+    }
     if(string=="Rebirth"){
         document.getElementById(string).innerHTML="Regroup";
         document.getElementById(string).disabled=false;
@@ -192,6 +204,10 @@ function lockButton(string){
     }
     if(string=="Zone4"){
         document.getElementById(string).innerHTML="Cmon, unlock me";
+        document.getElementById(string).disabled=true;
+    }
+    if(string=="Zone5"){
+        document.getElementById(string).innerHTML="Wow, I'm locked";
         document.getElementById(string).disabled=true;
     }
 }
