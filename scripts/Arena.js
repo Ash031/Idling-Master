@@ -121,7 +121,7 @@ function printArenaFight(){
 }
 
 function getArenaImgPath(boss){
-    return ""
+    return "https://raw.githubusercontent.com/Ash031/Idling-Master/master/Bosses/"+boss+".png";
 
 }
 
