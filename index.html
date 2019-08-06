@@ -29,10 +29,10 @@
                 <button style="width: 100%" class="w3-button w3-dark-gray" onclick="goToBosses()">Bosses</button>
                 <button style="width: 100%" class="w3-button w3-dark-gray" onclick="goToTraining()">Training</button>
                 <button id="Zone1" style="width: 100%" class="w3-button w3-dark-gray" onclick="goToDojo()" disabled>It's Locked Boys</button>
+                <button id="Zone5" style="width: 100%" class="w3-button w3-dark-gray" onclick="goToArena()" disabled>Wow, I'm Locked</button>
                 <button id="Zone2" style="width: 100%" class="w3-button w3-dark-gray" onclick="goToMine()" disabled>No No No...</button>
                 <button id="Zone3" style="width: 100%" class="w3-button w3-dark-gray" onclick="goToFarm()" disabled>It's not for you today</button>
                 <button id="Zone4" style="width: 100%" class="w3-button w3-dark-gray" onclick="goToWarehouse()" disabled>Cmon, unlock me</button>
-                <button id="Zone5" style="width: 100%" class="w3-button w3-dark-gray" onclick="goToArena()" disabled>Wow, I'm Locked</button>
                 <button style="width: 100%" class="w3-button w3-dark-gray" onclick="goToStats()">Statistics</button>
                 <hr/>
                 
@@ -52,6 +52,9 @@
                     <hr/>
                     <button style="width: 100%" class="w3-button w3-dark-gray" onclick="save()">Save</button>
                     <button style="width: 100%" class="w3-button w3-dark-gray" onclick="load()">Load</button>
+                    <button style="width: 100%" class="w3-button w3-dark-gray" onclick="ExportData()">Export Save</button>
+                    <input style="width:100%" id="DataImporter" type="text" placeholder="Save File"></input>
+                    <button style="width: 100%" class="w3-button w3-dark-gray" onclick="ImportData()">Import Save</button>
                 </div>    
             </div>
         </div>

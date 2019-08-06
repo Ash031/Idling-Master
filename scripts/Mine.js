@@ -15,7 +15,8 @@ function getOreTables(){
     for(var i = 0;i<4;i++){
         string += '<tr>';
         for(var j=0;j<3;j++){
-            string +='<td><p style="text-align:center">'+ores[i*3+j].name+'</p><button class="w3-button w3-green" onclick="removeCloneToOre('+i*3+j+');">-</button>'+printNumber(ores[i*3+j].clones+getArenaMiners())+'<button style="float:right"class="w3-button w3-green" onclick="addCloneToOre('+i*3+j+')">+</button></td>';
+            var ore = i*3+j;
+            string +='<td><p style="text-align:center">'+ores[ore].name+'</p><button class="w3-button w3-green" onclick="removeCloneToOre('+ore+');">-</button>'+printNumber(ores[ore].clones+getArenaMiners())+'<button style="float:right"class="w3-button w3-green" onclick="addCloneToOre('+ore+')">+</button></td>';
         }
         string += '</tr>';
     }
@@ -28,6 +29,7 @@ function addCloneToOre(ore){
     if(clones>player.idleClones)clones = player.idleClones;
     ores[ore].clones+=clones;
     player.idleClones-=clones;
+    loadScreen()
 }
 
 function removeCloneToOre(ore){
@@ -35,6 +37,7 @@ function removeCloneToOre(ore){
     if(clones>ores[ore].clones)clones = ores[ore].clones;
     player.idleClones+=clones;
     ores[ore].clones-=clones;
+    loadScreen();
 }
 
 function getOres(){

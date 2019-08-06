@@ -201,6 +201,7 @@ function assignClonesScream(){
     if(clonesToAssign>player.idleClones)clonesToAssign=player.idleClones;
     assignedClones.train.attack.scream+=clonesToAssign;
     player.idleClones-=clonesToAssign;
+    loadScreen();
 }
 function deAssignClonesScream(){
     var clonesToAssign =getClones();
@@ -208,6 +209,7 @@ function deAssignClonesScream(){
     if(clonesToAssign>assignedClones.train.attack.scream)clonesToAssign=assignedClones.train.attack.scream;
     assignedClones.train.attack.scream-=clonesToAssign;
     player.idleClones+=clonesToAssign;
+    loadScreen();
 }
 function assignClonesPunch(){
     var clonesToAssign =getClones();
@@ -215,6 +217,7 @@ function assignClonesPunch(){
     if(clonesToAssign>player.idleClones)clonesToAssign=player.idleClones;
     assignedClones.train.attack.punch+=clonesToAssign;
     player.idleClones-=clonesToAssign;
+    loadScreen();
 }
 function deAssignClonesPunch(){
     var clonesToAssign =getClones();
@@ -222,6 +225,7 @@ function deAssignClonesPunch(){
     if(clonesToAssign>assignedClones.train.attack.punch)clonesToAssign=assignedClones.train.attack.punch;
     assignedClones.train.attack.punch-=clonesToAssign;
     player.idleClones+=clonesToAssign;
+    loadScreen();
 }
 function assignClonesKick(){
     var clonesToAssign =getClones();
@@ -229,6 +233,7 @@ function assignClonesKick(){
     if(clonesToAssign>player.idleClones)clonesToAssign=player.idleClones;
     assignedClones.train.attack.kick+=clonesToAssign;
     player.idleClones-=clonesToAssign;
+    loadScreen();
 }
 function deAssignClonesKick(){
     var clonesToAssign =getClones();
@@ -236,6 +241,7 @@ function deAssignClonesKick(){
     if(clonesToAssign>assignedClones.train.attack.kick)clonesToAssign=assignedClones.train.attack.kick;
     assignedClones.train.attack.kick-=clonesToAssign;
     player.idleClones+=clonesToAssign;
+    loadScreen();
 }
 function assignClonesJumpKick(){
     var clonesToAssign =getClones();
@@ -243,6 +249,7 @@ function assignClonesJumpKick(){
     if(clonesToAssign>player.idleClones)clonesToAssign=player.idleClones;
     assignedClones.train.attack.jumpKick+=clonesToAssign;
     player.idleClones-=clonesToAssign;
+    loadScreen();
 }
 function deAssignClonesJumpKick(){
     var clonesToAssign =getClones();
@@ -250,6 +257,7 @@ function deAssignClonesJumpKick(){
     if(clonesToAssign>assignedClones.train.attack.jumpKick)clonesToAssign=assignedClones.train.attack.jumpKick;
     assignedClones.train.attack.jumpKick-=clonesToAssign;
     player.idleClones+=clonesToAssign;
+    loadScreen();
 }
 function assignClonesTornadoKick(){
     var clonesToAssign =getClones();
@@ -257,6 +265,7 @@ function assignClonesTornadoKick(){
     if(clonesToAssign>player.idleClones)clonesToAssign=player.idleClones;
     assignedClones.train.attack.tornadoKick+=clonesToAssign;
     player.idleClones-=clonesToAssign;
+    loadScreen();
 }
 function deAssignClonesTornadoKick(){
     var clonesToAssign =getClones();
@@ -264,6 +273,7 @@ function deAssignClonesTornadoKick(){
     if(clonesToAssign>assignedClones.train.attack.tornadoKick)clonesToAssign=assignedClones.train.attack.tornadoKick;
     assignedClones.train.attack.tornadoKick-=clonesToAssign;
     player.idleClones+=clonesToAssign;
+    loadScreen();
 }
 
 function assignClonesFall(){
@@ -272,6 +282,7 @@ function assignClonesFall(){
     if(clonesToAssign>player.idleClones)clonesToAssign=player.idleClones;
     assignedClones.train.defense.fall+=clonesToAssign;
     player.idleClones-=clonesToAssign;
+    loadScreen();
 }
 function deAssignClonesFall(){
     var clonesToAssign =getClones();
@@ -279,6 +290,7 @@ function deAssignClonesFall(){
     if(clonesToAssign>assignedClones.train.defense.fall)clonesToAssign=assignedClones.train.defense.fall;
     assignedClones.train.defense.fall-=clonesToAssign;
     player.idleClones+=clonesToAssign;
+    loadScreen();
 }
 function assignClonesBeat(){
     var clonesToAssign =getClones();
@@ -286,6 +298,7 @@ function assignClonesBeat(){
     if(clonesToAssign>player.idleClones)clonesToAssign=player.idleClones;
     assignedClones.train.defense.beat+=clonesToAssign;
     player.idleClones-=clonesToAssign;
+    loadScreen();
 }
 function deAssignClonesBeat(){
     var clonesToAssign =getClones();
@@ -293,6 +306,7 @@ function deAssignClonesBeat(){
     if(clonesToAssign>assignedClones.train.defense.beat)clonesToAssign=assignedClones.train.defense.beat;
     assignedClones.train.defense.beat-=clonesToAssign;
     player.idleClones+=clonesToAssign;
+    loadScreen();
 }
 
 function assignClonesEat(){
@@ -301,6 +315,7 @@ function assignClonesEat(){
     if(clonesToAssign>player.idleClones)clonesToAssign=player.idleClones;
     assignedClones.train.defense.eat+=clonesToAssign;
     player.idleClones-=clonesToAssign;
+    loadScreen();
 }
 function deAssignClonesEat(){
     var clonesToAssign =getClones();
@@ -308,6 +323,7 @@ function deAssignClonesEat(){
     if(clonesToAssign>assignedClones.train.defense.eat)clonesToAssign=assignedClones.train.defense.eat;
     assignedClones.train.defense.eat-=clonesToAssign;
     player.idleClones+=clonesToAssign;
+    loadScreen();
 }
 function assignClonesRest(){
     var clonesToAssign =getClones();
@@ -315,6 +331,7 @@ function assignClonesRest(){
     if(clonesToAssign>player.idleClones)clonesToAssign=player.idleClones;
     assignedClones.train.defense.rest+=clonesToAssign;
     player.idleClones-=clonesToAssign;
+    loadScreen();
 }
 function deAssignClonesRest(){
     var clonesToAssign =getClones();
@@ -322,6 +339,7 @@ function deAssignClonesRest(){
     if(clonesToAssign>assignedClones.train.defense.rest)clonesToAssign=assignedClones.train.defense.rest;
     assignedClones.train.defense.rest-=clonesToAssign;
     player.idleClones+=clonesToAssign;
+    loadScreen();
 }
 function assignClonesSleep(){
     var clonesToAssign =getClones();
@@ -329,6 +347,7 @@ function assignClonesSleep(){
     if(clonesToAssign>player.idleClones)clonesToAssign=player.idleClones;
     assignedClones.train.defense.sleep+=clonesToAssign;
     player.idleClones-=clonesToAssign;
+    loadScreen();
 }
 function deAssignClonesSleep(){
     var clonesToAssign =getClones();
@@ -336,6 +355,7 @@ function deAssignClonesSleep(){
     if(clonesToAssign>assignedClones.train.defense.sleep)clonesToAssign=assignedClones.train.defense.sleep;
     assignedClones.train.defense.sleep-=clonesToAssign;
     player.idleClones+=clonesToAssign;
+    loadScreen();
 }
 
 

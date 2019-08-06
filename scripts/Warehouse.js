@@ -65,7 +65,7 @@ function workOnWarehouse(){
         }
         else if(choosableContracts[i].onGoing){
               choosableContracts[i].time--;
-              if(choosableContracts[i].time==0) reedemContract(i);
+              if(choosableContracts[i].time<=0) reedemContract(i);
         }
     }
 }
@@ -87,6 +87,7 @@ function toggleContract(i){
     else player.idleClones += contract.clones
     contract.onGoing = !contract.onGoing;
     choosableContracts[i] = contract;
+    loadScreen();
 }
 
 function reedemContract(i){
@@ -107,6 +108,7 @@ function reedemContract(i){
     else warehouse.used++;
     player.idleClones+=contract.clones;
     choosableContracts[i] = ChooseRandomContract();
+    loadScreen();
 }
 
 function ChooseRandomContract(){
@@ -119,20 +121,28 @@ function ChooseRandomContract(){
 }
 
 function getWarehouseMining(){
-    return 1+((1-warehouseStats.Mining)*getArenaWarehouseMultiplier());
+    return 1+((warehouseStats.Mining-1)*getArenaWarehouseMultiplier());
 }
 function getWarehouseFarmingDrops(){
-    return 1+((1-warehouseStats.farmDrop)*getArenaWarehouseMultiplier());
+    return 1+((warehouseStats.farmDrop-1)*getArenaWarehouseMultiplier());
 }
 function getWarehouseStrength(){
-    return 1+((1-warehouseStats.strength)*getArenaWarehouseMultiplier());
+    return 1+((warehouseStats.strength-1)*getArenaWarehouseMultiplier());
 }
 function getWarehouseDefense(){
-    return 1+((1-warehouseStats.defense)*getArenaWarehouseMultiplier());
+    return 1+((warehouseStats.defense-1)*getArenaWarehouseMultiplier());
 }
 function getWarehouseDojoAttack(){
-    return 1+((1-warehouseStats.dojoAttack)*getArenaWarehouseMultiplier());
+    return 1+((warehouseStats.dojoAttack-1)*getArenaWarehouseMultiplier());
 }
 function getWarehouseDojoDefense(){
-    return 1+((1-warehouseStats.dojoDefense)*getArenaWarehouseMultiplier());
+    return 1+((warehouseStats.dojoDefense-1)*getArenaWarehouseMultiplier());
+}
+
+function warehouseOffline(time){
+    choosableContracts.forEach(c=>{
+        if(c.onGoing){
+            c.time-=time;
+        }
+    })
 }

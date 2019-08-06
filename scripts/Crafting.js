@@ -37,4 +37,5 @@ function craft(itemN){
         ores[item.cost[i].ore].quant-=Math.floor(Math.pow(item.level,1.5)*item.cost[i].baseCost*getArenaCraftingMultiplier());
     }
     crafting.items[itemN].level++;
+    loadScreen();
 }

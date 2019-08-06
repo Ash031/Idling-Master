@@ -1,5 +1,5 @@
 function printArena(){
-    var string = '<h1 style="text-align:center">Arena</h1><hr/>';
+    var string = '<h1 style="text-align:center">Arena</h1><hr/><p><b>Available Vouchers:</b>'+printNumber(Math.floor(arenaVouchers))+'</p>';
     if(arenaScreen=="Fight"){
         string += printArenaFight();
     }
@@ -11,6 +11,9 @@ function printArena(){
         }
         else if(arenaScreen=="Shop"){
             string+=printArenaShop();
+        }
+        else if(arenaScreen=="Skills"){
+            string +=printSkillChoosingMenu()
         }
     }
     document.getElementById('Screen').innerHTML=string;
@@ -31,7 +34,7 @@ function getArenaButtons(){
         if((i==1 && values.boss<8) ||(i==2 && values.boss<13)||(i==3 && values.boss<20)) break;
         string += '<button onClick="goToArenaFighters('+i+')">'+getArenaName(i)+'</button>'
     }
-    string += '</p><hr/><p><b>Visit Arena Shop:</b></p><p>'
+    string += '<button onClick="goToArenaSkills()">Skills</button></p><hr/><p><b>Visit Arena Shop:</b></p><p>'
     for(var i=0;i<4;i++){
         if((i==1 && values.boss<8) ||(i==2 && values.boss<13)||(i==3 && values.boss<20)) break;
         string += '<button onClick="goToArenaShop('+i+')">'+getArenaName(i)+'</button>'
@@ -90,7 +93,12 @@ function getTypeName(type){
 }
 
 function ArenaFight(num){
+    if(arenaVouchers<1)return;
+    arenaVouchers--;
     if(arenaType=="Dojo") copyArenaEnemy(arenaFighters.dojo[num],num)
+    if(arenaType=="Mine") copyArenaEnemy(arenaFighters.Mine[num],num)
+    if(arenaType=="Farm") copyArenaEnemy(arenaFighters.farm[num],num)
+    if(arenaType=="Warehouse") copyArenaEnemy(arenaFighters.warehouse[num],num)
     copySelf();
     startArenaFight();
     loadScreen();
@@ -327,4 +335,49 @@ function getArenaWarehouseMultiplier(){
         if(p.type=="Mult")ret*=(1+p.Bonus*p.lvl);
     })
     return ret;
+}
+
+function goToArenaSkills(){
+    arenaScreen="Skills"
+
+    loadScreen();
+}
+
+function printSkillChoosingMenu(){
+    var string = '<p><b>Skills:</b></p><table class="w3-table-all"><tr><th>Name</th><th>Description</th><th>Type</th><th>Power</th><th>Cooldown</th><th></th></tr>'
+    for(var i=0;i<skills.length;i++){
+        var s =skills[i]
+        string+= '<tr><td>'+s.name+'</td><td>'+s.desc+'</td<td>'+getTypeName(s.type)+'</td><td>'+s.mult+'</td><td>'+s.coolDown+'</td><td>'
+        if(!s.got)string+="<button onClick=\"buySkill("+i+")\">Buy Skill For "+s.price+" Money</button>"
+        else{
+            if(skillsChosen.indexOf(i)==-1){
+                string+='<button onClick="selectSkill('+i+')"'
+                if(skillsChosen.length>=5) string +="disabled"
+                string+=">Select</button>"
+            }
+            else{
+                string+="<button onClick=\"deSelectSkill("+i+")\""
+                if(skillsChosen.length<=1) string+= "disabled"
+                string+=">Remove</button>"
+            }
+        }
+        string+='</tr>'
+    }
+    return string;
+}
+
+function selectSkill(num){
+    skillsChosen.push(num);
+    loadScreen();
+}
+function deSelectSkill(num){
+    skillsChosen = skillsChosen.filter((n)=>n!=num);
+    loadScreen();
+}
+
+function buySkill(num){
+    if(spendMoney(skills[num].price)){
+        skills[num].got=true;
+    }
+    loadScreen();
 }

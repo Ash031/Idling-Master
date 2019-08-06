@@ -50,6 +50,7 @@ function getSeeds(){
 
 function selectSeed(seed){
     cropSelected=seed;
+    loadScreen();
 }
 
 function printPlots(){
@@ -80,12 +81,14 @@ function unlockPlot(plotN){
         plots[plotN].xp = Math.pow(1+getBonusRebirthSum("PlotLvl",0),2);
         plots[plotN].level = 1+getBonusRebirthSum("PlotLvl",0);
     }
+    loadScreen();
 }
 
 function Plant(plotN){
     if (plots[plotN].crop==-1){
         plots[plotN].crop = cropSelected;
     }
+    loadScreen();
 }
 
 function Harvest(plotN){
@@ -95,6 +98,7 @@ function Harvest(plotN){
         plots[plotN].crop = -1;
         plots[plotN].curTime=0;
     }
+    loadScreen();
 }
 
 function giveXPToPlot(plotN,xp){
@@ -135,5 +139,11 @@ function getGrowth(growth, time){
 function grow(){
     plots.forEach(plot =>{
         if (plot.got && plot.crop!=-1) plot.curTime++;
+    })
+}
+
+function growOffline(time){
+    plots.forEach(p=>{
+        if(p.got && p.crop!=-1) p.curTime+=time;
     })
 }

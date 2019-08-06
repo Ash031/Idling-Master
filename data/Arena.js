@@ -1,83 +1,4 @@
-const arenaFighters = {
-    dojo : [
-        {
-            name: "Stickley",
-            health: 1e3,
-            attack: 2.5e3,
-            type: 2,
-            defeated: false
-        },
-        {
-            name: "Chaty",
-            health: 1e5,
-            attack: 7e4,
-            type: 1,
-            defeated: false
-        },
-        {
-            name: "TrashBags",
-            health: 1e8,
-            attack: 2e6,
-            type: 0,
-            defeated: false
-        },
-    ],
-    Mine : [
-        {
-            name: "HandSawz",
-            health: 1e5,
-            attack: 1e4,
-            type: 3,
-            defeated: false
-        },
-        {
-            name: "Boruch",
-            health: 1e6,
-            attack: 4e5,
-            type: 0,
-            defeated: false
-        }
-    ],
-    farm : [
-        {
-            name: "KGnome",
-            health: 1e7,
-            attack: 2.5e6,
-            type: 1,
-            defeated: false
-        },
-        {
-            name: "Flowey",
-            health: 3e10,
-            attack: 3e7,
-            type: 2,
-            defeated: false
-        },
-        {
-            name: "Poned",
-            health: 2e11,
-            attack: 4e8,
-            type: 1,
-            defeated: false
-        },
-    ],
-    warehouse : [
-        {
-            name: "Catriu",
-            health: 3e15,
-            attack: 3e15,
-            type: 0,
-            defeated: false
-        },
-        {
-            name: "Coose",
-            health: 5e18,
-            attack: 1e17,
-            type: 3,
-            defeated: false
-        }
-    ],
-}
+var arenaVouchers = 1
 
 var arenaScreen = ""
 var arenaType = ""
@@ -104,8 +25,59 @@ var skills = [
         desc: "A Regular Punch",
         effect: "",
         got: true,
-        coolDown: 0
-    }
+        coolDown: 0,
+        price: 0
+    },
+    {
+        name: "Kick",
+        type: 0,
+        mult: 2,
+        desc: "Stronger than a Punch",
+        effect: "",
+        got: false,
+        coolDown: 2,
+        price: 60
+    },
+    {
+        name: "HeadButt",
+        type: 1,
+        mult: 2,
+        desc: "Swing Your head",
+        effect: "",
+        got: false,
+        coolDown: 3,
+        price: 200
+    },
+    {
+        name: "Elbow Thrust",
+        type: 3,
+        mult: 2,
+        desc: "One of a Kind",
+        effect: "",
+        got: false,
+        coolDown: 3,
+        price: 200
+    },
+    {
+        name: "FacePalm",
+        type: 2,
+        mult: 2,
+        desc: "You hit him, with some force",
+        effect: "",
+        got: false,
+        coolDown: 3,
+        price: 200
+    },
+    {
+        name: "Rocket Punch",
+        type: 0,
+        mult: 5,
+        desc: "Just like the simulations",
+        effect: "",
+        got: false,
+        coolDown: 10,
+        price: 1000
+    },
 ]
 
 var skillsChosen = [
@@ -120,7 +92,7 @@ var arenaTokens = {
 
 }
 
-arenaShop = {
+var arenaShop = {
     dojo: [
         {
             name: "Better Chop",
@@ -299,4 +271,85 @@ arenaShop = {
             basePrice: 1000
         }
     ]
+}
+
+const arenaFighters = {
+    dojo : [
+        {
+            name: "Stickley",
+            health: 1e3,
+            attack: 2.5e3,
+            type: 2,
+            defeated: false
+        },
+        {
+            name: "Chaty",
+            health: 1e5,
+            attack: 7e4,
+            type: 1,
+            defeated: false
+        },
+        {
+            name: "TrashBags",
+            health: 1e8,
+            attack: 2e6,
+            type: 0,
+            defeated: false
+        },
+    ],
+    Mine : [
+        {
+            name: "HandSawz",
+            health: 1e5,
+            attack: 1e4,
+            type: 3,
+            defeated: false
+        },
+        {
+            name: "Boruch",
+            health: 1e6,
+            attack: 4e5,
+            type: 0,
+            defeated: false
+        }
+    ],
+    farm : [
+        {
+            name: "KGnome",
+            health: 1e7,
+            attack: 2.5e6,
+            type: 1,
+            defeated: false
+        },
+        {
+            name: "Flowey",
+            health: 3e10,
+            attack: 3e7,
+            type: 2,
+            defeated: false
+        },
+        {
+            name: "Poned",
+            health: 2e11,
+            attack: 4e8,
+            type: 1,
+            defeated: false
+        },
+    ],
+    warehouse : [
+        {
+            name: "Catriu",
+            health: 3e15,
+            attack: 3e15,
+            type: 0,
+            defeated: false
+        },
+        {
+            name: "Coose",
+            health: 5e18,
+            attack: 1e17,
+            type: 3,
+            defeated: false
+        }
+    ],
 }

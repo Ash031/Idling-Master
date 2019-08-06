@@ -9,54 +9,135 @@ function getClones(){
     return clones;
 }
 
+function setRLevels(perks){
+    for(var i=0;i<perks.length;i++){rebirthPerks[i].lvl=perks[i]}
+}
+function setArenaShopLevels(levels){
+    for(var i=0;i<levels.dojo.length;i++){arenaShop.dojo[i].lvl=levels.dojo[i]}
+    for(var i=0;i<levels.mine.length;i++){arenaShop.mine[i].lvl=levels.mine[i]}
+    for(var i=0;i<levels.farm.length;i++){arenaShop.Farm[i].lvl=levels.farm[i]}
+    for(var i=0;i<levels.warehouse.length;i++){arenaShop.warehouse[i].lvl=levels.warehouse[i]}
+}
+
+function setUnlockedSkills(aSkills){
+    for(var i=0;i<aSkills.length;i++){skills[i].got=aSkills[i]}    
+}
+
 //GAME SAVING, LOADING AND RESETING
 function load(){
-    if(localStorage.getItem('player')){
-        plots = JSON.parse(localStorage.getItem('farm'))
-        farmStats=JSON.parse(localStorage.getItem('farmStats'))
-        rebirthPerks = JSON.parse(localStorage.getItem('perks'))
-        player = JSON.parse(localStorage.getItem('player'));
-        assignedClones = JSON.parse(localStorage.getItem('assignedClones'));
-        options = JSON.parse(localStorage.getItem('options'));
-        rebirth = JSON.parse(localStorage.getItem('Rebirth'));
-        values = JSON.parse(localStorage.getItem('value'));
-        stats = JSON.parse(localStorage.getItem('stats'));
-        dojoStats = JSON.parse(localStorage.getItem('dojoStats'));
-        offlineTime = (new Date().getTime()/1000)-parseInt(JSON.parse(localStorage.getItem('time')));
-        ores = JSON.parse(localStorage.getItem('ores'));
-        lifeStats=JSON.parse(localStorage.getItem('lifeStat'));
-        updateVersion();
-        generateOffline(offlineTime);
+    var save = JSON.parse(localStorage.getItem('save'));
+    if(save){
+        plots=save.farm; farmStats=save.farmStats; setRLevels(save.perks);
+        player=save.player; assignedClones=save.assignedClones; options=save.options;
+        values=save.value; stats=save.stats; dojoStats=save.dojoStats; ores=save.ores;
+        rebirth=save.rebirth; lifeStats=save.lifeStat; skillsChosen=save.choosen;
+        arenaTokens=save.arenaTokens; setArenaShopLevels(save.arenaShop);
+        choosableContracts=save.contracts; warehouse=save.warehouse;
+        warehouseStats=save.warehouseStats; arenaVouchers=save.arenaVouchers;
+        setUnlockedSkills(save.skills)
+        updateVersion(save.version);
+        generateOffline((new Date().getTime()/1000)-save.time);
     }
 }
-function updateVersion(){
-    if(localStorage.getItem('Version')){
-        versionUpdated = localStorage.getItem('Version');
 
+function Importload(save){
+    save = JSON.parse(save);
+    if(save){
+        plots=save.farm; farmStats=save.farmStats; setRLevels(save.perks);
+        player=save.player; assignedClones=save.assignedClones; options=save.options;
+        values=save.value; stats=save.stats; dojoStats=save.dojoStats; ores=save.ores;
+        rebirth=save.rebirth; lifeStats=save.lifeStat; skillsChosen=save.choosen;
+        arenaTokens=save.arenaTokens; setArenaShopLevels(save.arenaShop);
+        choosableContracts=save.contracts; warehouse=save.warehouse;
+        warehouseStats=save.warehouseStats; arenaVouchers=save.arenaVouchers;
+        setUnlockedSkills(save.skills)
+        updateVersion(save.version);
+        generateOffline((new Date().getTime()/1000)-save.time);
     }
+}
+
+function ImportData() {
+    var save = document.getElementById('DataImporter').value;
+    Importload(atob(save));
+}
+function ExportData() {
+    download("Idling Master.txt",btoa(localStorage.getItem("save")))
+}
+function download(filename, text) {
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
+  
+    element.style.display = 'none';
+    document.body.appendChild(element);
+  
+    element.click();
+  
+    document.body.removeChild(element);
+  }
+function updateVersion(version){
+
 }
 
 function generateOffline(offlineTime){
+    arenaVouchers+=offlineTime/36000;
     mineOffline(offlineTime);
+    growOffline(offlineTime);
+    warehouseOffline(offlineTime);
     for(var i=0;i<offlineTime;i++){
         train();
     }
 }
 
+function getRLevels(perks){
+    var ret = []
+    perks.forEach(p=>{
+        ret.push(p.lvl);
+    })
+    return ret;
+}
+function getUnlockedSkills(skills){
+    var ret = []
+    skills.forEach(p=>{
+        ret.push(p.got);
+    })
+    return ret;
+}
+function getArenaShopLevels(shop){
+    var ret = {dojo:[],mine:[],farm:[],warehouse:[]}
+    shop.dojo.forEach(s=>ret.dojo.push(s.lvl))
+    shop.mine.forEach(s=>ret.mine.push(s.lvl))
+    shop.Farm.forEach(s=>ret.farm.push(s.lvl))
+    shop.warehouse.forEach(s=>ret.warehouse.push(s.lvl))
+    return ret;
+}
+
 function save(){
-    localStorage.setItem('farm',JSON.stringify(plots));
-    localStorage.setItem('farmStats',JSON.stringify(farmStats))
-    localStorage.setItem('perks',JSON.stringify(rebirthPerks));
-    localStorage.setItem('player',JSON.stringify(player));
-    localStorage.setItem('assignedClones',JSON.stringify(assignedClones));
-    localStorage.setItem('options',JSON.stringify(options));
-    localStorage.setItem('value',JSON.stringify(values));
-    localStorage.setItem('stats',JSON.stringify(stats));
-    localStorage.setItem('dojoStats',JSON.stringify(dojoStats));
-    localStorage.setItem('time',new Date().getTime() / 1000);
-    localStorage.setItem('ores',JSON.stringify(ores));
-    localStorage.setItem('Rebirth',JSON.stringify(rebirth));
-    localStorage.setItem('lifeStat',JSON.stringify(lifeStats));
+    var save = {
+        farm: plots,
+        farmStats: farmStats,
+        perks: getRLevels(rebirthPerks),
+        player: player,
+        assignedClones: assignedClones,
+        options: options,
+        value: values,
+        stats: stats,
+        dojoStats: dojoStats,
+        time: new Date().getTime() / 1000,
+        ores: ores,
+        rebirth: rebirth,
+        lifeStat: lifeStats,
+        choosen: skillsChosen,
+        arenaTokens: arenaTokens,
+        arenaShop: getArenaShopLevels(arenaShop),
+        contracts: choosableContracts,
+        warehouse: warehouse,
+        warehouseStats: warehouseStats,
+        version: version,
+        arenaVouchers: arenaVouchers,
+        skills: getUnlockedSkills(skills)
+    }
+    localStorage.setItem('save',JSON.stringify(save));
 }
 
 // Get Stats with Multiplier
@@ -174,6 +255,7 @@ function initGame(){
 function passSecond(){
     stats.totalSeconds++;
     lifeStats.totalSeconds++;
+    arenaVouchers+=1/36000;
     dojoFight();
     mine();
     loadScreen();
@@ -200,15 +282,14 @@ function newGame(){
     lockAllButtons();
     resetMine();
     resetFarm();    
+    resetWarehouse();
+    resetArena();
     save();
 }
 
 function resetRebirth(){
-    rebirth.canRebirth = false
-    rebirth.rbPoints=0
-    rebirthPerks.forEach(perk=>{
-        perk.lvl = 0;
-    })
+    rebirth={canRebirth: false,rbPoints: 0}
+    resetArenaAux(rebirthPerks);
 }
 
 function resetAssignedClones(){
@@ -222,6 +303,12 @@ function resetAssignedClones(){
     assignedClones.train.defense.fall=
     assignedClones.train.defense.rest=
     assignedClones.train.defense.sleep=0;
+}
+
+function spendMoney(money){
+    if(player.money<money)return false;
+    player.money-=money;
+    return true;
 }
 
 function resetPlayer(){
@@ -241,8 +328,8 @@ function resetPlayer(){
     player.train.defense.beat.level=player.train.defense.beat.progress=
     stats.totalDojoEnemies=stats.totalBossesKilles=stats.totalSeconds=
     stats.totalOresMined=stats.highestBoss=lifeStats.totalBossesKilles=
-    lifeStats.totalDojoEnemies=lifeStats.totalOresMined=lifeStats.totalSeconds=
-    0;
+    lifeStats.totalDojoEnemies=lifeStats.totalOresMined=lifeStats.totalSeconds=0;
+    dojoStats = {hp : 10,curhp : 10,attack : 1,defense : 1}
 }
 
 function resetMine(){
@@ -262,6 +349,32 @@ function resetFarm(){
         plot.xp=0;
         plot.curTime=0;
         plot.got=false;
+    })
+}
+
+function resetWarehouse(){
+    choosableContracts = []
+    warehouse = {capacity: 10,speed: 1,rank: 1,used: 0,level: 1,upgradeCrates: 0,upgradesNeeded: 5}    
+    warehouseStats = {strength: 1,defense: 1,dojoAttack: 1,dojoDefense: 1,farmDrop: 1,Mining: 1}
+}
+
+function resetArena(){
+    skillsChosen = [0]
+    arenaTokens = {dojo: 0,mine: 0,farm: 0,warehouse: 0}
+    resetArenaAux(arenaShop.dojo)
+    resetArenaAux(arenaShop.mine)
+    resetArenaAux(arenaShop.Farm)
+    resetArenaAux(arenaShop.warehouse)
+    resetSkills();
+}
+function resetArenaAux(list){
+    list.forEach(element=>{
+        element.lvl=0
+    })
+}
+function resetSkills(){
+    skills.forEach(s=>{
+        s.got=false;
     })
 }
 

@@ -17,15 +17,15 @@ function getNextZoneInfo(){
 }
 
 function getDojoAttackStatRaw(){
-    return dojoStats.attack
+    return Math.floor(dojoStats.attack
         *farmStats.dojoMult
-        *getArenaDojoAttackMultiplier();
+        *getArenaDojoAttackMultiplier());
 }
 
 function getDojoDefenseStatRaw(){
-    return dojoStats.defense
+    return Math.floor(dojoStats.defense
         *farmStats.dojoMult
-        *getArenaDojoDefenseMultiplier();
+        *getArenaDojoDefenseMultiplier());
 }
 
 function getDojoAttack(){
@@ -84,6 +84,7 @@ function generateEnemy(){
     dojoEnemy.attack = enemy.attack;
     dojoEnemy.defense = enemy.defense;
     dojoEnemy.prize = enemy.prize;
+    loadScreen();
 }
 
 function printDojoFight(){
