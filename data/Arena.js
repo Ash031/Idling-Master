@@ -9,7 +9,8 @@ var arenaEnemy = {
     curhealth: 0,
     type: 0,
     name: "",
-    gain: 0
+    gain: 0,
+    par:0
 }
 var arenaSelf = {
     attack: 0,
@@ -117,6 +118,46 @@ var skills = [
         got: false,
         coolDown: 4,
         price: 200000
+    },
+    {
+        name: "Block",
+        type: 0,
+        mult: 0,
+        desc: "Blocking is good!",
+        effect: "Block 100",
+        got: false,
+        coolDown: 3,
+        price: 20000
+    },
+    {
+        name: "Bite",
+        type: 0,
+        mult: 3,
+        desc: "Vampires bites, so do you.",
+        effect: "Vamp 50",
+        got: false,
+        coolDown: 10,
+        price: 5000
+    },
+    {
+        name: "Static Shock",
+        type: 0,
+        mult: 3,
+        desc: "Pop The ballon first, ask questions later.",
+        effect: "Paralyze 1",
+        got: false,
+        coolDown: 10,
+        price: 10000
+    },
+    {
+        name: "Mirror",
+        type: 0,
+        mult: 0,
+        desc: "He didn't brake the mirror, the mirror broke him",
+        effect: "Counter 100",
+        got: false,
+        coolDown: 10,
+        price: 15000
     },
 ]
 
@@ -312,7 +353,7 @@ var arenaShop = {
             lvl: 0,
             maxLvl: 5,
             step: "*1",
-            basePrice: 1000
+            basePrice: 100
         }
     ]
 }
@@ -355,6 +396,13 @@ var arenaFighters = {
             attack: 4e5,
             type: 0,
             defeated: false
+        },
+        {
+            name: "Red Ore",
+            health: 1e9,
+            attack: 5e7,
+            type: 1,
+            defeated: false
         }
     ],
     farm : [
@@ -379,6 +427,13 @@ var arenaFighters = {
             type: 1,
             defeated: false
         },
+        {
+            name: "Treezo",
+            health: 2e15,
+            attack: 4e10,
+            type: 2,
+            defeated: false
+        },
     ],
     warehouse : [
         {
@@ -393,6 +448,13 @@ var arenaFighters = {
             health: 5e18,
             attack: 1e17,
             type: 3,
+            defeated: false
+        },
+        {
+            name: "Angel",
+            health: 1e21,
+            attack: 1e19,
+            type: 0,
             defeated: false
         }
     ],

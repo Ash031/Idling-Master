@@ -158,24 +158,47 @@ function useSkill(i){
     var theSkill = skills[skillsChosen[i]]
     for(var j=0;j<6;j++) coolDowns[j] = coolDowns[j]-1;
     if(i==-1){
-        arenaSelf.curhealth-=arenaEnemy.attack;
-        if(arenaSelf.curhealth<=0)loseArena();
-        loadScreen();
+        if(arenaEnemy.par<=0){
+            arenaSelf.curhealth-=arenaEnemy.attack;
+            if(arenaSelf.curhealth<=0)loseArena();
+            loadScreen();
+        }
+        else arenaEnemy.par--;
         return;
     }
     var attack = Math.floor(theSkill.mult * arenaSelf.attack * getMult(theSkill.type,arenaEnemy.type));
-    arenaEnemy.curhealth-=attack;
+    var enemyAttack = arenaEnemy.attack;
     if(theSkill.effect!=""){
         var property = theSkill.effect.split(" ")[0];
         if(property=="Heal"){
             var amount = parseInt(theSkill.effect.split(" ")[1])
             arenaSelf.curhealth+=(arenaSelf.maxhealth*amount/100)
         }
+        else if(property=="Block"){
+            var amount = parseInt(theSkill.effect.split(" ")[1])
+            enemyAttack-=(enemyAttack*100/amount)
+        }
+        else if(property=="Vamp"){
+            var amount = parseInt(theSkill.effect.split(" ")[1])
+            arenaSelf.curhealth+=attack*100/amount;
+        }
+        else if(property=="Paralyze"){
+            var amount = parseInt(theSkill.effect.split(" ")[1])
+            arenaEnemy.par=amount;
+        }
+        else if(property=="Counter"){
+            var amount = parseInt(theSkill.effect.split(" ")[1])
+            attack+=(enemyAttack*100/amount);
+        }
     }
+    arenaEnemy.curhealth-=attack;
     if(arenaEnemy.curhealth<=0) winArena();
     else{
-        arenaSelf.curhealth-=arenaEnemy.attack;
-        if(arenaSelf.curhealth<=0)loseArena();
+        if(arenaEnemy.par<=0){
+            arenaSelf.curhealth-=enemyAttack
+            if(arenaSelf.curhealth<=0)loseArena();
+        }
+        else arenaEnemy.par--;
     }
     coolDowns[i] = theSkill.coolDown;
     loadScreen();

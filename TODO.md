@@ -42,10 +42,10 @@
 - [X] Tiered Bosses, better tiers give more Arena Points and better Tier Points
 - [X] Hook Up Multipliers
 - [X] Add Skills
-- [ ] Add More Skills
+- [X] Add More Skills
 - [X] Add Cooldown Mechanics
+- [X] Add Effects in battles
 - [X] Add Type Advantages
-- [ ] Create More Bosses
 - [X] Add a new currency to be able to fight in the arena
 - [X] Arena Shop
 - [X] Saving and Loading
@@ -90,3 +90,5 @@
 
 - [ ] Since the game doesn't have much testing there is a need of balance on the late stages of the game
 - [ ] Rework Crafting to unlock more recipes which will buff other aspects of the game
+- [ ] Create More Arena Bosses
+- [ ] Add More Skills
