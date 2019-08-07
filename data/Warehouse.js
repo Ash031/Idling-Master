@@ -38,20 +38,6 @@ const Contrats = [
             bonus: 0.01
         },
         {
-            gold: 30,
-            clones: 2,
-            time: 600,
-            type: "DojoAttack",
-            bonus: 0.02
-        },
-        {
-            gold: 30,
-            clones: 2,
-            time: 600,
-            type: "DojoDefense",
-            bonus: 0.02
-        },
-        {
             gold: 5,
             clones: 10,
             time: 600,
@@ -94,6 +80,159 @@ const Contrats = [
             time: 1500,
             type: "Upgrade",
             bonus:5
+        }
+    ],
+    [
+        {
+            gold: 400,
+            clones: 50,
+            time: 6000,
+            type: "Strength",
+            bonus: 0.25
+        },
+        {
+            gold: 400,
+            clones: 50,
+            time: 6000,
+            type: "Defense",
+            bonus: 0.25
+        },
+        {
+            gold: 1000,
+            clones: 50,
+            time: 10800,
+            type: "DojoAttack",
+            bonus: 0.25
+        },
+        {
+            gold: 1000,
+            clones: 50,
+            time: 10800,
+            type: "DojoDefense",
+            bonus: 0.25
+        },
+        {
+            gold: 1000,
+            clones: 100,
+            time: 4500,
+            type: "Upgrade",
+            bonus:10
+        },
+        {
+            gold: 1000,
+            clones: 50,
+            time: 3600,
+            type: "FarmDrops",
+            bonus: 0.1
+        },
+        {
+            gold: 1000,
+            clones: 50,
+            time: 3600,
+            type: "Mining",
+            bonus: 0.1
+        }
+    ],
+    [
+        {
+            gold: 1500,
+            clones: 50,
+            time: 18000,
+            type: "Strength",
+            bonus: 0.5
+        },
+        {
+            gold: 1500,
+            clones: 50,
+            time: 18000,
+            type: "Defense",
+            bonus: 0.5
+        },
+        {
+            gold: 3000,
+            clones: 50,
+            time: 18000,
+            type: "DojoAttack",
+            bonus: 0.5
+        },
+        {
+            gold: 3000,
+            clones: 50,
+            time: 18000,
+            type: "DojoDefense",
+            bonus: 0.5
+        },
+        {
+            gold: 2000,
+            clones: 100,
+            time: 6000,
+            type: "Upgrade",
+            bonus:15
+        },
+        {
+            gold: 5000,
+            clones: 100,
+            time: 36000,
+            type: "FarmDrops",
+            bonus: 0.5
+        },
+        {
+            gold: 5000,
+            clones: 100,
+            time: 36000,
+            type: "Mining",
+            bonus: 0.5
+        }
+    ],
+    [
+        {
+            gold: 5000,
+            clones: 500,
+            time: 18000,
+            type: "Strength",
+            bonus: 2
+        },
+        {
+            gold: 5000,
+            clones: 500,
+            time: 18000,
+            type: "Defense",
+            bonus: 2
+        },
+        {
+            gold: 5000,
+            clones: 100,
+            time: 18000,
+            type: "DojoAttack",
+            bonus: 1
+        },
+        {
+            gold: 5000,
+            clones: 100,
+            time: 18000,
+            type: "DojoDefense",
+            bonus: 1
+        },
+        {
+            gold: 5000,
+            clones: 100,
+            time: 10000,
+            type: "Upgrade",
+            bonus:25
+        },
+        {
+            gold: 10000,
+            clones: 100,
+            time: 72000,
+            type: "FarmDrops",
+            bonus: 2
+        },
+        {
+            gold: 10000,
+            clones: 100,
+            time: 72000,
+            type: "Mining",
+            bonus: 2
         }
     ]
 ]

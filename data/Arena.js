@@ -78,9 +78,53 @@ var skills = [
         coolDown: 10,
         price: 1000
     },
+    {
+        name: "Paper Cuts",
+        type: 2,
+        mult: 5,
+        desc: "You put a paper in between your enemy fingers.",
+        effect: "",
+        got: false,
+        coolDown: 8,
+        price: 20000
+    },
+    {
+        name: "Rock Throw",
+        type: 1,
+        mult: 5,
+        desc: "Why punch if you can hit from far away?",
+        effect: "",
+        got: false,
+        coolDown: 8,
+        price: 20000
+    },
+    {
+        name: "Spider Arms",
+        type: 3,
+        mult: 5,
+        desc: "Spiders can hold so many stuff, like scissors!",
+        effect: "",
+        got: false,
+        coolDown: 8,
+        price: 20000
+    },
+    {
+        name: "Salt",
+        type: 0,
+        mult: 0,
+        desc: "Nothing better than some salt on your wonds!",
+        effect: "Heal 50",
+        got: false,
+        coolDown: 4,
+        price: 200000
+    },
 ]
 
 var skillsChosen = [
+    0
+]
+
+var coolDowns = [
     0
 ]
 
@@ -273,7 +317,7 @@ var arenaShop = {
     ]
 }
 
-const arenaFighters = {
+var arenaFighters = {
     dojo : [
         {
             name: "Stickley",

@@ -8,9 +8,20 @@ function printWarehouse(){
     document.getElementById('Screen').innerHTML=string;
 }
 
+function getWarehouseSpace(){
+    return warehouse.capacity
+        +getBonusRebirthSum("WarehouseSpace",0)
+}
+
+function neededToUpgradeWarehouse(){
+    return (warehouse.upgradesNeeded
+        -getArenaWarehouseUpgradesDecMultiplier()
+        -getBonusRebirthSum("WarehouseCrateRed",0))
+}
+
 function getWarehouseInfo(){
-    var string = "<p><b>Warehouse Info:</b></p><p>Rank:"+warehouse.rank+" ("+warehouse.upgradeCrates+"/"+(warehouse.upgradesNeeded-getArenaWarehouseUpgradesDecMultiplier())+")</p>"
-    string += "<p>Capacity: "+warehouse.used+"/"+warehouse.capacity+"</p>"
+    var string = "<p><b>Warehouse Info:</b></p><p>Rank:"+warehouse.rank+" ("+warehouse.upgradeCrates+"/"+neededToUpgradeWarehouse()+")</p>"
+    string += "<p>Capacity: "+warehouse.used+"/"+getWarehouseSpace()+"</p>"
     return string;
 }
 
@@ -37,7 +48,7 @@ function getWarehouseTable(){
 
 function getWarehouseRowInfo(num){
     var contract = choosableContracts[num];
-    var string = "<tr><td>"+contract.gold+"</td><td>"+contract.clones+"</td><td>"+printTime(contract.time)+"</td><td>"
+    var string = "<tr><td>"+contract.gold+"</td><td>"+contract.clones+"</td><td>"+printTime(Math.floor(contract.time))+"</td><td>"
     string+=getWarehouseRowBonus(contract);
     string +="</td><td><button onClick=\"toggleContract("+num+")\">"
     if(contract.onGoing) string += "Pause"
@@ -51,9 +62,10 @@ function getWarehouseRowInfo(num){
 
 function getWarehouseRowBonus(contract){
     var string = "+"+contract.bonus+" ";
-    if(contract.type=="Strength" || contract.type=="Defense" || contract.type=="Upgrade") string+=contract.type
+    if(contract.type=="Strength" || contract.type=="Defense" || contract.type=="Upgrade" || contract.type=="Mining") string+=contract.type
     if(contract.type=="DojoAttack") string+="Dojo Attack"
     if(contract.type=="DojoDefense") string+="Dojo Defense"
+    if(contract.type=="FarmDrops") string+="Crops"
     if(contract.type!="Upgrade") string+=" Multiplier"
     return string;
 }
@@ -64,7 +76,7 @@ function workOnWarehouse(){
             choosableContracts[i]=ChooseRandomContract();
         }
         else if(choosableContracts[i].onGoing){
-              choosableContracts[i].time--;
+              choosableContracts[i].time-=(1+(getBonusRebirthSum("ContractSpeed",0)));
               if(choosableContracts[i].time<=0) reedemContract(i);
         }
     }
@@ -96,9 +108,11 @@ function reedemContract(i){
     if(contract.type == "Defense") warehouseStats.defense += contract.bonus;
     if(contract.type == "DojoAttack") warehouseStats.dojoAttack += contract.bonus;
     if(contract.type == "DojoDefense") warehouseStats.dojoDefense += contract.bonus;
+    if(contract.type == "FarmDrops") warehouseStats.farmDrop += contract.bonus;
+    if(contract.type == "Mining") warehouseStats.Mining += contract.bonus;
     if(contract.type == "Upgrade") {
         warehouse.upgradeCrates += contract.bonus;
-        if( warehouse.upgradeCrates >= (warehouse.upgradesNeeded-getArenaWarehouseUpgradesDecMultiplier())){
+        if( warehouse.upgradeCrates >= neededToUpgradeWarehouse()){
             warehouse.rank++;
             warehouse.capacity*=5;
             warehouse.upgradesNeeded*=5;
@@ -113,8 +127,9 @@ function reedemContract(i){
 
 function ChooseRandomContract(){
     var r = Math.floor(Math.random()*warehouse.rank);
-    if(warehouse.capacity==warehouse.used) return Contrats[r][Contrats[r].length-1]
+    if(getWarehouseSpace()==warehouse.used) return Contrats[r][Contrats[r].length-1]
     var contract = clone(Contrats[r][Math.floor(Math.random()*Contrats[r].length)])
+    contract.time*=(1-getBonusRebirthSum("ContractTimeRed",0))
     contract.onGoing = false;
     contract.paid = false;
     return contract

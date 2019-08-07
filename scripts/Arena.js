@@ -105,6 +105,7 @@ function ArenaFight(num){
 }
 
 function startArenaFight(){
+    coolDowns = [0,0,0,0,0,0]
     arenaScreen = "Fight"
 }
 
@@ -135,12 +136,12 @@ function getArenaImgPath(boss){
 
 function printArenaSkills(){
     var string='<table class="w3-table-all"><tr>';
-    var i = 0;
-    for(;i<6;i++){
+    for(var i = 0;i<6;i++){
         if(i<skillsChosen.length){
-            console.log(i)
             var skill = skills[skillsChosen[i]]
-            string +='<td style="width:33%;text-align:center"><p><b>'+skill.name+'</b></p><p>Power: '+skill.mult+'</p><p><button onClick="useSkill('+i+')">Use</button></p></td>'
+            string +='<td style="width:33%;text-align:center"><p><b>'+skill.name+'</b></p><p>Power: '+skill.mult+'</p><p><button onClick="useSkill('+i+')"'
+            if(coolDowns[i]>0)string += "disabled"
+            string+='>Use</button></p></td>'
         }
         else if(i==5){
             string+='<td style="text-align:center;width:33%"><p><button onClick="useSkill(-1)">Pass Turn</button></p>'
@@ -154,19 +155,29 @@ function printArenaSkills(){
 }
 
 function useSkill(i){
+    var theSkill = skills[skillsChosen[i]]
+    for(var j=0;j<6;j++) coolDowns[j] = coolDowns[j]-1;
     if(i==-1){
         arenaSelf.curhealth-=arenaEnemy.attack;
         if(arenaSelf.curhealth<=0)loseArena();
         loadScreen();
         return;
     }
-    var attack = Math.floor(skills[skillsChosen[i]].mult * arenaSelf.attack * getMult(skills[skillsChosen[i]].type,arenaEnemy.type));
+    var attack = Math.floor(theSkill.mult * arenaSelf.attack * getMult(theSkill.type,arenaEnemy.type));
     arenaEnemy.curhealth-=attack;
+    if(theSkill.effect!=""){
+        var property = theSkill.effect.split(" ")[0];
+        if(property=="Heal"){
+            var amount = parseInt(theSkill.effect.split(" ")[1])
+            arenaSelf.curhealth+=(arenaSelf.maxhealth*amount/100)
+        }
+    }
     if(arenaEnemy.curhealth<=0) winArena();
     else{
         arenaSelf.curhealth-=arenaEnemy.attack;
         if(arenaSelf.curhealth<=0)loseArena();
     }
+    coolDowns[i] = theSkill.coolDown;
     loadScreen();
 }
 
@@ -347,7 +358,7 @@ function printSkillChoosingMenu(){
     var string = '<p><b>Skills:</b></p><table class="w3-table-all"><tr><th>Name</th><th>Description</th><th>Type</th><th>Power</th><th>Cooldown</th><th></th></tr>'
     for(var i=0;i<skills.length;i++){
         var s =skills[i]
-        string+= '<tr><td>'+s.name+'</td><td>'+s.desc+'</td<td>'+getTypeName(s.type)+'</td><td>'+s.mult+'</td><td>'+s.coolDown+'</td><td>'
+        string+= '<tr><td>'+s.name+'</td><td>'+s.desc+'</td><td>'+getTypeName(s.type)+'</td><td>'+s.mult+'</td><td>'+s.coolDown+'</td><td>'
         if(!s.got)string+="<button onClick=\"buySkill("+i+")\">Buy Skill For "+s.price+" Money</button>"
         else{
             if(skillsChosen.indexOf(i)==-1){

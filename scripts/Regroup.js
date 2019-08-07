@@ -89,7 +89,9 @@ function rebirthNow(){
     resetTraining(); 
     resetButtons();
     rebirthFarm();
+    rebirthWarehouse();
     loadBoss();
+    loadScreen();
 }
 
 function rebirthFarm(){
@@ -107,6 +109,17 @@ function rebirthFarm(){
     farmStats.farmDropMult=1;
     farmStats.GoldMult=1;
     farmStats.dojoMult =1;
+}
+
+function rebirthWarehouse(){
+    warehouse = {capacity: 10,speed: 1,rank: 1,used: 0,level: 1,upgradeCrates: 0,upgradesNeeded: 5}
+    choosableContracts = []
+    warehouseStats.strength=1+(warehouseStats.strength-1)*0.1
+    warehouseStats.defense=1+(warehouseStats.defense-1)*0.1
+    warehouseStats.dojoAttack=1+(warehouseStats.dojoAttack-1)*0.1
+    warehouseStats.dojoDefense=1+(warehouseStats.dojoDefense-1)*0.1
+    warehouseStats.farmDrop=1+(warehouseStats.farmDrop-1)*0.1
+    warehouseStats.Mining=1+(warehouseStats.Mining-1)*0.1
 }
 
 function resetButtons(){

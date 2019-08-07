@@ -18,6 +18,12 @@ function setArenaShopLevels(levels){
     for(var i=0;i<levels.farm.length;i++){arenaShop.Farm[i].lvl=levels.farm[i]}
     for(var i=0;i<levels.warehouse.length;i++){arenaShop.warehouse[i].lvl=levels.warehouse[i]}
 }
+function setArenaDefeated(fighters){
+    for(var i=0;i<fighters.dojo.length;i++){arenaFighters.dojo[i].defeated=fighters.dojo[i]}
+    for(var i=0;i<fighters.mine.length;i++){arenaFighters.Mine[i].defeated=fighters.mine[i]}
+    for(var i=0;i<fighters.farm.length;i++){arenaFighters.farm[i].defeated=fighters.farm[i]}
+    for(var i=0;i<fighters.warehouse.length;i++){arenaFighters.warehouse[i].defeated=fighters.warehouse[i]}
+}
 
 function setUnlockedSkills(aSkills){
     for(var i=0;i<aSkills.length;i++){skills[i].got=aSkills[i]}    
@@ -25,19 +31,7 @@ function setUnlockedSkills(aSkills){
 
 //GAME SAVING, LOADING AND RESETING
 function load(){
-    var save = JSON.parse(localStorage.getItem('save'));
-    if(save){
-        plots=save.farm; farmStats=save.farmStats; setRLevels(save.perks);
-        player=save.player; assignedClones=save.assignedClones; options=save.options;
-        values=save.value; stats=save.stats; dojoStats=save.dojoStats; ores=save.ores;
-        rebirth=save.rebirth; lifeStats=save.lifeStat; skillsChosen=save.choosen;
-        arenaTokens=save.arenaTokens; setArenaShopLevels(save.arenaShop);
-        choosableContracts=save.contracts; warehouse=save.warehouse;
-        warehouseStats=save.warehouseStats; arenaVouchers=save.arenaVouchers;
-        setUnlockedSkills(save.skills)
-        updateVersion(save.version);
-        generateOffline((new Date().getTime()/1000)-save.time);
-    }
+    Importload(localStorage.getItem('save'));
 }
 
 function Importload(save){
@@ -50,6 +44,7 @@ function Importload(save){
         arenaTokens=save.arenaTokens; setArenaShopLevels(save.arenaShop);
         choosableContracts=save.contracts; warehouse=save.warehouse;
         warehouseStats=save.warehouseStats; arenaVouchers=save.arenaVouchers;
+        setArenaDefeated(save.arenaDefeated)
         setUnlockedSkills(save.skills)
         updateVersion(save.version);
         generateOffline((new Date().getTime()/1000)-save.time);
@@ -111,6 +106,14 @@ function getArenaShopLevels(shop){
     shop.warehouse.forEach(s=>ret.warehouse.push(s.lvl))
     return ret;
 }
+function getArenaDefeated(fighters){
+    var ret = {dojo:[],mine:[],farm:[],warehouse:[]}
+    fighters.dojo.forEach(s=>ret.dojo.push(s.defeated))
+    fighters.Mine.forEach(s=>ret.mine.push(s.defeated))
+    fighters.farm.forEach(s=>ret.farm.push(s.defeated))
+    fighters.warehouse.forEach(s=>ret.warehouse.push(s.defeated))
+    return ret;
+}
 
 function save(){
     var save = {
@@ -135,7 +138,8 @@ function save(){
         warehouseStats: warehouseStats,
         version: version,
         arenaVouchers: arenaVouchers,
-        skills: getUnlockedSkills(skills)
+        skills: getUnlockedSkills(skills),
+        arenaDefeated: getArenaDefeated(arenaFighters)
     }
     localStorage.setItem('save',JSON.stringify(save));
 }

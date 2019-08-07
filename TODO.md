@@ -1,9 +1,5 @@
 # TODO
 
-## Boss
-
-- [ ] Rework Boss, making them meaningfull outside of unlocking areas and regroup Skills
-
 ## Dojo
 
 - [ ] Add more Enemies and Areas
@@ -16,7 +12,6 @@
 
 ## Crafting
 
-- [ ] Rework Crafting to unlock more recipes which will buff other aspects of the game
 - [X] Buff Crafting (Switch from addictive to Multiplicative)
 
 ## Farm
@@ -31,13 +26,14 @@
 
 - [X] Trade gold and send clones for small bonuses
 - [X] Upgrade your warehouse with time and resources and get better bonuses and more space for upgrades!
-- [ ] More Tiers
-- [ ] More Upgrades
+- [X] More Tiers
+- [X] More Upgrades
 - [X] Implement multipliers
 - [X] Finish menu with all the relevant info
 - [X] Saving and Loading
-- [ ] Add Rebirth Reset
+- [X] Add Rebirth Reset
 - [X] Add Reset
+- [X] Add Rebirth Perks
 
 ## Arena
 
@@ -47,6 +43,7 @@
 - [X] Hook Up Multipliers
 - [X] Add Skills
 - [ ] Add More Skills
+- [X] Add Cooldown Mechanics
 - [X] Add Type Advantages
 - [ ] Create More Bosses
 - [X] Add a new currency to be able to fight in the arena
@@ -64,11 +61,14 @@
 ## Statistics
 
 - [X] Add Farm Stats
+- [ ] Add Warehouse Stats
+- [ ] Add Arena Stats
 
 ## Others
 
 - [X] Representing Time
 - [X] Saving/Loading To/From Files
+- [ ] Front Page
 
 ## QOL
 
@@ -85,3 +85,8 @@
 - [X] Bug Buying clones
 - [X] Not Getting clones after buying cones for regroup
 - [X] Mining T4 and up not selectable
+
+## POST RELEASE
+
+- [ ] Since the game doesn't have much testing there is a need of balance on the late stages of the game
+- [ ] Rework Crafting to unlock more recipes which will buff other aspects of the game

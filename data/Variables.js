@@ -163,6 +163,50 @@ var rebirthPerks = [
         boss:13,
         maxLevel:-1,
         type: "FarmXP"
+    },
+    {
+        name:"Warehouse Flipper",
+        basePrice:500,
+        lvl:0,
+        step:"*2",
+        Description:"You get 10% more space per Warehouse Rank",
+        Bonus:0.1,
+        boss:20,
+        maxLevel:-1,
+        type: "WarehouseSpace"
+    },
+    {
+        name:"Building Master",
+        basePrice:1000,
+        lvl:0,
+        step:"^1",
+        Description:"You need 1 less Warehouse Upgrade per rank",
+        Bonus:1,
+        boss:20,
+        maxLevel:2,
+        type: "WarehouseCrateRed"
+    },
+    {
+        name:"Contract Supervisor",
+        basePrice:500,
+        lvl:0,
+        step:"*2",
+        Description:"You need 1% less time to complete Contracts",
+        Bonus:0.01,
+        boss:20,
+        maxLevel:20,
+        type: "ContractTimeRed"
+    },
+    {
+        name:"Contract Supervisor's Friend",
+        basePrice:1000,
+        lvl:0,
+        step:"*2",
+        Description:"You get an extra 2% contract Speed",
+        Bonus:0.02,
+        boss:20,
+        maxLevel:25,
+        type: "ContractSpeed"
     }
 ]
 
