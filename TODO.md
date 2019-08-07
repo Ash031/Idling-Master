@@ -61,18 +61,18 @@
 ## Statistics
 
 - [X] Add Farm Stats
-- [ ] Add Warehouse Stats
-- [ ] Add Arena Stats
+- [X] Add Warehouse Stats
+- [X] Add Arena Stats
 
 ## Others
 
 - [X] Representing Time
 - [X] Saving/Loading To/From Files
-- [ ] Front Page
+- [X] Front Page
 
 ## QOL
 
-- [ ] Add Print Number Everywhere (missing in arena, maybe others)
+- [X] Add Print Number Everywhere (missing in arena, maybe others)
 - [X] Screen Takes time to load
 
 ## Bugs

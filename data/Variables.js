@@ -64,6 +64,30 @@ var rebirth = {
     rbPoints:0
 }
 
+
+var stats = {
+    totalBossesKilles : 0,
+    totalDojoEnemies : 0,
+    totalSeconds : 0,
+    totalOresMined : 0,
+    highestBoss: 0,
+    totalCropsGrown : 0,
+    totalRankUpsWarehouse: 0,
+    totalContractsDone: 0,
+    totalArenaBosses: 0
+}
+
+var lifeStats = {
+    totalBossesKilles : 0,
+    totalDojoEnemies : 0,
+    totalSeconds : 0,
+    totalOresMined : 0,
+    totalCropsGrown : 0,
+    totalRankUpsWarehouse: 0,
+    totalContractsDone: 0,
+    totalArenaBosses: 0
+}
+
 var rebirthPerks = [
     {
         name:"Cloning Machine",
@@ -253,24 +277,6 @@ var options = {
 var values = {
     boss:1,
     zone : 0
-}
-
-
-var stats = {
-    totalBossesKilles : 0,
-    totalDojoEnemies : 0,
-    totalSeconds : 0,
-    totalOresMined : 0,
-    highestBoss: 0,
-    totalCropsGrown : 0
-}
-
-var lifeStats = {
-    totalBossesKilles : 0,
-    totalDojoEnemies : 0,
-    totalSeconds : 0,
-    totalOresMined : 0,
-    totalCropsGrown : 0
 }
 
 var curBoss = {

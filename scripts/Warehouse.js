@@ -103,6 +103,8 @@ function toggleContract(i){
 }
 
 function reedemContract(i){
+    lifeStats.totalContractsDone++;
+    stats.totalContractsDone++;
     var contract = choosableContracts[i];
     if(contract.type == "Strength") warehouseStats.strength += contract.bonus;
     if(contract.type == "Defense") warehouseStats.defense += contract.bonus;
@@ -114,6 +116,8 @@ function reedemContract(i){
         warehouse.upgradeCrates += contract.bonus;
         if( warehouse.upgradeCrates >= neededToUpgradeWarehouse()){
             warehouse.rank++;
+            lifeStats.totalRankUpsWarehouse++;
+            stats.totalRankUpsWarehouse++;
             warehouse.capacity*=5;
             warehouse.upgradesNeeded*=5;
             workOnWarehouse();

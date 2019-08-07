@@ -6,7 +6,7 @@ function printArena(){
     else{
         string += getArenaButtons();
         if(arenaScreen=="Choice"){
-            string += getArenaChoiceScreen();
+            string += '<p><b>Choose a Fighter to spar from the table below:</b></p>'
             string += getArenaFightersTable();  
         }
         else if(arenaScreen=="Shop"){
@@ -40,11 +40,6 @@ function getArenaButtons(){
         string += '<button onClick="goToArenaShop('+i+')">'+getArenaName(i)+'</button>'
     }
     return string+"</p>";
-}
-
-function getArenaChoiceScreen(){
-    var string = '<p><b>Choose a Fighter to spar from the table below:</b></p>'
-    return string;
 }
 
 function getArenaFightersTable(){
@@ -123,8 +118,8 @@ function copyArenaEnemy(enemy,num){
 }
 
 function printArenaFight(){
-    var string = "<img style=\"display: block;margin-left: auto;margin-right: auto;height:40%\" src=\""+getArenaImgPath(arenaEnemy.name)+"\"></img><p style=\"text-align:center\">"+arenaEnemy.name+"</p><p style=\"text-align:center\">Health:"+arenaEnemy.curhealth+"/"+arenaEnemy.maxhealth+"</p><hr/>"
-    string += '<p style=\"text-align:center\"><b>You:</b></p><p style=\"text-align:center\">Health:'+arenaSelf.curhealth+'/'+arenaSelf.maxhealth+'</p><p style=\"text-align:center\"><b>Moves:</b></p>'
+    var string = "<img style=\"display: block;margin-left: auto;margin-right: auto;height:40%\" src=\""+getArenaImgPath(arenaEnemy.name)+"\"></img><p style=\"text-align:center\">"+arenaEnemy.name+"</p><p style=\"text-align:center\">Health:"+printNumber(arenaEnemy.curhealth)+"/"+printNumber(arenaEnemy.maxhealth)+"</p><hr/>"
+    string += '<p style=\"text-align:center\"><b>You:</b></p><p style=\"text-align:center\">Health:'+printNumber(arenaSelf.curhealth)+'/'+printNumber(arenaSelf.maxhealth)+'</p><p style=\"text-align:center\"><b>Moves:</b></p>'
     string += printArenaSkills();
     return string;
 }
@@ -205,12 +200,50 @@ function useSkill(i){
 }
 
 function winArena(){
+    var amount = 1;
+    var i=1;
     if(arenaType=="Dojo"){
         arenaFighters.dojo.forEach(fig=>{
-            if(fig.name==arenaEnemy.name)fig.defeated=true
+            if(fig.name==arenaEnemy.name){
+                fig.defeated=true
+                amount=i*i;
+            }
+            i++;
         })
-        arenaTokens.dojo++;
+        arenaTokens.dojo+=amount;
     }
+    if(arenaType=="Mine"){
+        arenaFighters.Mine.forEach(fig=>{
+            if(fig.name==arenaEnemy.name){
+                fig.defeated=true
+                amount=i*i;
+            }
+            i++;
+        })
+        arenaTokens.mine+=amount;
+    }
+    if(arenaType=="Farm"){
+        arenaFighters.farm.forEach(fig=>{
+            if(fig.name==arenaEnemy.name){
+                fig.defeated=true
+                amount=i*i;
+            }
+            i++;
+        })
+        arenaTokens.farm+=amount;
+    }
+    if(arenaType=="Warehouse"){
+        arenaFighters.warehouse.forEach(fig=>{
+            if(fig.name==arenaEnemy.name){
+                fig.defeated=true
+                amount=i*i;
+            }
+            i++;
+        })
+        arenaTokens.warehouse+=amount;
+    }
+    lifeStats.totalArenaBosses++;
+    stats.totalArenaBosses++;
     arenaScreen=""
 }
 
@@ -244,7 +277,7 @@ function printArenaShop(){
     string += '<table class="w3-table-all"><tr><th>Name</th><th>Description</th><th>Level</th><th>Cost</th><th></th></tr>'
     var i = 0;
     selling.forEach(p=>{
-        string+="<tr><td>"+p.name+"</td><td>"+p.desc+"</td><td>"+p.lvl+"</td><td>"+getPrice(p)+"<td><button onClick=\"buyArenaUpgrade("+i+")\" "+isAvailableToPurchase(p)+">Buy</button></td></tr>"
+        string+="<tr><td>"+p.name+"</td><td>"+p.desc+"</td><td>"+p.lvl+"</td><td>"+printNumber(getPrice(p))+"<td><button onClick=\"buyArenaUpgrade("+i+")\" "+isAvailableToPurchase(p)+">Buy</button></td></tr>"
         i++;
     })
     string+="</table>"
@@ -382,7 +415,7 @@ function printSkillChoosingMenu(){
     for(var i=0;i<skills.length;i++){
         var s =skills[i]
         string+= '<tr><td>'+s.name+'</td><td>'+s.desc+'</td><td>'+getTypeName(s.type)+'</td><td>'+s.mult+'</td><td>'+s.coolDown+'</td><td>'
-        if(!s.got)string+="<button onClick=\"buySkill("+i+")\">Buy Skill For "+s.price+" Money</button>"
+        if(!s.got)string+="<button onClick=\"buySkill("+i+")\">Buy Skill For "+printNumber(s.price)+" Money</button>"
         else{
             if(skillsChosen.indexOf(i)==-1){
                 string+='<button onClick="selectSkill('+i+')"'

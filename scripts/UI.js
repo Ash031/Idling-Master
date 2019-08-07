@@ -52,13 +52,20 @@ function printStats(){
     string += '<p><b>Total Time:</b>'+printTime(stats.totalSeconds)+'</p>';
     string += '<p><b>Total Ores Mined:</b>'+printNumber(stats.totalOresMined)+'</p>';
     string += '<p><b>Total Crops Grown:</b>'+printNumber(stats.totalCropsGrown)+'</p>';
+    string += '<p><b>Total Arena Bosses Killed:</b>'+printTime(stats.totalArenaBosses)+'</p>';
+    string += '<p><b>Total Contracts Finished:</b>'+printNumber(stats.totalContractsDone)+'</p>';
+    string += '<p><b>Total Warehouse Rank Ups:</b>'+printNumber(stats.totalRankUpsWarehouse)+'</p>';
     string+='<button style="width: 100%" class="w3-button w3-dark-gray" onclick="newGame()">Reset Save</button>';
     document.getElementById('Screen').innerHTML=string;
 }
 
 function loadTutorial(){
     var string = '<h1 style="text-align: center">Welcome to Idling Master</h1><hr/>';
-    string += "<p> Welcome, this game was created by Ash031, if you find any bugs or want to give new Ideas please send me a message on <a href=\"https://www.reddit.com/message/compose/?to=Ashzinho\">Reddit</a>.</p>"
+    string += "<p> Welcome to Idling Master, on this game you have the power to multiply yourself, with that power you decide to fight the local Bosses League. Do you have what it takes to overtake the challenge?</p>"
+    string+= "<p>You hsould start by heading out to the Training Area and get stronger to defeat the bosses on the Bosses Area.</p>"
+    string+="<p>There are some locked areas too that you unlock by beating bosses. These new Menus unlock new ways to get stronger using your clones.</p>"
+    string+="<p>I hope you have fun with the game.</p><p>Have any questions or want to suggest stuff? Go to Discord and tell me. There is also a TODO list there so if you wanna checkout stuff that will be added to the game hop on and have fun!</p>"
+    string+="<p>Thanks for trying this game out!</p><hr/><h1>Changelog:</h1><ul><li>1.0</li><ul><li>Game Released</li></ul></ul>"
     document.getElementById('Screen').innerHTML=string;
 }
 
