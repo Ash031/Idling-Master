@@ -399,7 +399,7 @@ var arenaFighters = {
             defeated: false
         },
         {
-            name: "Red Ore",
+            name: "RedOre",
             health: 1e13,
             attack: 5e11,
             type: 1,
