@@ -412,7 +412,7 @@ function goToArenaSkills(){
 
 function printSkillChoosingMenu(){
     var string = '<p><b>Skills:</b></p><table class="w3-table-all"><tr><th>Name</th><th>Description</th><th>Type</th><th>Power</th><th>Cooldown</th><th></th></tr>'
-    for(var i=0;i<skills.length;i++){
+    for(var i=skillPage*10;i<skills.length&&i<(10+skillPage*10);i++){
         var s =skills[i]
         string+= '<tr><td>'+s.name+'</td><td>'+s.desc+'</td><td>'+getTypeName(s.type)+'</td><td>'+s.mult+'</td><td>'+s.coolDown+'</td><td>'
         if(!s.got)string+="<button onClick=\"buySkill("+i+")\">Buy Skill For "+printNumber(s.price)+" Money</button>"
@@ -430,7 +430,18 @@ function printSkillChoosingMenu(){
         }
         string+='</tr>'
     }
+    string+='</table><button onClick="BackSkills()"><</button><button style="float:right" onClick="NextSkills()">></button>'
     return string;
+}
+
+function BackSkills(){
+    if(skillPage>0)skillPage--;
+    loadScreen();
+}
+
+function NextSkills(){
+    if(skillPage<1)skillPage++;
+    loadScreen();
 }
 
 function selectSkill(num){

@@ -19,6 +19,7 @@ function loadBoss(){
     curBoss.attack = Math.pow(8,values.boss-1);
     curBoss.hp = curBoss.curhp = Math.pow(9,values.boss);
     action.attacking=false;
+    loadScreen();
 }
 
 function attack(){

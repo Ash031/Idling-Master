@@ -2,6 +2,7 @@ var arenaVouchers = 1
 
 var arenaScreen = ""
 var arenaType = ""
+var skillPage = 0;
 
 var arenaEnemy = {
     attack:0,
@@ -133,7 +134,7 @@ var skills = [
         name: "Bite",
         type: 0,
         mult: 3,
-        desc: "Vampires bites, so do you.",
+        desc: "Vampires bite, so do you.",
         effect: "Vamp 50",
         got: false,
         coolDown: 10,
@@ -362,22 +363,22 @@ var arenaFighters = {
     dojo : [
         {
             name: "Stickley",
-            health: 1e3,
-            attack: 2.5e3,
+            health: 1e7,
+            attack: 2.5e8,
             type: 2,
             defeated: false
         },
         {
             name: "Chaty",
-            health: 1e5,
-            attack: 7e4,
+            health: 1e10,
+            attack: 7e10,
             type: 1,
             defeated: false
         },
         {
             name: "TrashBags",
-            health: 1e8,
-            attack: 2e6,
+            health: 1e12,
+            attack: 2e11,
             type: 0,
             defeated: false
         },
@@ -385,22 +386,22 @@ var arenaFighters = {
     Mine : [
         {
             name: "HandSawz",
-            health: 1e5,
-            attack: 1e4,
+            health: 1e7,
+            attack: 1e6,
             type: 3,
             defeated: false
         },
         {
             name: "Boruch",
-            health: 1e6,
-            attack: 4e5,
+            health: 1e9,
+            attack: 4e9,
             type: 0,
             defeated: false
         },
         {
             name: "Red Ore",
-            health: 1e9,
-            attack: 5e7,
+            health: 1e13,
+            attack: 5e11,
             type: 1,
             defeated: false
         }
@@ -408,29 +409,29 @@ var arenaFighters = {
     farm : [
         {
             name: "KGnome",
-            health: 1e7,
-            attack: 2.5e6,
+            health: 1e14,
+            attack: 2.5e12,
             type: 1,
             defeated: false
         },
         {
             name: "Flowey",
-            health: 3e10,
-            attack: 3e7,
+            health: 3e16,
+            attack: 3e15,
             type: 2,
             defeated: false
         },
         {
             name: "Poned",
-            health: 2e11,
-            attack: 4e8,
+            health: 2e18,
+            attack: 4e16,
             type: 1,
             defeated: false
         },
         {
             name: "Treezo",
-            health: 2e15,
-            attack: 4e10,
+            health: 2e20,
+            attack: 4e19,
             type: 2,
             defeated: false
         },
@@ -438,22 +439,22 @@ var arenaFighters = {
     warehouse : [
         {
             name: "Catriu",
-            health: 3e15,
-            attack: 3e15,
+            health: 3e20,
+            attack: 3e18,
             type: 0,
             defeated: false
         },
         {
             name: "Coose",
-            health: 5e18,
-            attack: 1e17,
+            health: 5e22,
+            attack: 1e21,
             type: 3,
             defeated: false
         },
         {
             name: "Angel",
-            health: 1e21,
-            attack: 1e19,
+            health: 1e25,
+            attack: 1e23,
             type: 0,
             defeated: false
         }

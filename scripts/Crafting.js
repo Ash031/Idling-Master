@@ -2,7 +2,7 @@ function printCrafting(){
     var string = '<h1 style="text-align:center">Crafting</h1><hr/><table class="w3-table-all">';
     string += getCraftingTable();
     string += '</table>'
-    string += '<button class="w3-button w3-red" onclick="previousCraftingPage();">&lt</button><button style="float:right"class="w3-button w3-red" onclick="nextCraftingPage()">&gt</button>';
+    string += '<button  onclick="previousCraftingPage();">&lt</button><button style="float:right" onclick="nextCraftingPage()">&gt</button>';
     document.getElementById('Screen').innerHTML=string;
 }
 
