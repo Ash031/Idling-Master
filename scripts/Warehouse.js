@@ -1,10 +1,15 @@
 function printWarehouse(){
-    var string = '<h1 style="text-align:center">Warehouse</h1>';
+    var string = '<h1 style="text-align:center">Warehouse</h1><hr/>';
     string += getWarehouseInfo();
     string += "<hr/>"
     string += getWarehouseTable();
     string +="<hr/><p><b>Multipliers:</b></p>"
     string += getWarehouseMult();
+    document.getElementById('Screen').innerHTML=string;
+}
+function printWarehouseHelp(){
+    var string = '<h1 style="text-align:center">Warehouse</h1><hr/>';
+    string += '<p>On this screen you get to complete contracts to get bonuses or expand your warehouse with Upgrade Crates.</p><p>In Warehouse you pay for a contract and assign clones to do them for you, you only need to pay once and can pause them at any time to use the clones elsewhere and resume when you have the clones necessarily for it.</p><p>Ranking up your warehouse will unlock higher Tiers of Contracts, these need more clones, gold and time but will also award you bigger bonuses and different ones, Tier 1 only has main stats bonuses and tier 2 will give better bonuses for these and for extra areas like Mining</p>'
     document.getElementById('Screen').innerHTML=string;
 }
 

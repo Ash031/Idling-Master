@@ -11,6 +11,11 @@ function printFarm(){
     string+="</div>";
     document.getElementById('Screen').innerHTML=string;
 }
+function printFarmHelp(){
+    var string = '<h1 style="text-align:center">Farm</h1><hr/>';
+    string += '<p>On this Screen you can buy plots and grow your crops to get bonuses</p><p>Every Seed has a different Growing time, Barley for example, takes 5 minutes to grow, and if you give it more time it will harvest more than once, but remember, after the initial 5 minutes it will start taking more time to grow to another level</p><p>Plots can level by harvesting crops, leveling up plots will unlock different seeds for you to grow which takes more times and give bonus to other areas</p>'
+    document.getElementById('Screen').innerHTML=string;
+}
 
 function getFarmBonusesText(){
     string = '';

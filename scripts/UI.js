@@ -28,7 +28,8 @@ function loadScreen(){
         
     }
     else if(options.menu=="Farm"){
-        printFarm();
+        if(!options.help) printFarm();
+        else printFarmHelp();
     }
     else if(options.menu=="Regroup"){
         printRegroup();
@@ -37,10 +38,12 @@ function loadScreen(){
         printRegroupShop();
     }
     else if(options.menu=="Warehouse"){
-        printWarehouse();
+        if(!options.help) printWarehouse();
+        else printWarehouseHelp();
     }
     else if(options.menu=="Arena"){
-        printArena();
+        if(!options.help) printArena();
+        else printArenaHelp();
     }
     else if(options.menu=="City"){
         printCity();

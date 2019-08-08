@@ -19,6 +19,12 @@ function printArena(){
     document.getElementById('Screen').innerHTML=string;
 }
 
+function printArenaHelp(){
+    var string = '<h1 style="text-align:center">Arena</h1><hr/>';
+    string += '<p>Arena is divided into 3 main menus, the Figthing Menu, the Skill Shop and the Area Shop</p><p>Each Area has a set of fighters and a shop, each Area has it\'s own tokens, so defeating 1 Dojo Arena Boss gives you Dojo Tokens to buy bonuses on Dojo Shop</p><p>On The Skill Shop you buy and select Skills to use on fights. As Fighters, skills have types, so using a Rock skill on a Paper Fighter will only do half Damage, but against a scissors enemy will do double damage</p><p>Some Skills have effects, Salt for example, gives you an extra 50% of your health, some Counters, some block, try to discover them all!</p>'
+    document.getElementById('Screen').innerHTML=string;
+}
+
 function getArenaName(num){
     if(num==0) return "Dojo"
     if(num==1) return "Mine"

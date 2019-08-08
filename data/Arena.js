@@ -13,6 +13,7 @@ var arenaEnemy = {
     gain: 0,
     par:0
 }
+
 var arenaSelf = {
     attack: 0,
     maxhealth: 0,
