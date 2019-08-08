@@ -95,77 +95,90 @@ function loadTutorial(){
 
 //MENU SWITCHING
 function goToTraining(){
+    options.reset = undefined;
     options.help=false;
     options.menu="Training";
     loadScreen();
 }
 
 function goToMine(){
+    options.reset = undefined;
     options.help=false;
     options.menu="Mine";
     loadScreen();
 }
 
 function goToCrafting(){
+    options.reset = undefined;
     options.help=false;
     options.menu="Crafting";
     loadScreen();
 }
 
 function goToBosses(){
+    options.reset = undefined;
     options.help=false;
     options.menu="Bosses";
     loadScreen();
 }
 
 function goToDojo(){
+    options.reset = undefined;
     options.help=false;
     options.menu="Dojo";
     loadScreen();
 }
 
 function goToShop(){
+    options.reset = undefined;
     options.help=false;
     options.menu="Shop";
     loadScreen();
 }
 
 function goToStats(){
+    options.reset = undefined;
     options.help=false;
     options.menu="Stats";
     loadScreen();
 }
 
 function goToFarm(){
+    options.reset = undefined;
     options.help=false;
     options.menu="Farm";
     loadScreen();
 }
 
 function goToWarehouse(){
+    options.reset = undefined;
     options.help=false;
     options.menu="Warehouse";
     loadScreen();
 }
 
 function goToArena(){
+    options.reset = undefined;
     options.help=false;
     options.menu="Arena";
     loadScreen();
 }
 
 function goToRegroup(){
+    options.reset = undefined;
     options.help=false;
     options.menu="Regroup";
     loadScreen();
 }
 function goToRegroupShop(){
+    options.reset = undefined;
     options.help=false;
     options.menu="RegroupShop";
     loadScreen();
 }
 
 function goToCity(){
+    options.reset = undefined;
     options.help=false;
     options.menu="City";
     loadScreen();

@@ -291,6 +291,10 @@ function passSecond(){
 //RESET GAME, DONT HOOK ANYTHING TO THESE
 
 function newGame(){
+    if(options.reset==undefined) {
+        options.reset=""
+        return;
+    }
     values.boss=1;
     values.zone=0;
     stats.highestBoss=0;
