@@ -1,12 +1,16 @@
 function printRegroup(){
     var string = "<h1 style='text-align:center'>Regroup Menu</h1><hr/>";
     string+="<h3>If you regroup with all your clones you will lose:</h3>";
-    string+="<ul><li>All your Clones</li><li>All your training levels</li><li>All your Money</li></ul>";
+    string+="<ul><li>All your Clones</li><li>All your training levels</li><li>All your Money</li><li>Most Bonuses from other Screens</li></ul>";
+    string+="<h3>You will keep:</h3>";
+    string +="<ul><li>Arena Perks</li></ul>";
+    string +="<ul><li>Regroup Perks</li></ul>";
     string+="<h3>You will get:</h3>";
     string +="<ul><li>"+RBPointsAmount()+" Regroup Points</li></ul>";
     string+="<button style='width: 100%' class='w3-button w3-dark-gray' onclick='rebirthNow()'>Regroup!</button>"
     document.getElementById('Screen').innerHTML=string;
 }
+
 
 function getStartClones(){
     var ret = 1;
