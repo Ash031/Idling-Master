@@ -1,6 +1,10 @@
 function printDojo(){
     var string = '<h1 style="text-align: center">Dojo</h1><hr/>';
-    string += '<button class="w3-button w3-red" onclick="previousZone();">&lt</button><button style="float:right"class="w3-button w3-red" onclick="nextZone()">&gt</button><h2 style="text-align:center">'+dojoZones[values.zone].name+'</h2><p>'+dojoZones[values.zone].desc+'</p><hr/><div id="Fight"></div>';
+    string += '<button class="w3-button w3-red" onclick="previousZone(); '
+    if(values.zone==0)string+="disabled"
+    string +='">&lt</button><button style="float:right"class="w3-button w3-red" onclick="nextZone()"'
+    if(!canGoToNextZone())string +="disabled"
+    string += '>&gt</button><h2 style="text-align:center">'+dojoZones[values.zone].name+'</h2><p>'+dojoZones[values.zone].desc+'</p><hr/><div id="Fight"></div>';
     string += '<hr/><div><p><b>'+getNextZoneInfo()+'</b></p></div>'
     document.getElementById('Screen').innerHTML=string;   
     printDojoFight();
@@ -77,17 +81,22 @@ function previousZone(){
 }
 
 function nextZone(){
-    if(values.zone==0) values.zone++;
-    else if(values.zone==1 && values.boss>=5) values.zone++;
-    else if(values.zone==2 && values.boss>=8) values.zone++;
-    else if(values.zone==3 && values.boss>=10) values.zone++;
-    else if(values.zone==4 && values.boss>=13) values.zone++;
-    else if(values.zone==5 && values.boss>=16) values.zone++;
-    else if(values.zone==6 && values.boss>=20) values.zone++;
-    else if(values.zone==7 && values.boss>=22) values.zone++;
-    else if(values.zone==8 && values.boss>=25) values.zone++;
+    values.zone++;
     printDojo();
     generateEnemy();
+}
+
+function canGoToNextZone(){
+    if(values.zone==0) return true;
+    else if(values.zone==1 && values.boss>=5) return true;
+    else if(values.zone==2 && values.boss>=8) return true;
+    else if(values.zone==3 && values.boss>=10) return true;
+    else if(values.zone==4 && values.boss>=13) return true;
+    else if(values.zone==5 && values.boss>=16) return true;
+    else if(values.zone==6 && values.boss>=20) return true;
+    else if(values.zone==7 && values.boss>=22) return true;
+    else if(values.zone==8 && values.boss>=25) return true;
+    return false;
 }
 
 function generateEnemy(){
