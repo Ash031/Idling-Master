@@ -73,7 +73,7 @@ function printStats(){
     string += '<p><b>Total Arena Bosses Killed:</b>'+printNumber(stats.totalArenaBosses)+'</p>';
     string += '<p><b>Total Contracts Finished:</b>'+printNumber(stats.totalContractsDone)+'</p>';
     string += '<p><b>Total Warehouse Rank Ups:</b>'+printNumber(stats.totalRankUpsWarehouse)+'</p>';
-    string+='<button style="width: 100%" class="w3-button w3-dark-gray" onclick="newGame()">Reset Save</button>';
+    string+='<button style="width: 100%" class="w3-button w3-dark-gray" onclick="newGame()">Reset Save</button><hr/>';
     string+='<button style="width: 100%" class="w3-button w3-dark-gray" onclick="changeNotation()">Notation: '
     if(options.number== undefined || options.number==0) string += "Scientific Notation"
     if(options.number==1) string += "Short Number Notation"
