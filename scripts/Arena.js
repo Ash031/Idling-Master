@@ -368,7 +368,7 @@ function getArenaFarmXPMultiplier(){
 
 function getArenaFarmDropMultiplier(){
     var ret = 1;
-    arenaShop.farm.forEach(p=>{
+    arenaShop.Farm.forEach(p=>{
         if(p.type=="Drop")ret*=(1+p.Bonus*p.lvl);
     })
     return ret;
