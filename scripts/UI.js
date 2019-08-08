@@ -55,12 +55,13 @@ function goToHelp(){
     loadScreen();
 }
 
-function printNumber(number){
-    if(number<10) return String(number).substr(0,4)
-    if(number<100) return String(number).substr(0,5)
-    if(number<1000) return String(number).substr(0,6);
-    return number.toPrecision(4);
+function changeNotation(){
+    if(options.number==undefined) options.number=1;
+    else if(options.number==1) options.number=0;
+    else options.number++;
 }
+
+
 
 function printStats(){
     var string = '<h1 style="text-align: center">Statistics</h1><hr/>';
@@ -73,6 +74,10 @@ function printStats(){
     string += '<p><b>Total Contracts Finished:</b>'+printNumber(stats.totalContractsDone)+'</p>';
     string += '<p><b>Total Warehouse Rank Ups:</b>'+printNumber(stats.totalRankUpsWarehouse)+'</p>';
     string+='<button style="width: 100%" class="w3-button w3-dark-gray" onclick="newGame()">Reset Save</button>';
+    string+='<button style="width: 100%" class="w3-button w3-dark-gray" onclick="changeNotation()">Notation: '
+    if(options.number== undefined || options.number==0) string += "Scientific Notation"
+    if(options.number==1) string += "Short Number Notation"
+    string += '</button>';
     document.getElementById('Screen').innerHTML=string;
 }
 
