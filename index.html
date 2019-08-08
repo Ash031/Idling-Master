@@ -1,5 +1,30 @@
 <html>
     <head>
+        <style>
+        .btn-group button {
+            background-color: #4CAF50; /* Green background */
+            color: white; /* White text */
+            padding: 10px 24px; /* Some padding */
+            cursor: pointer; /* Pointer/hand icon */
+            float: left; /* Float the buttons side by side */
+        }
+
+        .btn-group button:not(:last-child) {
+            border-right: none; /* Prevent double borders */
+        }
+
+            /* Clear floats (clearfix hack) */
+        .btn-group:after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+            /* Add a background color on hover */
+        .btn-group button:hover {
+            background-color: #3e8e41;
+        }
+        </style>
         <meta charset="UTF-8"/>
         <title>Idling Master</title>
         <script src="scripts/Logic.js"></script>
@@ -38,6 +63,7 @@
                 <button id="Zone6" style="width: 100%" class="w3-button w3-dark-gray" disabled>Pfff, You know it's fun, right?</button>
                 <button style="width: 100%" class="w3-button w3-dark-gray" onclick="goToStats()">Statistics</button>
                 <hr/>
+                <button style="width: 100%" class="w3-button w3-dark-gray" onclick="goToHelp()">Toggle Help Screen</button>
                 
             </div>
             <div style="height:100%" id="Screen" class="w3-col m6 l8">
@@ -51,7 +77,14 @@
                 <button style="width: 100%" class="w3-button w3-dark-gray" id="RebirthShop"onclick="goToRegroupShop()" disabled>Don't click me 2</button>
                 <hr/>
                 <div>    
-                    <h3>Clones:</h3><input style="width: 100%" type="text" id="NClones" placeholder="Number of Clones"><button style="width: 100%" class="w3-button w3-dark-gray" onclick="assignAllClones()">Assign All Clones</button>
+                    <h3>Clones:</h3><input style="width: 100%;text-align:center" type="text" id="NClones" value="1" placeholder="Number of Clones">
+                    <div class="btn-group">
+                        <button style="width: 25%" class="w3-button w3-dark-gray" onclick="assign1Clones()">1X</button>
+                        <button style="width: 25%" class="w3-button w3-dark-gray" onclick="assign10Clones()">10X</button>
+                        <button style="width: 25%" class="w3-button w3-dark-gray" onclick="assign25Clones()">25X</button>
+                        <button style="width: 25%" class="w3-button w3-dark-gray" onclick="assign100Clones()">100X</button>
+                        <button style="width: 100%" class="w3-button w3-dark-gray" onclick="assignAllClones()">MAX</button>
+                    </div>
                     <hr/>
                     <button style="width: 100%" class="w3-button w3-dark-gray" onclick="save()">Save</button>
                     <button style="width: 100%" class="w3-button w3-dark-gray" onclick="load()">Load</button>

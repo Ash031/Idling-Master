@@ -52,4 +52,5 @@ function killBoss(){
 
 function killPlayer(){
     action.attacking=false;
+    curBoss.curhp=curBoss.hp;
 }

@@ -271,7 +271,8 @@ var dojoEnemy = {
 
 var options = {
     menu : 'none',
-    interval : 1000
+    interval : 1000,
+    help : false
 }
 
 var values = {

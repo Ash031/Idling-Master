@@ -9,6 +9,11 @@ function printMine(){
     string += '</div>'
     document.getElementById('Screen').innerHTML=string;
 }
+function printMineHelp(){
+    var string = '<h1 style="text-align:center">Mine</h1>';
+    string += '<p>On Mining you assign clones to get you ores</p><p>Every Ore has a different Multiplier to itself, so ores like Coal and Copper are easier to mine than Diamantium, try to start out with the first 2.</p>'
+    document.getElementById('Screen').innerHTML=string;
+}
 
 function getOreTables(){
     var string = '<table class="w3-table-all">';

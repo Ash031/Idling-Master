@@ -1,13 +1,16 @@
 function loadScreen(){
     loadPlayerScreen();
     if(options.menu=="Bosses"){
-        printBoss();
+        if(!options.help)printBoss();
+        else printBossHelp();
     }
     else if(options.menu=="Training"){
-        printTraining();
+        if(!options.help)printTraining();
+        else printTrainingHelp();
     }
     else if(options.menu=="Dojo"){
-        printDojo();
+        if(!options.help)printDojo();
+        else printDojoHelp();
     }
     else if(options.menu=="Shop"){
         printShop();
@@ -16,10 +19,13 @@ function loadScreen(){
         printStats();
     }
     else if(options.menu=="Mine"){
-        printMine();
+        if(!options.help)printMine();
+        else printMineHelp();
     }
     else if(options.menu=="Crafting"){
-        printCrafting();
+        if(!options.help)printCrafting();
+        else printCraftingHelp();
+        
     }
     else if(options.menu=="Farm"){
         printFarm();
@@ -39,6 +45,11 @@ function loadScreen(){
     else if(options.menu=="City"){
         printCity();
     }
+}
+
+function goToHelp(){
+    options.help=!options.help;
+    loadScreen();
 }
 
 function printNumber(number){
@@ -76,65 +87,78 @@ function loadTutorial(){
 
 //MENU SWITCHING
 function goToTraining(){
+    options.help=false;
     options.menu="Training";
     loadScreen();
 }
 
 function goToMine(){
+    options.help=false;
     options.menu="Mine";
     loadScreen();
 }
 
 function goToCrafting(){
+    options.help=false;
     options.menu="Crafting";
     loadScreen();
 }
 
 function goToBosses(){
+    options.help=false;
     options.menu="Bosses";
     loadScreen();
 }
 
 function goToDojo(){
+    options.help=false;
     options.menu="Dojo";
     loadScreen();
 }
 
 function goToShop(){
+    options.help=false;
     options.menu="Shop";
     loadScreen();
 }
 
 function goToStats(){
+    options.help=false;
     options.menu="Stats";
     loadScreen();
 }
 
 function goToFarm(){
+    options.help=false;
     options.menu="Farm";
     loadScreen();
 }
 
 function goToWarehouse(){
+    options.help=false;
     options.menu="Warehouse";
     loadScreen();
 }
 
 function goToArena(){
+    options.help=false;
     options.menu="Arena";
     loadScreen();
 }
 
 function goToRegroup(){
+    options.help=false;
     options.menu="Regroup";
     loadScreen();
 }
 function goToRegroupShop(){
+    options.help=false;
     options.menu="RegroupShop";
     loadScreen();
 }
 
 function goToCity(){
+    options.help=false;
     options.menu="City";
     loadScreen();
 }
@@ -146,6 +170,11 @@ function printBoss(){
     string += '<h3>Boss Health: '+printNumber(curBoss.curhp)+'/'+printNumber(curBoss.hp)+'</h2>';
     string += '<button class="w3-button w3-red" onclick="action.attacking=true;">Fight</button><hr/>';
     string += pastConsole;
+    document.getElementById('Screen').innerHTML=string;
+}
+function printBossHelp(){
+    var string = '<h1 style="text-align: center">Boss Menu</h1><hr/>';
+    string += '<p>On This Screen you fight Bosses to unlock different Areas of the game</p><p>The enemy Boss attacks first and doesn\'t regenerate healh, so you can take your time!</p>'
     document.getElementById('Screen').innerHTML=string;
 }
 
@@ -239,4 +268,8 @@ function lockButton(string){
         document.getElementById(string).innerHTML="Pfff, you know it's fun, right?";
         document.getElementById(string).disabled=true;
     }
+}
+
+function getImgPath(img){
+    return "https://raw.githubusercontent.com/Ash031/Idling-Master/master/RandomImages/"+img+".png";
 }

@@ -417,3 +417,9 @@ function printTraining(){
     string += '</div>';
     document.getElementById('Screen').innerHTML=string;
 }
+
+function printTrainingHelp(){
+    var string = '<h1 style="text-align: center">Training</h1><hr/>';
+    string += '<p>On this screen you assign clones to training, there are 5 tiers of training to unlock, every tier is more efficient than the last, but takes more time</p><p>Some tiers get more bonuses, like the Tier 2 defense also gives HP</p>'    
+    document.getElementById('Screen').innerHTML=string;
+}

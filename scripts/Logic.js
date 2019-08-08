@@ -3,6 +3,21 @@ function assignAllClones(){
     document.getElementById('NClones').value=player.maxClones;
 }
 
+function assign1Clones(){
+    document.getElementById('NClones').value=1;
+}
+
+function assign10Clones(){
+    document.getElementById('NClones').value=10;
+}
+
+function assign25Clones(){
+    document.getElementById('NClones').value=25;
+}
+
+function assign100Clones(){
+    document.getElementById('NClones').value=100;
+}
 function getClones(){
     var clones = parseInt(document.getElementById('NClones').value)
     if(isNaN(clones)) clones=0;
