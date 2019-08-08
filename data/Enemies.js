@@ -26,14 +26,29 @@ var dojoZones = [
         enemies : [10,11,12,13]
     },
     {
+        name : 'Garden',
+        desc : 'Connected to the room you find an entrance to a backyard farm, seems like it is yours now (Farming Unlocked)!',
+        enemies : [18,19,20,21,22]
+    },
+    {
         name : 'Kitchen',
-        desc : 'The Last room somehow was connected to a kitchen, there you can find a Fridge, and the fridge is empty, someone has to pay for your meal!',
+        desc : 'There seems to be a kitchen connected to the first corridor and you decide to go in, there you can find a Fridge, and the fridge is empty, someone has to pay for your meal!',
         enemies : [14,15,16,17]
     },
     {
-        name : 'Garden',
-        desc : 'Connected to the kitchen you find an entrance to a backyard farm, seems like it is yours now (Farming Unlocked)!',
-        enemies : [14,15,16,17]
+        name : 'Storage',
+        desc : 'The last room on the corridor seems to be a srotage filled with computers and shelves, you decide to steal one and start a company (Warehouse Unlocked)!',
+        enemies : [23,24,25]
+    },
+    {
+        name : 'Second Corridor',
+        desc : 'Seems like you finally made progress and found a great room, another Corridor!',
+        enemies : [26,27,28,29]
+    },
+    {
+        name : 'Open Field',
+        desc : 'Seems like the second Room have a door to the outside, the field is big and almost flat, good to let your clones rest, and prosper (City Unlocked)!',
+        enemies : [30,31,32,33,34]
     }
 ]
 
@@ -138,65 +153,149 @@ var enemies = [
     },
     {
         name : 'Gordo Ramses, The egyptian Cook',
-        hp : 15000,
-        attack : 6000,
-        defense : 4000,
-        prize : 100
+        hp : 400000,
+        attack : 15000,
+        defense : 12000,
+        prize : 130
     },
     {
         name : 'Knifu',
-        hp : 10000,
-        attack : 10000,
+        hp : 100000,
+        attack : 50000,
         defense : 2000,
-        prize : 120
+        prize : 140
     },
     {
         name : 'Hatchet',
         hp : 15000,
         attack : 5000,
-        defense : 5000,
-        prize : 90
+        defense : 15000,
+        prize : 110
     },
     {
         name : 'Gluttony',
-        hp : 30000,
+        hp : 70000,
         attack : 1000,
-        defense : 10000,
-        prize : 100
+        defense : 25000,
+        prize : 150
     },
     {
         name : 'BoatCow, the Ghost Cow',
-        hp : 40000,
+        hp : 15000,
         attack : 1500,
-        defense : 12000,
-        prize : 130
+        defense : 1000,
+        prize : 90
     },
     {
         name : 'Joergan, the Ghost Horse',
-        hp : 50000,
+        hp : 5000,
         attack : 1100,
-        defense : 11000,
-        prize : 130
+        defense : 1500,
+        prize : 80
     },
     {
         name : 'Sven, the Immortal Dog',
-        hp : 300000,
-        attack : 1500,
-        defense : 99999,
-        prize : 150
+        hp : 30000,
+        attack : 500,
+        defense : 9999,
+        prize : 90
     },
     {
         name : 'WaterSheep, The Idol',
         hp : 35000,
         attack : 5000,
         defense : 9000,
-        prize : 140
+        prize : 80
     },
     {
         name : 'PeePeePooPoo Army',
-        hp : 300000,
-        attack : 10000,
+        hp : 50000,
+        attack : 1000,
         defense : 100000,
+        prize : 120
+    },
+    {
+        name : 'NeckBeard, the Pirate',
+        hp : 1.5e5,
+        attack : 2.5e4,
+        defense : 1.2e4,
+        prize : 150
+    },
+    {
+        name : 'Carl, the Bloody Janitor',
+        hp : 3e5,
+        attack : 1.5e4,
+        defense : 4e5,
         prize : 200
+    },
+    {
+        name : 'Laura Crafter, the Storage Raider',
+        hp : 9e4,
+        attack : 5e4,
+        defense : 2e4,
+        prize : 150
+    },
+    {
+        name : 'Mixxer, the Bar Lady',
+        hp : 7e5,
+        attack : 9e4,
+        defense : 7e4,
+        prize : 210
+    },
+    {
+        name : 'Doctor Weird, the Architech',
+        hp : 1e6,
+        attack : 7e4,
+        defense : 3e5,
+        prize : 230
+    },
+    {
+        name : 'Big, the Dog',
+        hp : 3e6,
+        attack : 1e5,
+        defense : 1e5,
+        prize : 235
+    },
+    {
+        name : 'HardBoiled, the Giant Talking Chicken',
+        hp : 5e5,
+        attack : 5e5,
+        defense : 8e4,
+        prize : 250
+    },
+    {
+        name : 'Smilling Cow',
+        hp : 5e6,
+        attack : 3e5,
+        defense : 1e5,
+        prize : 270
+    },
+    {
+        name : 'Happy Scarecrow',
+        hp : 5e6,
+        attack : 2e5,
+        defense : 1e5,
+        prize : 280
+    },
+    {
+        name : 'Mutated Carrots',
+        hp : 1e7,
+        attack : 3e5,
+        defense : 1e5,
+        prize : 290
+    },
+    {
+        name : 'Walking Ent',
+        hp : 2e7,
+        attack : 5e5,
+        defense : 1e5,
+        prize : 290
+    },
+    {
+        name : 'Trippy Mouse, the Walking Rat',
+        hp : 5e7,
+        attack : 1e5,
+        defense : 1e6,
+        prize : 300
     }
 ]

@@ -12,6 +12,10 @@ function getNextZoneInfo(){
     else if(values.boss<8) string+= "8"
     else if(values.boss<10) string+= "10"
     else if(values.boss<13) string+= "13"
+    else if(values.boss<16) string+= "16"
+    else if(values.boss<20) string+= "20"
+    else if(values.boss<22) string+= "22"
+    else if(values.boss<25) string+= "25"
     else return "You have unlocked all zones, congratz?!?"
     return string+= " so you can unlock the next zone!";
 }
@@ -72,6 +76,10 @@ function nextZone(){
     else if(values.zone==2 && values.boss>=8) values.zone++;
     else if(values.zone==3 && values.boss>=10) values.zone++;
     else if(values.zone==4 && values.boss>=13) values.zone++;
+    else if(values.zone==5 && values.boss>=16) values.zone++;
+    else if(values.zone==6 && values.boss>=20) values.zone++;
+    else if(values.zone==7 && values.boss>=22) values.zone++;
+    else if(values.zone==8 && values.boss>=25) values.zone++;
     printDojo();
     generateEnemy();
 }
