@@ -363,7 +363,7 @@ function deAssignClonesSleep(){
 function printTraining(){
     var string = '<h1 style="text-align: center">Training</h1><hr/>';
     //ATACK TRAINING
-    string += '<div class="w3-col m6 l6"><h1>Attack</h1><hr/>';
+    string += '<div class="w3-col m6 l6"><h1>Strength</h1><hr/>';
     
     string += '<p>Scream(Level '+player.train.attack.scream.level+'): '+assignedClones.train.attack.scream+' clones assigned</p>';
     string += '<button style="height: 5%" class="w3-button w3-green" onclick="assignClonesScream()">+</button>';
