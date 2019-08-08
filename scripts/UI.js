@@ -55,7 +55,7 @@ function printStats(){
     string += '<p><b>Total Time:</b>'+printTime(stats.totalSeconds)+'</p>';
     string += '<p><b>Total Ores Mined:</b>'+printNumber(stats.totalOresMined)+'</p>';
     string += '<p><b>Total Crops Grown:</b>'+printNumber(stats.totalCropsGrown)+'</p>';
-    string += '<p><b>Total Arena Bosses Killed:</b>'+printTime(stats.totalArenaBosses)+'</p>';
+    string += '<p><b>Total Arena Bosses Killed:</b>'+printNumber(stats.totalArenaBosses)+'</p>';
     string += '<p><b>Total Contracts Finished:</b>'+printNumber(stats.totalContractsDone)+'</p>';
     string += '<p><b>Total Warehouse Rank Ups:</b>'+printNumber(stats.totalRankUpsWarehouse)+'</p>';
     string+='<button style="width: 100%" class="w3-button w3-dark-gray" onclick="newGame()">Reset Save</button>';
