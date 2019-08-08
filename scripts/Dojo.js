@@ -1,8 +1,8 @@
 function printDojo(){
     var string = '<h1 style="text-align: center">Dojo</h1><hr/>';
-    string += '<button class="w3-button w3-red" onclick="previousZone(); '
+    string += '<button class="w3-button w3-red" onclick="previousZone();" '
     if(values.zone==0)string+="disabled"
-    string +='">&lt</button><button style="float:right"class="w3-button w3-red" onclick="nextZone()"'
+    string +='>&lt</button><button style="float:right"class="w3-button w3-red" onclick="nextZone()"'
     if(!canGoToNextZone())string +="disabled"
     string += '>&gt</button><h2 style="text-align:center">'+dojoZones[values.zone].name+'</h2><p>'+dojoZones[values.zone].desc+'</p><hr/><div id="Fight"></div>';
     string += '<hr/><div><p><b>'+getNextZoneInfo()+'</b></p></div>'
