@@ -144,7 +144,7 @@ function printBoss(){
     string += '<h1>Boss Number '+values.boss+'</h1>';
     string += '<h3>Boss Attack: '+printNumber(curBoss.attack)+'</h3><br/>';
     string += '<h3>Boss Health: '+printNumber(curBoss.curhp)+'/'+printNumber(curBoss.hp)+'</h2>';
-    string += '<button class="w3-button w3-red" onclick="action.attacking=true;">Figth</button><hr/>';
+    string += '<button class="w3-button w3-red" onclick="action.attacking=true;">Fight</button><hr/>';
     string += pastConsole;
     document.getElementById('Screen').innerHTML=string;
 }
