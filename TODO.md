@@ -57,6 +57,9 @@
 - [ ] Workers can build buildings, and those building can have more jobs
 - [ ] Jobs give active bonuses to aspects of the game like Defense or Money
 - [ ] Some investments can persist after regroup
+- [ ] Add Arena Bosses
+- [ ] Add Stats
+- [ ] Add Rebirth Perks
 
 ## Statistics
 
@@ -69,6 +72,7 @@
 - [X] Representing Time
 - [X] Saving/Loading To/From Files
 - [X] Front Page
+- [X] Auto Export Data When Updating game Version
 
 ## QOL
 
@@ -81,7 +85,7 @@
 - [ ] Fighting text gets out of the page
 - [X] NaN Rebirth Points (Due to having 0 defeated dojo Enemies)
 - [X] Always Critting
-- [ ] Bug displaying seconds when there is more than 1 minute left
+- [X] Bug displaying seconds when there is more than 1 minute left
 - [X] Bug Buying clones
 - [X] Not Getting clones after buying cones for regroup
 - [X] Mining T4 and up not selectable
@@ -92,3 +96,4 @@
 - [ ] Rework Crafting to unlock more recipes which will buff other aspects of the game
 - [ ] Create More Arena Bosses
 - [ ] Add More Skills
+- [ ] Simplify the HTML Writing with functions

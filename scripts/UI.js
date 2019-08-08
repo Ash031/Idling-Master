@@ -36,6 +36,9 @@ function loadScreen(){
     else if(options.menu=="Arena"){
         printArena();
     }
+    else if(options.menu=="City"){
+        printCity();
+    }
 }
 
 function printNumber(number){
@@ -62,9 +65,10 @@ function printStats(){
 function loadTutorial(){
     var string = '<h1 style="text-align: center">Welcome to Idling Master</h1><hr/>';
     string += "<p> Welcome to Idling Master, on this game you have the power to multiply yourself, with that power you decide to fight the local Bosses League. Do you have what it takes to overtake the challenge?</p>"
-    string+= "<p>You hsould start by heading out to the Training Area and get stronger to defeat the bosses on the Bosses Area.</p>"
+    string+= "<p>You should start by heading out to the Training Area and get stronger to defeat the bosses on the Bosses Area.</p>"
     string+="<p>There are some locked areas too that you unlock by beating bosses. These new Menus unlock new ways to get stronger using your clones.</p>"
-    string+="<p>I hope you have fun with the game.</p><p>Have any questions or want to suggest stuff? Go to Discord and tell me. There is also a TODO list there so if you wanna checkout stuff that will be added to the game hop on and have fun!</p>"
+    string+="<p>If the game tries to Download a file automatically when you open the game, please download it since it happens when you open an old SaveFile to a new version. It is design this way so if an update somehow brakes your save you automatically have a backup save.</p>"
+    string+="<p>I hope you have fun with the game.</p><p>Have any questions or want to suggest stuff? Go to <a href=\"https://discord.gg/Txmw5ny\">Discord</a> and tell me. There is also a TODO list there so if you wanna checkout stuff that will be added to the game hop on and have fun!</p>"
     string+="<p>Thanks for trying this game out!</p><hr/><h1>Changelog:</h1><ul><li>1.0</li><ul><li>Game Released</li></ul></ul>"
     document.getElementById('Screen').innerHTML=string;
 }
@@ -130,6 +134,11 @@ function goToRegroupShop(){
     loadScreen();
 }
 
+function goToCity(){
+    options.menu="City";
+    loadScreen();
+}
+
 function printBoss(){
     var string = '<h1 style="text-align: center">Boss Menu</h1><hr/>';
     string += '<h1>Boss Number '+values.boss+'</h1>';
@@ -143,7 +152,12 @@ function printBoss(){
 function printTime(seconds){
     if(seconds<10) return "00:0"+seconds
     if(seconds<60) return "00:"+seconds
-    if(seconds<600) return "0"+Math.floor(seconds/60)+":"+seconds%60
+    if(seconds<600) {
+        var minutes = Math.floor(seconds/60);
+        seconds=seconds%60;
+        if(seconds<10) return "0"+minutes+":0"+seconds;
+        return "0"+minutes+":"+seconds;
+    }
     if(seconds<3600) {
         var minutes = Math.floor(seconds/60)
         seconds -= minutes*60;
@@ -188,6 +202,10 @@ function unlockButton(string){
         document.getElementById(string).innerHTML="Arena";
         document.getElementById(string).disabled=false;
     }
+    if(string=="Zone6"){
+        document.getElementById(string).innerHTML="City";
+        document.getElementById(string).disabled=false;
+    }
     if(string=="Rebirth"){
         document.getElementById(string).innerHTML="Regroup";
         document.getElementById(string).disabled=false;
@@ -215,6 +233,10 @@ function lockButton(string){
     }
     if(string=="Zone5"){
         document.getElementById(string).innerHTML="Wow, I'm locked";
+        document.getElementById(string).disabled=true;
+    }
+    if(string=="Zone6"){
+        document.getElementById(string).innerHTML="Pfff, you know it's fun, right?";
         document.getElementById(string).disabled=true;
     }
 }

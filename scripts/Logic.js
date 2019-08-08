@@ -70,8 +70,8 @@ function download(filename, text) {
   
     document.body.removeChild(element);
   }
-function updateVersion(version){
-
+function updateVersion(oldVersion){
+    if(version!=oldVersion) ExportData()
 }
 
 function generateOffline(offlineTime){

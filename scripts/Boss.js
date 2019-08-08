@@ -16,6 +16,8 @@ function loadBoss(){
     else lockButton("Zone3");
     if(values.boss>=20) unlockButton("Zone4");
     else lockButton("Zone4");
+    if(values.boss>=25) unlockButton("Zone6");
+    else lockButton("Zone6");
     curBoss.attack = Math.pow(8,values.boss-1);
     curBoss.hp = curBoss.curhp = Math.pow(9,values.boss);
     action.attacking=false;
