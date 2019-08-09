@@ -107,8 +107,8 @@ var rebirthPerks = [
         basePrice:10,
         lvl:0,
         step:"*1",
-        Description:"Your strength goes up by 10% each Upgrade",
-        Bonus:0.1,
+        Description:"Your strength goes up by 30% each Upgrade",
+        Bonus:0.3,
         boss:5,
         maxLevel:-1,
         type: "Strength"
@@ -118,8 +118,8 @@ var rebirthPerks = [
         basePrice:10,
         lvl:0,
         step:"*1",
-        Description:"Your defense goes up by 10% each Upgrade",
-        Bonus:0.1,
+        Description:"Your defense goes up by 30% each Upgrade",
+        Bonus:0.3,
         boss:5,
         maxLevel:-1,
         type: "Defense"
@@ -129,8 +129,8 @@ var rebirthPerks = [
         basePrice:10,
         lvl:0,
         step:"*1",
-        Description:"You get 10% more money each Upgrade",
-        Bonus:0.1,
+        Description:"You get 25% more money each Upgrade",
+        Bonus:0.25,
         boss:5,
         maxLevel:-1,
         type: "MoneyMult"

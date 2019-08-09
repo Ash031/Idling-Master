@@ -86,12 +86,11 @@ function getBonusRebirthSum(perkType,num){
 }
 
 function RBPointsAmount(){
-    var mult = Math.log10(lifeStats.totalSeconds)*lifeStats.totalBossesKilles*Math.log10(lifeStats.totalDojoEnemies);
+    var mult = Math.log10(lifeStats.totalSeconds+lifeStats.totalDojoEnemies)*lifeStats.totalBossesKilles;
     if (isNaN(mult) || mult ==-Infinity) return 0;
     if(lifeStats.totalOresMined>10)mult*=Math.log10(lifeStats.totalOresMined);
-    if(lifeStats.totalCropsGrown>10)mult*=Math.log10(lifeStats.totalCropsGrown);
-    if(lifeStats.totalRankUpsWarehouse>0)mult*=lifeStats.totalRankUpsWarehouse;
-    if(lifeStats.totalContractsDone>10) mult*=Math.log10(lifeStats.totalContractsDone);
+    if(lifeStats.totalCropsGrown>10)mult+=Math.log10(lifeStats.totalCropsGrown);
+    if(lifeStats.totalRankUpsWarehouse>0 && lifeStats.totalContractsDone>10)mult+=lifeStats.totalRankUpsWarehouse*Math.log10(lifeStats.totalContractsDone);
     return Math.floor(mult);
 }
 
