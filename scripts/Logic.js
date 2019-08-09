@@ -50,10 +50,10 @@ function setUnlockedSkills(aSkills){
 
 //GAME SAVING, LOADING AND RESETING
 function load(){
-    Importload(localStorage.getItem('save'));
+    Importload(localStorage.getItem('save',true));
 }
 
-function Importload(save){
+function Importload(save,something){
     save = JSON.parse(save);
     if(save){
         plots=save.farm; farmStats=save.farmStats; setRLevels(save.perks);
@@ -66,7 +66,8 @@ function Importload(save){
         setArenaDefeated(save.arenaDefeated)
         setUnlockedSkills(save.skills)
         if(save.version!="1.0") setCrafting(save.items)
-        updateVersion(save.version);
+        if(something==undefined)updateVersion(save.version);
+        else updateVersionImport(save.version);
         generateOffline((new Date().getTime()/1000)-save.time);
     }
 }
@@ -90,15 +91,20 @@ function download(filename, text) {
   
     document.body.removeChild(element);
   }
-function updateVersion(oldVersion){
-    if(version!=oldVersion) ExportData();
-    if(oldVersion=="1.0"){
-        
-    }
-}
+  function updateVersion(oldVersion){
+      if(version!=oldVersion) ExportData();
+      if(oldVersion=="1.0"){
+          
+      }
+  }
+function updateVersionImport(oldVersion){
+      if(oldVersion=="1.0"){
+          
+      }
+  }
 
 function generateOffline(offlineTime){
-    arenaVouchers+=offlineTime/36000;
+    arenaVouchers+=offlineTime/7200;
     mineOffline(offlineTime);
     growOffline(offlineTime);
     warehouseOffline(offlineTime);
