@@ -1,5 +1,5 @@
 var arenaVouchers = 1
-
+var arenaLog = ""
 var arenaScreen = ""
 var arenaType = ""
 var skillPage = 0;

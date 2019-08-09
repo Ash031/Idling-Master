@@ -21,7 +21,7 @@ function printArena(){
 
 function printArenaHelp(){
     var string = '<h1 style="text-align:center">Arena</h1><hr/>';
-    string += '<p>Arena is divided into 3 main menus, the Figthing Menu, the Skill Shop and the Area Shop</p><p>Each Area has a set of fighters and a shop, each Area has it\'s own tokens, so defeating 1 Dojo Arena Boss gives you Dojo Tokens to buy bonuses on Dojo Shop</p><p>On The Skill Shop you buy and select Skills to use on fights. As Fighters, skills have types, so using a Rock skill on a Paper Fighter will only do half Damage, but against a scissors enemy will do double damage</p><p>Some Skills have effects, Salt for example, gives you an extra 50% of your health, some Counters, some block, try to discover them all!</p>'
+    string += '<p>Arena is divided into 3 main menus, the Figthing Menu, the Skill Shop and the Area Shop</p><p>Each Area has a set of fighters and a shop, each Area has it\'s own tokens, so defeating 1 Dojo Arena Boss gives you Dojo Tokens to buy bonuses on Dojo Shop</p><p>On The Skill Shop you buy and select Skills to use on fights. As Fighters, skills have types, so using a Rock skill on a Paper Fighter will only do half Damage, but against a scissors enemy will do double damage</p><p>Some Skills have effects, Salt for example, gives you an extra 50% of your health, some Counters, some block, try to discover them all!</p><p>You need vouchers to fight, you get an Arena Voucher every 2 hours, so use them wisely!</p><p>You hit first on the Arena</p>'
     document.getElementById('Screen').innerHTML=string;
 }
 
@@ -124,9 +124,10 @@ function copyArenaEnemy(enemy,num){
 }
 
 function printArenaFight(){
-    var string = "<img style=\"display: block;margin-left: auto;margin-right: auto;height:40%\" src=\""+getArenaImgPath(arenaEnemy.name)+"\"></img><p style=\"text-align:center\">"+arenaEnemy.name+"</p><p style=\"text-align:center\">Health:"+printNumber(arenaEnemy.curhealth)+"/"+printNumber(arenaEnemy.maxhealth)+"</p><hr/>"
+    var string = "<div class=\"w3-col l9 m9\"><img style=\"display: block;margin-left: auto;margin-right: auto;height:40%\" src=\""+getArenaImgPath(arenaEnemy.name)+"\"></img><p style=\"text-align:center\">"+arenaEnemy.name+"</p><p style=\"text-align:center\">Health:"+printNumber(arenaEnemy.curhealth)+"/"+printNumber(arenaEnemy.maxhealth)+"</p><hr/>"
     string += '<p style=\"text-align:center\"><b>You:</b></p><p style=\"text-align:center\">Health:'+printNumber(arenaSelf.curhealth)+'/'+printNumber(arenaSelf.maxhealth)+'</p><p style=\"text-align:center\"><b>Moves:</b></p>'
     string += printArenaSkills();
+    string += "</div><div>"+arenaLog+"</div>"
     return string;
 }
 
@@ -159,12 +160,17 @@ function useSkill(i){
     var theSkill = skills[skillsChosen[i]]
     for(var j=0;j<6;j++) coolDowns[j] = coolDowns[j]-1;
     if(i==-1){
+        arenaLog= "<p>You wait a turn</p>"+arenaLog
         if(arenaEnemy.par<=0){
             arenaSelf.curhealth-=arenaEnemy.attack;
+            arenaLog = '<p>The enemy attack you and did '+printNumber(arenaEnemy.attack)+' damage</p>'+arenaLog
             if(arenaSelf.curhealth<=0)loseArena();
             loadScreen();
         }
-        else arenaEnemy.par--;
+        else{
+            arenaLog="<p>The enemy is Paralyzed</p>"+arenaLog 
+            arenaEnemy.par--;
+        }
         return;
     }
     var attack = Math.floor(theSkill.mult * arenaSelf.attack * getMult(theSkill.type,arenaEnemy.type));
@@ -172,40 +178,52 @@ function useSkill(i){
     if(theSkill.effect!=""){
         var property = theSkill.effect.split(" ")[0];
         if(property=="Heal"){
+            arenaLog = '<p>You healed yourself</p>'+arenaLog
             var amount = parseInt(theSkill.effect.split(" ")[1])
             arenaSelf.curhealth+=(arenaSelf.maxhealth*amount/100)
         }
         else if(property=="Block"){
+            arenaLog = '<p>You Blocked some damage</p>'+arenaLog
             var amount = parseInt(theSkill.effect.split(" ")[1])
             enemyAttack-=(enemyAttack*100/amount)
         }
         else if(property=="Vamp"){
+            arenaLog = '<p>You healed yourself with some of the damage done</p>'+arenaLog
             var amount = parseInt(theSkill.effect.split(" ")[1])
             arenaSelf.curhealth+=attack*100/amount;
         }
         else if(property=="Paralyze"){
+            arenaLog = '<p>The enemy Got Paralyzed!</p>'+arenaLog
             var amount = parseInt(theSkill.effect.split(" ")[1])
             arenaEnemy.par=amount;
-        }
+        } 
         else if(property=="Counter"){
+            arenaLog = '<p>You Countered some damage</p>'+arenaLog
             var amount = parseInt(theSkill.effect.split(" ")[1])
             attack+=(enemyAttack*100/amount);
         }
     }
     arenaEnemy.curhealth-=attack;
+    if(attack!=0)arenaLog = '<p>You dealt '+printNumber(attack)+' points of damage</p>'
     if(arenaEnemy.curhealth<=0) winArena();
     else{
         if(arenaEnemy.par<=0){
-            arenaSelf.curhealth-=enemyAttack
+            arenaSelf.curhealth-=arenaEnemy.attack;
+            arenaLog = '<p>The enemy attack you and did '+printNumber(arenaEnemy.attack)+' damage</p>'+arenaLog
             if(arenaSelf.curhealth<=0)loseArena();
+            loadScreen();
         }
-        else arenaEnemy.par--;
+        else{
+            arenaLog="<p>The enemy is Paralyzed</p>"+arenaLog 
+            arenaEnemy.par--;
+        }
     }
     coolDowns[i] = theSkill.coolDown;
     loadScreen();
 }
 
 function winArena(){
+    arenaLog=""
     var amount = 1;
     var i=1;
     if(arenaType=="Dojo"){
@@ -254,6 +272,7 @@ function winArena(){
 }
 
 function loseArena(){
+    arenaLog=""
     arenaScreen=""
 }
 

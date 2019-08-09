@@ -125,4 +125,5 @@ function buy(item){
                         player.defense+=1000;
                     }
     }
+    loadScreen();
 }

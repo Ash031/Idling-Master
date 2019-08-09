@@ -24,8 +24,16 @@ function getClones(){
     return clones;
 }
 
-function setRLevels(perks){
-    for(var i=0;i<perks.length;i++){rebirthPerks[i].lvl=perks[i]}
+function setRLevels(perks,version){
+    if(version=="1.0" || version=="1.0.1"){
+        for(var i=0;i<3;i++){rebirthPerks[i].lvl=perks[i]}
+        rebirthPerks[3].lvl=0;
+        for(var i=4;i<perks.length;i++){rebirthPerks[i].lvl=perks[i-1]}
+    }
+    else {
+        for(var i=0;i<perks.length;i++){rebirthPerks[i].lvl=perks[i]}
+
+    }
 }
 
 function setCrafting(list){
@@ -56,7 +64,7 @@ function load(){
 function Importload(save,something){
     save = JSON.parse(save);
     if(save){
-        plots=save.farm; farmStats=save.farmStats; setRLevels(save.perks);
+        plots=save.farm; farmStats=save.farmStats; setRLevels(save.perks,save.version);
         player=save.player; assignedClones=save.assignedClones; options=save.options;
         values=save.value; stats=save.stats; dojoStats=save.dojoStats; ores=save.ores;
         rebirth=save.rebirth; lifeStats=save.lifeStat; skillsChosen=save.choosen;
@@ -179,7 +187,6 @@ function save(){
         arenaDefeated: getArenaDefeated(arenaFighters),
         items: saveCrafting()
     }
-    console.log(save.items)
     localStorage.setItem('save',JSON.stringify(save));
 }
 
@@ -273,8 +280,9 @@ function putClonesToWork(num){
 }
 
 function addMoney(num){
-    num = Math.floor(num
-        *farmStats.GoldMult);
+    num = num
+        *farmStats.GoldMult
+        *getBonusRebirth("MoneyMult");
     player.money+=num;
 }
 

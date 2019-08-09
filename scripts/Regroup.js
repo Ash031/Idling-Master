@@ -53,6 +53,7 @@ function upgradeRP(perkN){
         rebirthPerks[perkN].lvl++;
         if(perkN==0) addClonesRaw(1)
     }
+    loadScreen();
 }
 
 function crit(){

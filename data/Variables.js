@@ -1,4 +1,6 @@
-var version = "1.0.1"
+var version = "1.0.2"
+
+var shopAmount = 1;
 
 var player = {
     strength : 1,
@@ -121,6 +123,17 @@ var rebirthPerks = [
         boss:5,
         maxLevel:-1,
         type: "Defense"
+    },
+    {
+        name:"Money Maker",
+        basePrice:10,
+        lvl:0,
+        step:"*1",
+        Description:"You get 10% more money each Upgrade",
+        Bonus:0.1,
+        boss:5,
+        maxLevel:-1,
+        type: "MoneyMult"
     },
     {
         name:"XRay Vision",
