@@ -75,8 +75,8 @@ function buy(item){
         case(7):
             if(player.money>=2000){
                 player.money-=2000;
-                dojoStats.attack+=1000;
-                player.strength+=1000;
+                dojoStats.attack+=100;
+                player.strength+=100;
             }
             break;
             case(9):

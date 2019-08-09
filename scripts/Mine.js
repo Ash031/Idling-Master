@@ -34,7 +34,7 @@ function addCloneToOre(ore){
     if(clones>player.idleClones)clones = player.idleClones;
     ores[ore].clones+=clones;
     player.idleClones-=clones;
-    loadScreen()
+    loadScreen();
 }
 
 function removeCloneToOre(ore){
@@ -60,7 +60,7 @@ function minePerSec(i){
 function mineOffline(time){
     for(var i=0;i<12;i++){
         mined = minePerSec(i);
-        ores[i].quant += time;
+        ores[i].quant += mined*time;
         stats.totalOresMined+=time*mined;
         lifeStats.totalOresMined+=time*mined;
     }
