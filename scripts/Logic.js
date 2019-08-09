@@ -27,6 +27,10 @@ function getClones(){
 function setRLevels(perks){
     for(var i=0;i<perks.length;i++){rebirthPerks[i].lvl=perks[i]}
 }
+
+function setCrafting(list){
+    for(var i=0;i<list.length;i++){crafting.items[i].level=list[i]}
+}
 function setArenaShopLevels(levels){
     for(var i=0;i<levels.dojo.length;i++){arenaShop.dojo[i].lvl=levels.dojo[i]}
     for(var i=0;i<levels.mine.length;i++){arenaShop.mine[i].lvl=levels.mine[i]}
@@ -61,6 +65,7 @@ function Importload(save){
         warehouseStats=save.warehouseStats; arenaVouchers=save.arenaVouchers;
         setArenaDefeated(save.arenaDefeated)
         setUnlockedSkills(save.skills)
+        if(save.version!="1.0") setCrafting(save.items)
         updateVersion(save.version);
         generateOffline((new Date().getTime()/1000)-save.time);
     }
@@ -86,7 +91,10 @@ function download(filename, text) {
     document.body.removeChild(element);
   }
 function updateVersion(oldVersion){
-    if(version!=oldVersion) ExportData()
+    if(version!=oldVersion) ExportData();
+    if(oldVersion=="1.0"){
+        
+    }
 }
 
 function generateOffline(offlineTime){
@@ -130,6 +138,14 @@ function getArenaDefeated(fighters){
     return ret;
 }
 
+function saveCrafting(){
+    var ret = []
+    crafting.items.forEach(c=>{
+        ret.push(c.level);
+    })
+    return ret;
+}
+
 function save(){
     var save = {
         farm: plots,
@@ -154,8 +170,10 @@ function save(){
         version: version,
         arenaVouchers: arenaVouchers,
         skills: getUnlockedSkills(skills),
-        arenaDefeated: getArenaDefeated(arenaFighters)
+        arenaDefeated: getArenaDefeated(arenaFighters),
+        items: saveCrafting()
     }
+    console.log(save.items)
     localStorage.setItem('save',JSON.stringify(save));
 }
 
@@ -163,7 +181,7 @@ function save(){
 function getCraftingAttack(){
     var ret = 1.0;
     for(var i = 0;i<crafting.items.length;i++){
-        if(crafting.items[i].bonus=="Attack"){
+        if(crafting.items[i].bonus=="Strength" || crafting.items[i].bonus=="Mixed"){
             ret *= 1+(crafting.items[i].level-1)*crafting.items[i].perLevel;
         }
     }
@@ -201,7 +219,7 @@ function getRawStrength(){
 function getCraftingDefense(){
     var ret = 1.0;
     for(var i = 0;i<crafting.items.length;i++){
-        if(crafting.items[i].bonus=="Defense"){
+        if(crafting.items[i].bonus=="Defense"||crafting.items[i].bonus=="Mixed"){
             ret += (crafting.items[i].level-1)*crafting.items[i].perLevel;
         }
     }
@@ -274,7 +292,7 @@ function initGame(){
 function passSecond(){
     stats.totalSeconds++;
     lifeStats.totalSeconds++;
-    arenaVouchers+=1/36000;
+    arenaVouchers+=1/7200;
     dojoFight();
     mine();
     loadScreen();

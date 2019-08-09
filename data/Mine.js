@@ -19,7 +19,7 @@ var crafting = {
         },
         {
             name : 'Copper Stick',
-            bonus : 'Attack',
+            bonus : 'Strength',
             perLevel : 0.05,
             level : 1,
             cost :[
@@ -35,7 +35,7 @@ var crafting = {
         },
         {
             name : 'Bronze Stick',
-            bonus : 'Attack',
+            bonus : 'Strength',
             perLevel : 0.05,
             level : 1,
             cost :[
@@ -55,7 +55,7 @@ var crafting = {
         },
         {
             name : 'Bronze Dagger',
-            bonus : 'Attack',
+            bonus : 'Strength',
             perLevel : 0.1,
             level : 1,
             cost :[
@@ -87,7 +87,7 @@ var crafting = {
         },
         {
             name : 'Iron Dog',
-            bonus : 'Attack',
+            bonus : 'Strength',
             perLevel : 0.15,
             level : 1,
             cost :[
@@ -119,7 +119,7 @@ var crafting = {
         },
         {
             name : 'Smelted Axe',
-            bonus : 'Attack',
+            bonus : 'Strength',
             perLevel : 0.15,
             level : 1,
             cost :[
@@ -171,7 +171,7 @@ var crafting = {
         },
         {
             name : 'Red and Purple Axe',
-            bonus : 'Attack',
+            bonus : 'Strength',
             perLevel : 0.5,
             level : 1,
             cost :[
@@ -219,7 +219,7 @@ var crafting = {
         },
         {
             name : 'Hardened Underpants',
-            bonus : 'Attack',
+            bonus : 'Strength',
             perLevel : 0.7,
             level : 1,
             cost :[
