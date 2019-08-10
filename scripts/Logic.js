@@ -100,7 +100,7 @@ function download(filename, text) {
     document.body.removeChild(element);
   }
   function updateVersion(oldVersion){
-      if(version!=oldVersion) ExportData();
+      if(version.substr(0,5)!=oldVersion.substr(0,5)) ExportData();
       if(oldVersion=="1.0"){
           
       }
@@ -294,6 +294,7 @@ function getPrice(perk){
 
 //SET GAME INTERVAL
 function initGame(){
+    document.getElementById('Version').innerHTML="Version "+version;
     load();
     loadBoss();
     loadPlayerScreen();

@@ -1,4 +1,4 @@
-var version = "1.0.2"
+var version = "1.0.2.1"
 
 var shopAmount = 1;
 
@@ -96,8 +96,8 @@ var rebirthPerks = [
         basePrice:5,
         lvl:0,
         step:"*1",
-        Description:"Starts the Regroup with an extra clone",
-        Bonus:1,
+        Description:"Starts the Regroup with 3 extra clones",
+        Bonus:3,
         boss:5,
         maxLevel:50,
         type: "StartClones"
@@ -140,10 +140,10 @@ var rebirthPerks = [
         basePrice:10,
         lvl:0,
         step:"^1",
-        Description:"You have 2% chance to deal double damage",
-        Bonus:0.02,
+        Description:"You have 10% chance to deal double damage",
+        Bonus:0.1,
         boss:5,
-        maxLevel:50,
+        maxLevel:10,
         type:"CritChance"
     },
     {
@@ -151,8 +151,8 @@ var rebirthPerks = [
         basePrice:100,
         lvl:0,
         step:"*2",
-        Description:"You get 1% more ores",
-        Bonus:0.01,
+        Description:"You get 10% more ores",
+        Bonus:0.1,
         boss:7,
         maxLevel:-1,
         type: "Mining"
@@ -239,10 +239,10 @@ var rebirthPerks = [
         basePrice:1000,
         lvl:0,
         step:"*2",
-        Description:"You get an extra 2% contract Speed",
-        Bonus:0.02,
+        Description:"You get an extra 5% contract Speed",
+        Bonus:0.05,
         boss:20,
-        maxLevel:25,
+        maxLevel:10,
         type: "ContractSpeed"
     }
 ]

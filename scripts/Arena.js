@@ -318,10 +318,31 @@ function getArenaTokens(){
     if(arenaType=="Warehouse")return arenaTokens.warehouse;
 }
 function spendArenaTokens(price){
-    if(arenaType=="Dojo")arenaTokens.dojo-=price;
-    if(arenaType=="Mine")arenaTokens.mine-=price;
-    if(arenaType=="Farm")arenaTokens.farm-=price;
-    if(arenaType=="Warehouse")arenaTokens.warehouse-=price;
+    if(arenaType=="Dojo"){
+        if(arenaTokens.dojo>=price){
+            arenaTokens.dojo-=price;
+            return true;
+        }
+    }
+    else if(arenaType=="Mine"){
+        if(arenaTokens.mine>=price){
+            arenaTokens.mine-=price;
+            return true;
+        }
+    }
+    else if(arenaType=="Farm"){
+        if(arenaTokens.farm>=price){
+            arenaTokens.farm-=price;
+            return true;
+        }
+    }
+    if(arenaType=="Warehouse"){
+        if(arenaTokens.warehouse>=price){
+            arenaTokens.warehouse-=price;
+            return true;
+        }
+    }
+    return false;
 }
 function buyArenaUpgrade(num){
     var perks = []
@@ -330,8 +351,7 @@ function buyArenaUpgrade(num){
     if(arenaType=="Farm")perks=arenaShop.farm
     if(arenaType=="Warehouse")perks=arenaShop.warehouse;
     var perk = perks[num];
-    spendArenaTokens(getPrice(perk));
-    perk.lvl++;
+    if(spendArenaTokens(getPrice(perk))) perk.lvl++;
 }
 
 function getArenaDojoAttackMultiplier(){

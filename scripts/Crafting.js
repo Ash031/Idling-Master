@@ -22,7 +22,7 @@ function getCraftingTable(){
         var item = crafting.items[i];
         string += '<tr><td>'+item.name+'</td><td>';
         for(var j = 0;j<item.cost.length;j++){
-            string += '<p>'+printNumber(Math.floor(Math.pow(item.level,1.5)*item.cost[j].baseCost*getArenaCraftingMultiplier()))+' '+ ores[item.cost[j].ore].name+'</p>';
+            string += '<p>'+printNumber(Math.floor(Math.pow(item.level,1.1)*item.cost[j].baseCost*getArenaCraftingMultiplier()))+' '+ ores[item.cost[j].ore].name+'</p>';
         }
         string += '</td><td>'+printNumber((item.level-1)*item.perLevel)+' '+item.bonus+'</td><td><button onclick="craft('+i+')">Craft</button></td></tr>';
     }
@@ -41,10 +41,10 @@ function nextCraftingPage(){
 function craft(itemN){
     var item = crafting.items[itemN];
     for(var i = 0;i<item.cost.length;i++){
-        if(ores[item.cost[i].ore].quant<Math.floor(Math.pow(item.level,1.5)*item.cost[i].baseCost*getArenaCraftingMultiplier())) return;
+        if(ores[item.cost[i].ore].quant<Math.floor(Math.pow(item.level,1.1)*item.cost[i].baseCost*getArenaCraftingMultiplier())) return;
     }
     for(var i = 0;i<item.cost.length;i++){
-        ores[item.cost[i].ore].quant-=Math.floor(Math.pow(item.level,1.5)*item.cost[i].baseCost*getArenaCraftingMultiplier());
+        ores[item.cost[i].ore].quant-=Math.floor(Math.pow(item.level,1.1)*item.cost[i].baseCost*getArenaCraftingMultiplier());
     }
     crafting.items[itemN].level++;
     loadScreen();

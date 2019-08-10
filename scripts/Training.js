@@ -25,11 +25,13 @@ function trainScream(){
             player.train.attack.scream.progress=0;
             player.train.attack.scream.level+=10;
             player.strength+=10;
+            player.hp+=10;
         }
         else{
             player.train.attack.scream.progress=0;
             player.train.attack.scream.level++;
             player.strength++;
+            player.hp++;
         }
     }
 }
@@ -41,11 +43,13 @@ function trainPunch(){
             player.train.attack.punch.progress=0;
             player.train.attack.punch.level+=10;
             player.strength+=110;
+            player.hp+=110;
         }
         else{
             player.train.attack.punch.progress=0;
             player.train.attack.punch.level++;
             player.strength+=11;
+            player.hp+=11;
         }
     }
 }
@@ -57,11 +61,13 @@ function trainKick(){
             player.train.attack.kick.progress=0;
             player.train.attack.kick.level+=10;
             player.strength+=1210;
+            player.hp+=1210;
         }
         else{
             player.train.attack.kick.progress=0;
             player.train.attack.kick.level++;
             player.strength+=121;
+            player.hp+=121;
         }
     }
 }
@@ -73,11 +79,12 @@ function trainJumpKick(){
             player.train.attack.jumpKick.progress=0;
             player.train.attack.jumpKick.level+=10;
             player.strength+=13310;
+            player.hp+=13310;
         }
         else{
             player.train.attack.jumpKick.progress=0;
             player.train.attack.jumpKick.level++;
-            player.strength+=1331;
+            player.hp+=1331;
         }
     }
 }
@@ -89,11 +96,13 @@ function trainTornadoKick(){
             player.train.attack.tornadoKick.progress=0;
             player.train.attack.tornadoKick.level+=10;
             player.strength+=146410;
+            player.hp+=146410;
         }
         else{
             player.train.attack.tornadoKick.progress=0;
             player.train.attack.tornadoKick.level++;
             player.strength+=14641;
+            player.hp+=14641;
         }
     }
 }
@@ -124,13 +133,13 @@ function trainRest(){
             player.train.defense.rest.progress=0;
             player.train.defense.rest.level+=10;
             player.defense+=110;
-            player.hp+=100;
+            player.hp+=150;
         }
         else{
             player.train.defense.rest.progress=0;
             player.train.defense.rest.level++;
             player.defense+=11;
-            player.hp+=10;
+            player.hp+=15;
         }
     }
 }
@@ -142,14 +151,14 @@ function trainSleep(){
             player.train.defense.sleep.progress=0;
             player.train.defense.sleep.level+=10;
             player.defense+=1210;
-            player.hp+=1000;
+            player.hp+=2250;
             player.hpRegen+=3;
         }
         else{
             player.train.defense.sleep.progress=0;
             player.train.defense.sleep.level++;
             player.defense+=121;
-            player.hp+=100;
+            player.hp+=225;
             player.hpRegen++;
         }
     }
@@ -162,14 +171,14 @@ function trainFall(){
             player.train.defense.fall.progress=0;
             player.train.defense.fall.level+=10;
             player.defense+=13310;
-            player.hp+=10000;
+            player.hp+=33750;
             player.hpRegen+=9;
         }
         else{
             player.train.defense.fall.progress=0;
             player.train.defense.fall.level++;
             player.defense+=1331;
-            player.hp+=1000;
+            player.hp+=3375;
             player.hpRegen+=2;
         }
     }
@@ -182,14 +191,14 @@ function trainBeat(){
             player.train.defense.beat.progress=0;
             player.train.defense.beat.level+=10;
             player.defense+=146410;
-            player.hp+=100000;
+            player.hp+=506250;
             player.hpRegen+=27
         }
         else{
             player.train.defense.beat.progress=0;
             player.train.defense.beat.level++;
             player.defense+=14641;
-            player.hp+=10000;
+            player.hp+=50625;
             player.hpRegen+=4;
         }
     }
