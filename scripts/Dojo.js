@@ -11,7 +11,7 @@ function printDojo(){
 }   
 function printDojoHelp(){
     var string = '<h1 style="text-align: center">Dojo</h1><hr/>';
-    string += '<p>On Dojo you can get money and bonuses to Strength and Defense for bosses.</p><p>You start out on the Zone "Shady Guy", the Red Arrowns on the Zone name are to change Dojo Zones, different Zones have different Enemies which drops different amounts of money.</p><p>The Fight Screen is where everything happens, your info and the enemie\'s info are shown there. The enemy always attacks first</p>'
+    string += '<p>In the Dojo you can get money and bonuses to Strength and Defense for bosses.</p><p>You start out in the Zone "Shady Guy". The Red Arrows on the sides allow you to switch between Dojo Zones. Different Zones have different Enemies which drop different amounts of money.</p><p>The Fight Screen is where everything happens, your info and the enemy\'s info is shown there. The enemy always attacks first.</p>'
     string +="<img style=\"display: block;margin-left: auto;margin-right: auto;height:40%\" src=\""+getImgPath("DojoScreenHelp")+"\"></img>"
     document.getElementById('Screen').innerHTML=string;  
 }
