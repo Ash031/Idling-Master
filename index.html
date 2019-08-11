@@ -57,6 +57,7 @@
                 <button style="width: 100%" class="w3-button w3-dark-gray" onclick="goToBosses()">Bosses</button>
                 <button style="width: 100%" class="w3-button w3-dark-gray" onclick="goToTraining()">Training</button>
                 <button id="Zone1" style="width: 100%" class="w3-button w3-dark-gray" onclick="goToDojo()" disabled>It's Locked Boys</button>
+                <button id="DojoShop" style="width: 100%" class="w3-button w3-dark-gray" onclick="goToShop()" disabled>You gotta Learn...</button>
                 <button id="Zone5" style="width: 100%" class="w3-button w3-dark-gray" onclick="goToArena()" disabled>Wow, I'm Locked</button>
                 <button id="Zone2" style="width: 100%" class="w3-button w3-dark-gray" onclick="goToMine()" disabled>No No No...</button>
                 <button id="Zone3" style="width: 100%" class="w3-button w3-dark-gray" onclick="goToFarm()" disabled>It's not for you today</button>
@@ -76,17 +77,19 @@
                 </div>
                 <button style="width: 100%" class="w3-button w3-dark-gray" id="Rebirth"onclick="goToRegroup()" disabled>Don't click me</button>
                 <button style="width: 100%" class="w3-button w3-dark-gray" id="RebirthShop"onclick="goToRegroupShop()" disabled>Don't click me 2</button>
-                <hr/>
                 <div>    
-                    <h3>Clones:</h3><input style="width: 100%;text-align:center" type="text" id="NClones" value="1" placeholder="Number of Clones">
+                    <h3>Clones:</h3><input style="width: 100%;text-align:center" type="text" id="NClones" value="1" placeholder="Clones">
                     <div class="btn-group">
                         <button style="width: 25%" class="w3-button w3-dark-gray" onclick="assign1Clones()">1X</button>
                         <button style="width: 25%" class="w3-button w3-dark-gray" onclick="assign10Clones()">10X</button>
                         <button style="width: 25%" class="w3-button w3-dark-gray" onclick="assign25Clones()">25X</button>
                         <button style="width: 25%" class="w3-button w3-dark-gray" onclick="assign100Clones()">100X</button>
-                        <button style="width: 100%" class="w3-button w3-dark-gray" onclick="assignAllClones()">MAX</button>
+                        <button style="width: 25%" class="w3-button w3-dark-gray" onclick="assign1percClones()">1%</button>
+                        <button style="width: 25%" class="w3-button w3-dark-gray" onclick="assign10percClones()">10%</button>
+                        <button style="width: 25%" class="w3-button w3-dark-gray" onclick="assign25percClones()">25%</button>
+                        <button style="width: 25%" class="w3-button w3-dark-gray" onclick="assignAllClones()">MAX</button>
                     </div>
-                    <hr/>
+                    <h3>Saving and Loading:</h3>
                     <button style="width: 100%" class="w3-button w3-dark-gray" onclick="save()">Save</button>
                     <button style="width: 100%" class="w3-button w3-dark-gray" onclick="load()">Load</button>
                     <button style="width: 100%" class="w3-button w3-dark-gray" onclick="ExportData()">Export Save</button>

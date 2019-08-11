@@ -84,6 +84,7 @@ function trainJumpKick(){
         else{
             player.train.attack.jumpKick.progress=0;
             player.train.attack.jumpKick.level++;
+            player.strength+=1331;
             player.hp+=1331;
         }
     }
@@ -152,7 +153,7 @@ function trainSleep(){
             player.train.defense.sleep.level+=10;
             player.defense+=1210;
             player.hp+=2250;
-            player.hpRegen+=3;
+            player.hpRegen+=10;
         }
         else{
             player.train.defense.sleep.progress=0;
@@ -172,7 +173,7 @@ function trainFall(){
             player.train.defense.fall.level+=10;
             player.defense+=13310;
             player.hp+=33750;
-            player.hpRegen+=9;
+            player.hpRegen+=20;
         }
         else{
             player.train.defense.fall.progress=0;
@@ -192,7 +193,7 @@ function trainBeat(){
             player.train.defense.beat.level+=10;
             player.defense+=146410;
             player.hp+=506250;
-            player.hpRegen+=27
+            player.hpRegen+=40
         }
         else{
             player.train.defense.beat.progress=0;
@@ -367,6 +368,117 @@ function deAssignClonesSleep(){
     loadScreen();
 }
 
+function calStrengthPerSec(){
+    var ret = 0;
+    var amount = assignedClones.train.attack.scream*0.1; 
+    if(amount>=10)ret +=10;
+    else if(amount>=1) ret++;
+    else ret+=amount;
+    amount = assignedClones.train.attack.punch*0.01; 
+    if(amount>=10)ret +=110;
+    else if(amount>=1) ret+=11;
+    else ret+=amount*11;
+    amount = assignedClones.train.attack.kick*0.001; 
+    if(amount>=10)ret +=1210;
+    else if(amount>=1) ret+=121;
+    else ret+=amount*121;
+    amount = assignedClones.train.attack.jumpKick*0.0001; 
+    if(amount>=10)ret +=13310;
+    else if(amount>=1) ret+=1331;
+    else ret+=amount*1331;
+    amount = assignedClones.train.attack.tornadoKick*0.00001; 
+    if(amount>=10)ret +=146410;
+    else if(amount>=1) ret+=14641;
+    else ret+=amount*14641;
+    return ret;
+}
+
+function calDefensePerSec(){
+    var ret = 0;
+    var amount = assignedClones.train.defense.eat*0.1; 
+    if(amount>=10)ret +=10;
+    else if(amount>=1) ret++;
+    else ret+=amount;
+    amount = assignedClones.train.defense.rest*0.01; 
+    if(amount>=10)ret +=110;
+    else if(amount>=1) ret+=11;
+    else ret+=amount*11;
+    amount = assignedClones.train.defense.sleep*0.001; 
+    if(amount>=10)ret +=1210;
+    else if(amount>=1) ret+=121;
+    else ret+=amount*121;
+    amount = assignedClones.train.defense.fall*0.0001; 
+    if(amount>=10)ret +=13310;
+    else if(amount>=1) ret+=1331;
+    else ret+=amount*1331;
+    amount = assignedClones.train.defense.beat*0.00001; 
+    if(amount>=10)ret +=146410;
+    else if(amount>=1) ret+=14641;
+    else ret+=amount*14641;
+    return ret;
+}
+
+function calRegenPerSec(){
+    var ret = 0;
+    var amount = assignedClones.train.defense.sleep*0.001; 
+    if(amount>=10)ret +=10;
+    else if(amount>=1) ret+=1;
+    else ret+=amount*1;
+    amount = assignedClones.train.defense.fall*0.0001; 
+    if(amount>=10)ret +=20;
+    else if(amount>=1) ret+=2;
+    else ret+=amount*2;
+    amount = assignedClones.train.defense.beat*0.00001; 
+    if(amount>=10)ret +=40;
+    else if(amount>=1) ret+=4;
+    else ret+=amount*4;
+    return ret;
+}
+
+function calHPPerSec(){
+    var ret = 0;
+    var amount = assignedClones.train.defense.eat*0.1; 
+    if(amount>=10)ret +=10;
+    else if(amount>=1) ret++;
+    else ret+=amount;
+    amount = assignedClones.train.defense.rest*0.01; 
+    if(amount>=10)ret +=150;
+    else if(amount>=1) ret+=15;
+    else ret+=amount*15;
+    amount = assignedClones.train.defense.sleep*0.001; 
+    if(amount>=10)ret +=2250;
+    else if(amount>=1) ret+=225;
+    else ret+=amount*225;
+    amount = assignedClones.train.defense.fall*0.0001; 
+    if(amount>=10)ret +=33750;
+    else if(amount>=1) ret+=3375;
+    else ret+=amount*3375;
+    amount = assignedClones.train.defense.beat*0.00001; 
+    if(amount>=10)ret +=506250;
+    else if(amount>=1) ret+=50625;
+    else ret+=amount*50625;
+    amount = assignedClones.train.attack.scream*0.1; 
+    if(amount>=10)ret +=10;
+    else if(amount>=1) ret++;
+    else ret+=amount;
+    amount = assignedClones.train.attack.punch*0.01; 
+    if(amount>=10)ret +=110;
+    else if(amount>=1) ret+=11;
+    else ret+=amount*11;
+    amount = assignedClones.train.attack.kick*0.001; 
+    if(amount>=10)ret +=1210;
+    else if(amount>=1) ret+=121;
+    else ret+=amount*121;
+    amount = assignedClones.train.attack.jumpKick*0.0001; 
+    if(amount>=10)ret +=13310;
+    else if(amount>=1) ret+=1331;
+    else ret+=amount*1331;
+    amount = assignedClones.train.attack.tornadoKick*0.00001; 
+    if(amount>=10)ret +=146410;
+    else if(amount>=1) ret+=14641;
+    else ret+=amount*14641;
+    return ret;
+}
 
 //UI 
 function printTraining(){
@@ -376,23 +488,23 @@ function printTraining(){
     
     string += '<p>Scream(Level '+player.train.attack.scream.level+'): '+assignedClones.train.attack.scream+' clones assigned</p>';
     string += '<button style="height: 5%" class="w3-button w3-green" onclick="assignClonesScream()">+</button>';
-    string += '<button style="height: 5%" class="w3-button w3-green" onclick="deAssignClonesScream()">-</button>'+parseInt(player.train.attack.scream.progress/1000)+'% to Next level<br/>';
+    string += '<button style="height: 5%" class="w3-button w3-red" onclick="deAssignClonesScream()">-</button>'+parseInt(player.train.attack.scream.progress/1000)+'% to Next level<br/>';
     if(unlockedTraining("Punch")){
         string += '<p>Punch(Level '+player.train.attack.punch.level+'): '+assignedClones.train.attack.punch+' clones assigned</p>';
         string += '<button style="height: 5%" class="w3-button w3-green" onclick="assignClonesPunch()">+</button>';
-        string += '<button style="height: 5%" class="w3-button w3-green" onclick="deAssignClonesPunch()">-</button>'+parseInt(player.train.attack.punch.progress/1000)+'% to Next level<br/>';
+        string += '<button style="height: 5%" class="w3-button w3-red" onclick="deAssignClonesPunch()">-</button>'+parseInt(player.train.attack.punch.progress/1000)+'% to Next level<br/>';
         if(unlockedTraining("Kick")){
             string += '<p>Kick(Level '+player.train.attack.kick.level+'): '+assignedClones.train.attack.kick+' clones assigned</p>';
             string += '<button style="height: 5%" class="w3-button w3-green" onclick="assignClonesKick()">+</button>';
-            string += '<button style="height: 5%" class="w3-button w3-green" onclick="deAssignClonesKick()">-</button>'+parseInt(player.train.attack.kick.progress/1000)+'% to Next level<br/>';
+            string += '<button style="height: 5%" class="w3-button w3-red" onclick="deAssignClonesKick()">-</button>'+parseInt(player.train.attack.kick.progress/1000)+'% to Next level<br/>';
             if(unlockedTraining("JumpKick")){
                 string += '<p>JumpKick(Level '+player.train.attack.jumpKick.level+'): '+assignedClones.train.attack.jumpKick+' clones assigned</p>';
                 string += '<button style="height: 5%" class="w3-button w3-green" onclick="assignClonesJumpKick()">+</button>';
-                string += '<button style="height: 5%" class="w3-button w3-green" onclick="deAssignClonesJumpKick()">-</button>'+parseInt(player.train.attack.jumpKick.progress/1000)+'% to Next level<br/>';
+                string += '<button style="height: 5%" class="w3-button w3-red" onclick="deAssignClonesJumpKick()">-</button>'+parseInt(player.train.attack.jumpKick.progress/1000)+'% to Next level<br/>';
                 if(unlockedTraining("Tornado")){
-                    string += '<p>TonadoKick(Level '+player.train.attack.tornadoKick.level+'): '+assignedClones.train.attack.tornadoKick+' clones assigned</p>';
+                    string += '<p>TornadoKick(Level '+player.train.attack.tornadoKick.level+'): '+assignedClones.train.attack.tornadoKick+' clones assigned</p>';
                     string += '<button style="height: 5%" class="w3-button w3-green" onclick="assignClonesTornadoKick()">+</button>';
-                    string += '<button style="height: 5%" class="w3-button w3-green" onclick="deAssignClonesTornadoKick()">-</button>'+parseInt(player.train.attack.tornadoKick.progress/1000)+'% to Next level<br/>';
+                    string += '<button style="height: 5%" class="w3-button w3-red" onclick="deAssignClonesTornadoKick()">-</button>'+parseInt(player.train.attack.tornadoKick.progress/1000)+'% to Next level<br/>';
                 }
             }
         }
@@ -402,28 +514,29 @@ function printTraining(){
     
     string += '<p>Eat(Level '+player.train.defense.eat.level+'): '+assignedClones.train.defense.eat+' clones assigned</p>';
     string += '<button style="height: 5%" class="w3-button w3-green" onclick="assignClonesEat()">+</button>';
-    string += '<button style="height: 5%" class="w3-button w3-green" onclick="deAssignClonesEat()">-</button>'+parseInt(player.train.defense.eat.progress/1000)+'% to Next level<br/>';
+    string += '<button style="height: 5%" class="w3-button w3-red" onclick="deAssignClonesEat()">-</button>'+parseInt(player.train.defense.eat.progress/1000)+'% to Next level<br/>';
         if(unlockedTraining("Punch")){
         string += '<p>Rest(Level '+player.train.defense.rest.level+'): '+assignedClones.train.defense.rest+' clones assigned</p>';
         string += '<button style="height: 5%" class="w3-button w3-green" onclick="assignClonesRest()">+</button>';
-        string += '<button style="height: 5%" class="w3-button w3-green" onclick="deAssignClonesRest()">-</button>'+parseInt(player.train.defense.rest.progress/1000)+'% to Next level<br/>';
+        string += '<button style="height: 5%" class="w3-button w3-red" onclick="deAssignClonesRest()">-</button>'+parseInt(player.train.defense.rest.progress/1000)+'% to Next level<br/>';
         if(unlockedTraining("Kick")){
             string += '<p>Sleep(Level '+player.train.defense.sleep.level+'): '+assignedClones.train.defense.sleep+' clones assigned</p>';
             string += '<button style="height: 5%" class="w3-button w3-green" onclick="assignClonesSleep()">+</button>';
-            string += '<button style="height: 5%" class="w3-button w3-green" onclick="deAssignClonesSleep()">-</button>'+parseInt(player.train.defense.sleep.progress/1000)+'% to Next level<br/>';
+            string += '<button style="height: 5%" class="w3-button w3-red" onclick="deAssignClonesSleep()">-</button>'+parseInt(player.train.defense.sleep.progress/1000)+'% to Next level<br/>';
             if(unlockedTraining("JumpKick")){
                 string += '<p>Fall(Level '+player.train.defense.fall.level+'): '+assignedClones.train.defense.fall+' clones assigned</p>';
                 string += '<button style="height: 5%" class="w3-button w3-green" onclick="assignClonesFall()">+</button>';
-                string += '<button style="height: 5%" class="w3-button w3-green" onclick="deAssignClonesFall()">-</button>'+parseInt(player.train.defense.fall.progress/1000)+'% to Next level<br/>';
+                string += '<button style="height: 5%" class="w3-button w3-red" onclick="deAssignClonesFall()">-</button>'+parseInt(player.train.defense.fall.progress/1000)+'% to Next level<br/>';
                 if(unlockedTraining("Tornado")){
                     string += '<p>Beat(Level '+player.train.defense.beat.level+'): '+assignedClones.train.defense.beat+' clones assigned</p>';
                     string += '<button style="height: 5%" class="w3-button w3-green" onclick="assignClonesBeat()">+</button>';
-                    string += '<button style="height: 5%" class="w3-button w3-green" onclick="deAssignClonesBeat()">-</button>'+parseInt(player.train.defense.beat.progress/1000)+'% to Next level<br/>';
+                    string += '<button style="height: 5%" class="w3-button w3-red" onclick="deAssignClonesBeat()">-</button>'+parseInt(player.train.defense.beat.progress/1000)+'% to Next level<br/>';
                 }
             }
         }
     }
     string += '</div>';
+    string+="<br/><hr/><h2>Stats Gained per Second:</h2><p><b>Strength Per Second: </b>"+printNumber(calStrengthPerSec())+'</p><p><b>Defense per Second: </b>'+printNumber(calDefensePerSec())+'</p><p><b>HP per Second: </b>'+calHPPerSec()+'</p><p><b>HP Regen per Second: </b>'+calRegenPerSec()+'</p>';
     document.getElementById('Screen').innerHTML=string;
 }
 

@@ -8,7 +8,7 @@ function printDojo(){
     string += '<hr/><div><p><b>'+getNextZoneInfo()+'</b></p></div>'
     document.getElementById('Screen').innerHTML=string;   
     printDojoFight();
-}
+}   
 function printDojoHelp(){
     var string = '<h1 style="text-align: center">Dojo</h1><hr/>';
     string += '<p>On Dojo you can get money and bonuses to Strength and Defense for bosses.</p><p>You start out on the Zone "Shady Guy", the Red Arrowns on the Zone name are to change Dojo Zones, different Zones have different Enemies which drops different amounts of money.</p><p>The Fight Screen is where everything happens, your info and the enemie\'s info are shown there. The enemy always attacks first</p>'
@@ -107,6 +107,7 @@ function generateEnemy(){
     dojoEnemy.attack = enemy.attack;
     dojoEnemy.defense = enemy.defense;
     dojoEnemy.prize = enemy.prize;
+    if(lifeStats.totalDojoEnemies>=10)unlockButton("DojoShop")
     loadScreen();
 }
 
@@ -116,7 +117,6 @@ function printDojoFight(){
     string += '<h2><b>HP</b>: '+printNumber(dojoStats.curhp)+'/'+printNumber(dojoStats.hp)+'</h2>';
     string += '<h2><b>Attack</b>: '+printNumber(getDojoAttackStatRaw())+'</h2>';
     string += '<h2><b>Defense</b>: '+printNumber(getDojoDefenseStatRaw())+'</h2>';
-    if(stats.totalDojoEnemies>=10) string += '<button style="width: 100%" class="w3-button w3-green" onclick="goToShop()">Secret Shop</button>';
     string += '</div><div class="w3-col m6 l6">';
     string += '<h1><b>'+dojoEnemy.name+'</b></h>';
     string += '<h2><b>HP</b>: '+printNumber(dojoEnemy.curhp)+'/'+printNumber(dojoEnemy.hp)+'</h2>';

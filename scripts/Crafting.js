@@ -2,7 +2,7 @@ function printCrafting(){
     var string = '<h1 style="text-align:center">Crafting</h1><hr/>'
     string += '<div class="w3-col l3 m3"><h2>Ores</h2>'
     string += getOres();
-    string += '</div>';
+    string += '<button onClick="goToMine()">Go back</button></div>';
     string += '<div class = "w3-col l9 m9"><h2>Crafting Recipes</h2>'
     string += '<table class="w3-table-all">';
     string += getCraftingTable();
@@ -24,7 +24,7 @@ function getCraftingTable(){
         for(var j = 0;j<item.cost.length;j++){
             string += '<p>'+printNumber(Math.floor(Math.pow(item.level,1.1)*item.cost[j].baseCost*getArenaCraftingMultiplier()))+' '+ ores[item.cost[j].ore].name+'</p>';
         }
-        string += '</td><td>'+printNumber((item.level-1)*item.perLevel)+' '+item.bonus+'</td><td><button onclick="craft('+i+')">Craft</button></td></tr>';
+        string += '</td><td>'+printNumber(1+(item.level-1)*item.perLevel)+'X '+item.bonus+'</td><td><button onclick="craft('+i+')">Craft</button></td></tr>';
     }
     return string;
 }

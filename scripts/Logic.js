@@ -18,6 +18,17 @@ function assign25Clones(){
 function assign100Clones(){
     document.getElementById('NClones').value=100;
 }
+function assign1percClones(){
+    document.getElementById('NClones').value=Math.ceil(player.maxClones/100);
+}
+
+function assign10percClones(){
+    document.getElementById('NClones').value=Math.ceil(player.maxClones/10);
+}
+
+function assign25percClones(){
+    document.getElementById('NClones').value=Math.ceil(player.maxClones/4);
+}
 function getClones(){
     var clones = parseInt(document.getElementById('NClones').value)
     if(isNaN(clones)) clones=0;
@@ -300,6 +311,7 @@ function initGame(){
     loadPlayerScreen();
     loadTutorial();
     options.menu="none";
+    if(lifeStats.totalDojoEnemies>=10)unlockButton("DojoShop")
     setInterval(passSecond,1000);
     setInterval(save,60000);
 }
@@ -445,6 +457,8 @@ function lockAllButtons(){
     document.getElementById("Rebirth").disabled=true;
     document.getElementById("RebirthShop").innerHTML="Don't click me 2";
     document.getElementById("RebirthShop").disabled=true;
+    document.getElementById("DojoShop").innerHTML="You gotta Learn...";
+    document.getElementById("DojoShop").disabled=true;
 }
 
 function clone(obj) {

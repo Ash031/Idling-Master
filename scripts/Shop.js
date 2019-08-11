@@ -1,6 +1,5 @@
 function printShop(){
     var string = "<h1 style='text-align:center'>Welcome to The Shop</h1><hr/>";
-    string += "<button class='w3-button w3-green' onclick='goToDojo()'>Go Back</button>"
     string += "<table class='w3-table-all'>";
     string += "<tr><td><p>+1 Attack</p><button onclick='buy(1)'>20 Moneys</button></td><td>"
     string += "<p>+1 HP</p><button onclick='buy(2)'>10 Moneys</button></td><td>"

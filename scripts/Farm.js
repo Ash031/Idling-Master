@@ -98,7 +98,7 @@ function Plant(plotN){
 
 function Harvest(plotN){
     if (plots[plotN].crop!=-1){
-        var growth = getCrop(plots[plotN].crop,plots[plotN].curTime,plotN,plots[plotN].level);
+        var growth = getCrop(plots[plotN].crop,plots[plotN].curTime,plots[plotN].level);
         giveXPToPlot(plotN,growth);
         plots[plotN].crop = -1;
         plots[plotN].curTime=0;
