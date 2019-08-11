@@ -197,7 +197,7 @@ function printBoss(){
 }
 function printBossHelp(){
     var string = '<h1 style="text-align: center">Boss Menu</h1><hr/>';
-    string += '<p>On This Screen you fight Bosses to unlock different Areas of the game</p><p>The enemy Boss attacks first and doesn\'t regenerate healh, so you can take your time!</p>'
+    string += '<p>On this screen you fight Bosses to unlock different Areas of the game.</p><p>The enemy Boss attacks first and doesn\'t regenerate healh, so you can take your time!</p>'
     document.getElementById('Screen').innerHTML=string;
 }
 
