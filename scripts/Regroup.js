@@ -110,15 +110,6 @@ function rebirthFarm(){
         plot.curTime=plot.xp=plot.level=0;
         plot.got=false;
     })
-    farmStats.ClonesAmountMult=1;
-    farmStats.ClonesPowerMult=1;
-    farmStats.attack=1;
-    farmStats.defense=1;
-    farmStats.mining=1;
-    farmStats.farmXPMult=1;
-    farmStats.farmDropMult=1;
-    farmStats.GoldMult=1;
-    farmStats.dojoMult =1;
 }
 
 function rebirthWarehouse(){
