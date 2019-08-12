@@ -36,6 +36,7 @@ function getClones(){
 }
 
 function setRLevels(perks,gameVersion){
+    console.log(gameVersion)
     if(gameVersion=="1.0" || gameVersion=="1.0.1"){
         for(var i=0;i<3;i++){rebirthPerks[i].lvl=perks[i]}
         rebirthPerks[3].lvl=0;
@@ -45,7 +46,11 @@ function setRLevels(perks,gameVersion){
     if(gameVersion.substr(0,5)=="1.0.2"){
         for(var i=0;i<4;i++){rebirthPerks[i].lvl=perks[i]}
         rebirthPerks[4].lvl=0;
-        for(var i=5;i<perks.length;i++){rebirthPerks[i].lvl=perks[i-2]}
+        for(var i=5;i<perks.length;i++){rebirthPerks[i].lvl=perks[i-1]}
+    }
+    if(gameVersion=="1.0.3"){
+        for(var i=0;i<5;i++){rebirthPerks[i].lvl=perks[i]}
+        for(var i=5;i<perks.length-1;i++){rebirthPerks[i].lvl=perks[i+1]}
     }
     if(gameVersion==version) {
         for(var i=0;i<perks.length;i++){rebirthPerks[i].lvl=perks[i]}
