@@ -36,7 +36,7 @@ function getRBTable(){
     var i = 0;
     rebirthPerks.forEach(e=>{
         if(stats.highestBoss>=e.boss){
-            string+="<tr><td>"+e.name+"</td><td style='text-align:center'>"+e.lvl+"</td><td style='text-align:center'>"+getPrice(e)+"</td><td style='text-align:center'>"+e.Description+"</td><td style='text-align:center'>"+printNumber(e.Bonus*e.lvl)+"</td><td><button onClick='upgradeRP("+i+")'"
+            string+="<tr><td>"+e.name+"</td><td style='text-align:center'>"+e.lvl+"</td><td style='text-align:center'>"+printNumber(getPrice(e))+"</td><td style='text-align:center'>"+e.Description+"</td><td style='text-align:center'>"+printNumber(e.Bonus*e.lvl)+"</td><td><button onClick='upgradeRP("+i+")'"
             if(getPrice(e)>rebirth.rbPoints || (e.maxLevel!=-1 && e.maxLevel<=e.lvl)) string += "disabled"
             string += ">Level Up!</button></td></tr>";
         }
@@ -92,8 +92,8 @@ function RBPointsAmount(){
     var mult = Math.log10(lifeStats.totalSeconds)*Math.log10(lifeStats.totalDojoEnemies)*lifeStats.totalBossesKilles;
     if (isNaN(mult) || mult ==-Infinity) return 0;
     if(lifeStats.totalOresMined>10)mult*=Math.log10(lifeStats.totalOresMined);
-    if(lifeStats.totalCropsGrown>10)mult+=Math.log10(lifeStats.totalCropsGrown);
-    if(lifeStats.totalRankUpsWarehouse>0 && lifeStats.totalContractsDone>10)mult+=lifeStats.totalRankUpsWarehouse*Math.log10(lifeStats.totalContractsDone);
+    if(lifeStats.totalCropsGrown>10)mult*=Math.log10(lifeStats.totalCropsGrown);
+    if(lifeStats.totalRankUpsWarehouse>0 && lifeStats.totalContractsDone>10)mult*=lifeStats.totalRankUpsWarehouse*Math.log10(lifeStats.totalContractsDone);
     return Math.floor(mult);
 }
 
