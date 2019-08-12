@@ -536,7 +536,7 @@ function printTraining(){
         }
     }
     string += '</div>';
-    string+="<br/><hr/><h2>Stats Gained per Second:</h2><p><b>Strength Per Second: </b>"+printNumber(calStrengthPerSec())+'</p><p><b>Defense per Second: </b>'+printNumber(calDefensePerSec())+'</p><p><b>HP per Second: </b>'+calHPPerSec()+'</p><p><b>HP Regen per Second: </b>'+calRegenPerSec()+'</p>';
+    string+="<br/><hr/><h2>Stats Gained per Second:</h2><p><b>Strength Per Second: </b>"+printNumber(calStrengthPerSec())+'</p><p><b>Defense per Second: </b>'+printNumber(calDefensePerSec())+'</p><p><b>HP per Second: </b>'+printNumber(calHPPerSec())+'</p><p><b>HP Regen per Second: </b>'+printNumber(calRegenPerSec())+'</p>';
     document.getElementById('Screen').innerHTML=string;
 }
 
