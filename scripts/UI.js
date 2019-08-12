@@ -83,11 +83,11 @@ function printStats(){
 
 function loadTutorial(){
     var string = '<h1 style="text-align: center">Welcome to Idling Master</h1><hr/>';
-    string += "<p> Welcome to Idling Master, on this game you have the power to multiply yourself, with that power you decide to fight the local Bosses League. Do you have what it takes to overtake the challenge?</p>"
-    string+= "<p>You should start by heading out to the Training Area and get stronger to defeat the bosses on the Bosses Area.</p>"
-    string+="<p>There are some locked areas too that you unlock by beating bosses. These new Menus unlock new ways to get stronger using your clones.</p>"
-    string+="<p>If the game tries to Download a file automatically when you open the game, please download it since it happens when you open an old SaveFile to a new version. It is design this way so if an update somehow brakes your save you automatically have a backup save.</p>"
-    string+="<p>I hope you have fun with the game.</p><p>Have any questions or want to suggest stuff? Go to <a href=\"https://discord.gg/Txmw5ny\">Discord</a> and tell me. There is also a TODO list there so if you wanna checkout stuff that will be added to the game hop on and have fun!</p>"
+    string += "<p>Welcome to Idling Master! In this game you have the power to clone yourself, with that power you decide to fight the local Bosses League. Do you have what it takes to overtake the challenge?</p>"
+    string += "<p>You should start by heading over to the Training Area and get stronger, in order to defeat the bosses in the Bosses Area.</p>"
+    string+="<p>There are some locked areas as well, which you unlock by beating bosses. These new Menus unlock new ways to get stronger using your clones.</p>"
+    string+="<p>If the game tries to download a file automatically when you open the game, please download it since it happens when you open an old SaveFile in a new version. It is designed this way so that if an update somehow breaks your save you automatically have a backup save.</p>"
+    string+="<p>I hope you enjoy the game.</p><p>Have any questions or want to suggest stuff? Go to <a href=\"https://discord.gg/Txmw5ny\">Discord</a> and tell me. There is also a TODO list there, so if you wanna checkout stuff that will be added to the game in the future, hop on and have fun!</p>"
     string+="<p>Thanks for trying this game out!</p><hr/>"
     string+="<h1>Changelog:</h1><ul><li>1.0.1</li><ul><li>Added some bug fixes</li><li>Added Ores amount to Crafting Page</li><li>Added Help Pages</li></ul><li>1.0.2<ul><li>Added a Log To Arena Fights</li><li>Added a new Rebirth Perk</li>"
     string+="<li>Nerfed late game Rebirth Point Gain</li><li>Buffed Early Game Rebirth Perks</li></ul><li>1.0.2.1<ul><li>Fixed some more bugs</li><li>Buffed Regroup Shop even more</li><li>Added a new place to check the version</li></ul></li><li>1.0.2.2<ul><li>Bug Fixes</li><li>Small UI Changes</li></ul></li></ul>"
@@ -206,7 +206,7 @@ function printTime(seconds){
     if(seconds<60) return "00:"+seconds
     if(seconds<600) {
         var minutes = Math.floor(seconds/60);
-        seconds=Math.ceil(seconds%60);
+        seconds=seconds%60;
         if(seconds<10) return "0"+minutes+":0"+seconds;
         return "0"+minutes+":"+seconds;
     }
@@ -214,7 +214,7 @@ function printTime(seconds){
         var minutes = Math.floor(seconds/60)
         seconds -= minutes*60;
         if(seconds<10) return minutes+":0"+seconds
-        return minutes+":"+Math.ceil(seconds%60)
+        return minutes+":"+seconds%60
     }
     var hours = Math.floor(seconds/3600);
     seconds-=hours*3600
@@ -225,7 +225,7 @@ function printTime(seconds){
 
 function loadPlayerScreen(){
     var string = "<h1>Player Stats:</h1><hr/>";
-    string+= '<h4>HP:'+printNumber(player.curhp)+'/'+printNumber(getHP())+'</h4>';
+    string+= '<h4>HP:'+printNumber(player.curhp)+'/'+printNumber(player.hp)+'</h4>';
     string+= '<h4>Strength:'+printNumber(getRawStrength())+'</h4>';
     string+= '<h4>Defense:'+printNumber(getRawDefense())+'</h4>';
     string+= '<h4>Clone Counter:'+printNumber(player.idleClones)+'/'+printNumber(player.maxClones)+'</h4>';
