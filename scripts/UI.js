@@ -206,7 +206,7 @@ function printTime(seconds){
     if(seconds<60) return "00:"+seconds
     if(seconds<600) {
         var minutes = Math.floor(seconds/60);
-        seconds=seconds%60;
+        seconds=Math.ceil(seconds%60);
         if(seconds<10) return "0"+minutes+":0"+seconds;
         return "0"+minutes+":"+seconds;
     }
@@ -214,7 +214,7 @@ function printTime(seconds){
         var minutes = Math.floor(seconds/60)
         seconds -= minutes*60;
         if(seconds<10) return minutes+":0"+seconds
-        return minutes+":"+seconds%60
+        return minutes+":"+Math.ceil(seconds%60)
     }
     var hours = Math.floor(seconds/3600);
     seconds-=hours*3600
