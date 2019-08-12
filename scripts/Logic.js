@@ -48,10 +48,6 @@ function setRLevels(perks,gameVersion){
         rebirthPerks[4].lvl=0;
         for(var i=5;i<perks.length;i++){rebirthPerks[i].lvl=perks[i-1]}
     }
-    if(gameVersion=="1.0.3"){
-        for(var i=0;i<5;i++){rebirthPerks[i].lvl=perks[i]}
-        for(var i=5;i<perks.length-1;i++){rebirthPerks[i].lvl=perks[i+1]}
-    }
     if(gameVersion==version) {
         for(var i=0;i<perks.length;i++){rebirthPerks[i].lvl=perks[i]}
 
