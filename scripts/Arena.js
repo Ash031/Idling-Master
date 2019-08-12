@@ -348,7 +348,7 @@ function buyArenaUpgrade(num){
     var perks = []
     if(arenaType=="Dojo")perks=arenaShop.dojo
     if(arenaType=="Mine")perks=arenaShop.mine
-    if(arenaType=="Farm")perks=arenaShop.farm
+    if(arenaType=="Farm")perks=arenaShop.Farm
     if(arenaType=="Warehouse")perks=arenaShop.warehouse;
     var perk = perks[num];
     if(spendArenaTokens(getPrice(perk))) perk.lvl++;
