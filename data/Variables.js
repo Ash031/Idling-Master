@@ -1,4 +1,4 @@
-var version = "1.0.2.2"
+var version = "1.0.3"
 
 var shopAmount = 1;
 
@@ -134,6 +134,17 @@ var rebirthPerks = [
         boss:5,
         maxLevel:-1,
         type: "MoneyMult"
+    },
+    {
+        name:"Apples For Days",
+        basePrice:10,
+        lvl:0,
+        step:"*1",
+        Description:"You get 100% more HP each Upgrade",
+        Bonus:1,
+        boss:5,
+        maxLevel:-1,
+        type: "HP"
     },
     {
         name:"XRay Vision",

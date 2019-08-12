@@ -21,7 +21,7 @@ function getOreTables(){
         string += '<tr>';
         for(var j=0;j<3;j++){
             var ore = i*3+j;
-            string +='<td><p style="text-align:center">'+ores[ore].name+'</p><button class="w3-button w3-green" onclick="removeCloneToOre('+ore+');">-</button>'+printNumber(ores[ore].clones+getArenaMiners())+'<button style="float:right"class="w3-button w3-green" onclick="addCloneToOre('+ore+')">+</button></td>';
+            string +='<td><p style="text-align:center">'+ores[ore].name+' ('+printNumber(minePerSec(ore))+'/s)</p><button class="w3-button w3-red" onclick="removeCloneToOre('+ore+');">-</button>'+printNumber(ores[ore].clones+getArenaMiners())+'<button style="float:right"class="w3-button w3-green" onclick="addCloneToOre('+ore+')">+</button></td>';
         }
         string += '</tr>';
     }

@@ -35,13 +35,19 @@ function getClones(){
     return clones;
 }
 
-function setRLevels(perks,version){
-    if(version=="1.0" || version=="1.0.1"){
+function setRLevels(perks,gameVersion){
+    if(gameVersion=="1.0" || gameVersion=="1.0.1"){
         for(var i=0;i<3;i++){rebirthPerks[i].lvl=perks[i]}
         rebirthPerks[3].lvl=0;
-        for(var i=4;i<perks.length;i++){rebirthPerks[i].lvl=perks[i-1]}
+        rebirthPerks[4].lvl=0;
+        for(var i=5;i<perks.length;i++){rebirthPerks[i].lvl=perks[i-2]}
     }
-    else {
+    if(gameVersion.substr(0,5)=="1.0.2"){
+        for(var i=0;i<4;i++){rebirthPerks[i].lvl=perks[i]}
+        rebirthPerks[4].lvl=0;
+        for(var i=5;i<perks.length;i++){rebirthPerks[i].lvl=perks[i-2]}
+    }
+    if(gameVersion==version) {
         for(var i=0;i<perks.length;i++){rebirthPerks[i].lvl=perks[i]}
 
     }
@@ -96,6 +102,7 @@ function ImportData() {
     Importload(atob(save));
 }
 function ExportData() {
+    save();
     download("Idling Master.txt",btoa(localStorage.getItem("save")))
 }
 function download(filename, text) {
@@ -112,14 +119,14 @@ function download(filename, text) {
   }
   function updateVersion(oldVersion){
       if(version.substr(0,5)!=oldVersion.substr(0,5)) ExportData();
-      if(oldVersion=="1.0"){
-          
+      if(oldVersion.substr(0,5)=="1.0"||oldVersion.substr(0,5)=="1.0.1"||oldVersion.substr(0,5)=="1.0.2"){
+          farmStats.hp=1;
       }
   }
 function updateVersionImport(oldVersion){
-      if(oldVersion=="1.0"){
-          
-      }
+    if(oldVersion.substr(0,5)=="1.0"||oldVersion.substr(0,5)=="1.0.1"||oldVersion.substr(0,5)=="1.0.2"){
+        farmStats.hp=1;
+    }
   }
 
 function generateOffline(offlineTime){
@@ -215,6 +222,9 @@ function getCraftingAttack(){
 function getFarmAttack(){
     return farmStats.attack;
 }
+function getFarmHP(){
+    return farmStats.hp;
+}
 
 function getFarmDefense(){
     return farmStats.defense;
@@ -230,6 +240,13 @@ function getStrength(){
         *getWarehouseStrength()
         *crit());
 }
+function getHP(){
+    return Math.floor(player.hp
+        *(1+dojoStats.hp/100)
+        *getCraftingHp()
+        *getRBHP()
+        *getFarmHP());
+}
 
 function getRawStrength(){
     return Math.floor(player.strength
@@ -244,6 +261,16 @@ function getCraftingDefense(){
     var ret = 1.0;
     for(var i = 0;i<crafting.items.length;i++){
         if(crafting.items[i].bonus=="Defense"||crafting.items[i].bonus=="Mixed"){
+            ret += (crafting.items[i].level-1)*crafting.items[i].perLevel;
+        }
+    }
+    return ret;
+}
+
+function getCraftingHp(){
+    var ret = 1.0;
+    for(var i = 0;i<crafting.items.length;i++){
+        if(crafting.items[i].bonus=="HP"||crafting.items[i].bonus=="Mixed"){
             ret += (crafting.items[i].level-1)*crafting.items[i].perLevel;
         }
     }

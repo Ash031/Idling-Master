@@ -119,6 +119,7 @@ function getCrop(cropN,time,lvl){
     var type = crop.type;
     if(type=="Attack")  farmStats.attack+=bonus;
     else if(type=="Defense")    farmStats.defense+=bonus;
+    else if(type=="HP")    farmStats.hp+=bonus;
     else if(type=="Gold")   player.money+=bonus;
     else if(type=="Mining") farmStats.mining+=bonus;
     else if(type=="FarmXP") farmStats.farmXPMult+=bonus;

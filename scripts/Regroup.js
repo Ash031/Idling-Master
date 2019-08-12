@@ -51,7 +51,7 @@ function upgradeRP(perkN){
     if(rebirth.rbPoints>=price && (obj.lvl<obj.maxLevel || obj.maxLevel==-1)){
         rebirth.rbPoints-=price;
         rebirthPerks[perkN].lvl++;
-        if(perkN==0) addClonesRaw(1)
+        if(perkN==0) addClonesRaw(3)
     }
     loadScreen();
 }
@@ -64,6 +64,9 @@ function crit(){
 
 function getRBAttack(){
     return getBonusRebirth("Strength")
+}
+function getRBHP(){
+    return getBonusRebirth("HP")
 }
 function getRBDefense(){
     return getBonusRebirth("Defense")

@@ -10,7 +10,8 @@ var farmStats = {
     GoldMult: 1,
     ClonesAmountMult: 1,
     ClonesPowerMult: 1,
-    dojoMult: 1
+    dojoMult: 1,
+    hp:1
 }
 
 var crops = [
@@ -26,6 +27,13 @@ var crops = [
         growthTime : 300,
         bonus:0.05,
         type: "Defense",
+        unlockAt:1
+    },
+    {
+        name : 'Potato',
+        growthTime : 300,
+        bonus:0.10,
+        type: "HP",
         unlockAt:1
     },
     { 
