@@ -119,15 +119,12 @@ function download(filename, text) {
     document.body.removeChild(element);
   }
   function updateVersion(oldVersion){
+      console.log(1);
       if(version.substr(0,5)!=oldVersion.substr(0,5)) ExportData();
-      if(oldVersion.substr(0,5)=="1.0"||oldVersion.substr(0,5)=="1.0.1"||oldVersion.substr(0,5)=="1.0.2"){
-          farmStats.hp=1;
-      }
+      if(farmStats.hp==undefined) farmStats.hp=1;
   }
 function updateVersionImport(oldVersion){
-    if(oldVersion.substr(0,5)=="1.0"||oldVersion.substr(0,5)=="1.0.1"||oldVersion.substr(0,5)=="1.0.2"){
-        farmStats.hp=1;
-    }
+    if(farmStats.hp==undefined) farmStats.hp=1;
   }
 
 function generateOffline(offlineTime){
@@ -355,7 +352,7 @@ function passSecond(){
     grow();
     workOnWarehouse();
     player.curhp+=player.hpRegen;
-    if(player.curhp>player.hp)player.curhp=player.hp;
+    if(player.curhp>getHP())player.curhp=getHP();
     if(action.attacking){
         attack();
     }
