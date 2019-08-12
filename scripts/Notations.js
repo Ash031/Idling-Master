@@ -15,7 +15,7 @@ function SciNot(number){
     return number.toPrecision(4);
 }
 function smallNumNot(number){
-    if(number<1000) return number;
+    if(number<1000) return SciNot(number);
     if(number<1e6) return String(number/1e3).substr(0,5) + "K"
     if(number<1e9) return String(number/1e6).substr(0,5) + "M"
     if(number<1e12) return String(number/1e9).substr(0,5) + "B"
