@@ -21,13 +21,13 @@ function getFarmBonusesText(){
     string = '';
     if(farmStats.attack>1)string+='<p>Attack Multiplier: '+printNumber(farmStats.attack)+"</p>"
     if(farmStats.defense>1) string+="<p>Defense Multiplier: "+printNumber(farmStats.defense)+"</p>"
-    if(farmStats.mining>1) string+="<p>Mining Multiplier: "+printNumber(farmStats.defense)+"</p>"
-    if(farmStats.farmXPMult>1) string+="<p>Farming XP Multiplier: "+printNumber(farmStats.defense)+"</p>"
-    if(farmStats.farmDropMult>1) string+="<p>Farming Drops Multiplier: "+printNumber(farmStats.defense)+"</p>"
-    if(farmStats.GoldMult>1) string+="<p>Gold Multiplier: "+printNumber(farmStats.defense)+"</p>"
-    if(farmStats.ClonesAmountMult>1) string+="<p>Clones Gaining Multiplier: "+printNumber(farmStats.defense)+"</p>"
-    if(farmStats.ClonesPowerMult>1) string+="<p>Clones Power Multiplier: "+printNumber(farmStats.defense)+"</p>"
-    if(farmStats.dojoMult>1) string+="<p>Dojo Multiplier: "+printNumber(farmStats.defense)+"</p>"
+    if(farmStats.mining>1) string+="<p>Mining Multiplier: "+printNumber(farmStats.mining)+"</p>"
+    if(farmStats.farmXPMult>1) string+="<p>Farming XP Multiplier: "+printNumber(farmStats.farmXPMult)+"</p>"
+    if(farmStats.farmDropMult>1) string+="<p>Farming Drops Multiplier: "+printNumber(farmStats.farmDropMult)+"</p>"
+    if(farmStats.GoldMult>1) string+="<p>Gold Multiplier: "+printNumber(farmStats.GoldMult)+"</p>"
+    if(farmStats.ClonesAmountMult>1) string+="<p>Clones Gaining Multiplier: "+printNumber(farmStats.ClonesAmountMult)+"</p>"
+    if(farmStats.ClonesPowerMult>1) string+="<p>Clones Power Multiplier: "+printNumber(farmStats.ClonesPowerMult)+"</p>"
+    if(farmStats.dojoMult>1) string+="<p>Dojo Multiplier: "+printNumber(farmStats.dojoMult)+"</p>"
     if (string == "") return "<p>No Bonuses for now bub.</p>";
     return string;
 }
