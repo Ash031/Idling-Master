@@ -65,14 +65,14 @@ function changeNotation(){
 
 function printStats(){
     var string = '<h1 style="text-align: center">Statistics</h1><hr/>';
-    string += '<p><b>Total Bosses Defeated:</b>'+stats.totalBossesKilles+'</p>';
-    string += '<p><b>Total Dojo Enemies Defeated:</b>'+stats.totalDojoEnemies+'</p>';
-    string += '<p><b>Total Time:</b>'+printTime(stats.totalSeconds)+'</p>';
-    string += '<p><b>Total Ores Mined:</b>'+printNumber(stats.totalOresMined)+'</p>';
-    string += '<p><b>Total Crops Grown:</b>'+printNumber(stats.totalCropsGrown)+'</p>';
-    string += '<p><b>Total Arena Bosses Killed:</b>'+printNumber(stats.totalArenaBosses)+'</p>';
-    string += '<p><b>Total Contracts Finished:</b>'+printNumber(stats.totalContractsDone)+'</p>';
-    string += '<p><b>Total Warehouse Rank Ups:</b>'+printNumber(stats.totalRankUpsWarehouse)+'</p>';
+    string += '<p><b>Total Bosses Defeated:</b>'+stats.totalBossesKilles+'('+lifeStats.totalBossesKilles+')</p>';
+    string += '<p><b>Total Dojo Enemies Defeated:</b>'+stats.totalDojoEnemies+'('+lifeStats.totalDojoEnemies+')</p>';
+    string += '<p><b>Total Time:</b>'+printTime(stats.totalSeconds)+'('+printTime(lifeStats.totalSeconds)+')</p>';
+    string += '<p><b>Total Ores Mined:</b>'+printNumber(stats.totalOresMined)+'('+printNumber(lifeStats.totalOresMined)+')</p>';
+    string += '<p><b>Total Crops Grown:</b>'+printNumber(stats.totalCropsGrown)+'('+printNumber(lifeStats.totalCropsGrown)+')</p>';
+    string += '<p><b>Total Arena Bosses Killed:</b>'+printNumber(stats.totalArenaBosses)+'('+printNumber(lifeStats.totalArenaBosses)+')</p>';
+    string += '<p><b>Total Contracts Finished:</b>'+printNumber(stats.totalContractsDone)+'('+printNumber(lifeStats.totalContractsDone)+')</p>';
+    string += '<p><b>Total Warehouse Rank Ups:</b>'+printNumber(stats.totalRankUpsWarehouse)+'('+printNumber(lifeStats.totalRankUpsWarehouse)+')</p>';
     string+='<button style="width: 100%" class="w3-button w3-dark-gray" onclick="newGame()">Reset Save</button><hr/>';
     string+='<button style="width: 100%" class="w3-button w3-dark-gray" onclick="changeNotation()">Notation: '
     if(options.number== undefined || options.number==0) string += "Scientific Notation"

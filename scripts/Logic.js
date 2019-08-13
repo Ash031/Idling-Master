@@ -117,9 +117,14 @@ function download(filename, text) {
     document.body.removeChild(element);
   }
   function updateVersion(oldVersion){
-      console.log(1);
       if(version.substr(0,5)!=oldVersion.substr(0,5)) ExportData();
       if(farmStats.hp==undefined) farmStats.hp=1;
+      if(!lifeStats.totalArenaBosses)lifeStats.totalArenaBosses=0;
+      if(!lifeStats.totalContractsDone)lifeStats.totalContractsDone=0;
+      if(!lifeStats.totalCropsGrown)lifeStats.totalCropsGrown=0;
+      if(!lifeStats.totalRankUpsWarehouse)lifeStats.totalRankUpsWarehouse=0;
+      if(!lifeStats.totalDojoEnemies)lifeStats.totalDojoEnemies=0;
+      if(!lifeStats.totalOresMined)lifeStats.totalOresMined=0;
   }
 function updateVersionImport(oldVersion){
     if(farmStats.hp==undefined) farmStats.hp=1;
