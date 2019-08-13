@@ -34,10 +34,10 @@ function getWarehouseMult(){
     var string = ""
     if(getWarehouseStrength()!=1) string += "<p>Strength Multiplier: "+getWarehouseStrength()+"</p>"
     if(getWarehouseDefense()!=1) string += "<p>Mining Multiplier: "+getWarehouseDefense()+"</p>"
-    if(getWarehouseDojoAttack()!=1) string += "<p>Mining Multiplier: "+getWarehouseDojoAttack()+"</p>"
-    if(getWarehouseDojoDefense()!=1) string += "<p>Mining Multiplier: "+getWarehouseDojoDefense()+"</p>"
+    if(getWarehouseDojoAttack()!=1) string += "<p>Dojo Attack Multiplier: "+getWarehouseDojoAttack()+"</p>"
+    if(getWarehouseDojoDefense()!=1) string += "<p>Dojo Defense Multiplier: "+getWarehouseDojoDefense()+"</p>"
     if(getWarehouseMining()!=1) string += "<p>Mining Multiplier: "+getWarehouseMining()+"</p>"
-    if(getWarehouseFarmingDrops()!=1) string += "<p>Mining Multiplier: "+getWarehouseFarmingDrops()+"</p>"
+    if(getWarehouseFarmingDrops()!=1) string += "<p>Farming Multiplier: "+getWarehouseFarmingDrops()+"</p>"
     if(string=="") return "<p>I'm sorry, but there is nothing here :(</p>"
     return string;
 }
