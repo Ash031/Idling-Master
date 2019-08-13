@@ -1,5 +1,5 @@
 function printArena(){
-    var string = '<h1 style="text-align:center">Arena</h1><hr/><p><b>Available Vouchers:</b>'+printNumber(Math.floor(arenaVouchers))+'</p>';
+    var string = '<h1 style="text-align:center">Arena</h1><hr/><div style="padding-left: 10px;"><p><b>Available Vouchers:</b>'+printNumber(Math.floor(arenaVouchers))+'</p>';
     if(arenaScreen=="Fight"){
         string += printArenaFight();
     }
@@ -16,6 +16,7 @@ function printArena(){
             string +=printSkillChoosingMenu()
         }
     }
+    string+="</div>"
     document.getElementById('Screen').innerHTML=string;
 }
 

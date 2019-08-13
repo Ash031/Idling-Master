@@ -1,5 +1,5 @@
 function printCrafting(){
-    var string = '<h1 style="text-align:center">Crafting</h1><hr/>'
+    var string = '<h1 style="text-align:center">Crafting</h1><hr/><div style="padding-left: 10px;">'
     string += '<div class="w3-col l3 m3"><h2>Ores</h2>'
     string += getOres();
     string += '<button onClick="goToMine()">Go back</button></div>';
@@ -7,7 +7,7 @@ function printCrafting(){
     string += '<table class="w3-table-all">';
     string += getCraftingTable();
     string += '</table></div>'
-    string += '<button  onclick="previousCraftingPage();">&lt</button><button style="float:right" onclick="nextCraftingPage()">&gt</button>';
+    string += '<button onclick="previousCraftingPage();">&lt</button><button style="float:right" onclick="nextCraftingPage()">&gt</button></div>';
     document.getElementById('Screen').innerHTML=string;
 }
 function printCraftingHelp(){

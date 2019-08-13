@@ -89,8 +89,6 @@ function loadTutorial(){
     string+="<p>If the game tries to Download a file automatically when you open the game, please download it since it happens when you open an old SaveFile to a new version. It is design this way so if an update somehow brakes your save you automatically have a backup save.</p>"
     string+="<p>I hope you have fun with the game.</p><p>Have any questions or want to suggest stuff? Go to <a href=\"https://discord.gg/Txmw5ny\">Discord</a> and tell me. There is also a TODO list there so if you wanna checkout stuff that will be added to the game hop on and have fun!</p>"
     string+="<p>Thanks for trying this game out!</p><hr/>"
-    string+="<h1>Changelog:</h1><ul><li>1.0.1</li><ul><li>Added some bug fixes</li><li>Added Ores amount to Crafting Page</li><li>Added Help Pages</li></ul><li>1.0.2<ul><li>Added a Log To Arena Fights</li><li>Added a new Rebirth Perk</li>"
-    string+="<li>Nerfed late game Rebirth Point Gain</li><li>Buffed Early Game Rebirth Perks</li></ul><li>1.0.2.1<ul><li>Fixed some more bugs</li><li>Buffed Regroup Shop even more</li><li>Added a new place to check the version</li></ul></li><li>1.0.2.2<ul><li>Bug Fixes</li><li>Small UI Changes</li></ul></li></ul>"
     document.getElementById('Screen').innerHTML=string;
 }
 
@@ -259,7 +257,7 @@ function unlockButton(string){
         document.getElementById(string).disabled=false;
     }
     if(string=="DojoShop"){
-        document.getElementById(string).innerHTML="Shop";
+        document.getElementById(string).innerHTML="Dojo Shop";
         document.getElementById(string).disabled=false;
     }
     if(string=="Rebirth"){

@@ -1,4 +1,4 @@
-var version = "1.0.3"
+var version = "1.0.3.1"
 
 var shopAmount = 1;
 

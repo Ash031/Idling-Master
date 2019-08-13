@@ -21,6 +21,7 @@ function getFarmBonusesText(){
     string = '';
     if(farmStats.attack>1)string+='<p>Attack Multiplier: '+printNumber(farmStats.attack)+"</p>"
     if(farmStats.defense>1) string+="<p>Defense Multiplier: "+printNumber(farmStats.defense)+"</p>"
+    if(farmStats.hp>1) string+="<p>HP Multiplier: "+printNumber(farmStats.hp)+"</p>"
     if(farmStats.mining>1) string+="<p>Mining Multiplier: "+printNumber(farmStats.mining)+"</p>"
     if(farmStats.farmXPMult>1) string+="<p>Farming XP Multiplier: "+printNumber(farmStats.farmXPMult)+"</p>"
     if(farmStats.farmDropMult>1) string+="<p>Farming Drops Multiplier: "+printNumber(farmStats.farmDropMult)+"</p>"
@@ -50,7 +51,18 @@ function getSeeds(){
             str+=">"+crops[i].name+"</label><br/>"
         }
     }
+    str+="<hr/><p>Growth Time: "+printTime(crops[cropSelected].growthTime)+"</p><p>Bonus: "+getSeedBonus()+"</p>"
     return str;
+}
+
+function getSeedBonus(){
+    var t = crops[cropSelected].type
+    if(t=="Attack")return "Strength";
+    if(t=="FarmDrop") return "Farm";
+    if(t=="GoldMult")return "Gold Multiplier";
+    if(t=="CloneAmount") return "Clone Amount";
+    if(t=="ClonePower") return "Clone Power";
+    return t;
 }
 
 function selectSeed(seed){
