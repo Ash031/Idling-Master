@@ -102,7 +102,6 @@ function ImportData() {
     Importload(atob(save));
 }
 function ExportData() {
-    save();
     download("Idling Master.txt",btoa(localStorage.getItem("save")))
 }
 function download(filename, text) {
