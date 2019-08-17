@@ -97,8 +97,15 @@ function Importload(save){
         if(save.version!="1.0") setCrafting(save.items)
         if(save.version.substr(0,5)=="1.0.1"||save.version.substr(0,5)=="1.0.2"||save.version.substr(0,5)=="1.0.3") nerfFarm();
         updateVersion(save.version);
+        checkErrors();
         generateOffline((new Date().getTime()/1000)-save.time);
     }
+}
+
+function checkErrors(){
+    plots.forEach(e=>{
+        if(e.crop>=crops.length) e.crop = crops.length-1;
+    })
 }
 
 function ImportData() {
