@@ -79,7 +79,16 @@ function load(){
 }
 
 function nerfFarm(){
-    
+    if(farmStats.ClonesAmountMult>10) farmStats.ClonesAmountMult = 1+Math.log10(farmStats.ClonesAmountMult-1);
+    if(farmStats.ClonesPowerMult>10) farmStats.ClonesPowerMult = 1+Math.log10(farmStats.ClonesPowerMult-1);
+    if(farmStats.mining>10) farmStats.mining = 1+Math.log10(farmStats.mining-1);
+    if(farmStats.farmDropMult>10) farmStats.farmDropMult = 1+Math.log10(farmStats.farmDropMult-1);
+    if(farmStats.attack>10) farmStats.attack = 1+Math.log10(farmStats.attack-1);
+    if(farmStats.defense>10) farmStats.defense = 1+Math.log10(farmStats.defense-1);
+    if(farmStats.dojoMult>10) farmStats.dojoMult = 1+Math.log10(farmStats.dojoMult-1);
+    if(farmStats.GoldMult>10) farmStats.GoldMult = 1+Math.log10(farmStats.GoldMult-1);
+    if(farmStats.farmXPMult>10) farmStats.farmXPMult = 1+Math.log10(farmStats.farmXPMult-1);
+    if(farmStats.hp>10) farmStats.hp = 1+Math.log10(farmStats.hp-1);
 }
 
 function Importload(save){
@@ -101,6 +110,7 @@ function Importload(save){
         generateOffline((new Date().getTime()/1000)-save.time);
     }
 }
+
 
 function checkErrors(){
     plots.forEach(e=>{

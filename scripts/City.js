@@ -7,7 +7,7 @@ function printCity(){
 
 function getCityButtons(){
     string  = '<p><button onClick="goToTownHall()">Town Hall</button><button onClick="goToConstrutionOffice()">Contruction Office</button>'
-    string  = '<p><button onClick="goToBank()">Bank</button><button onClick="goToImmigrationOffice()">Immigration Office</button>'
+    string += '<button onClick="goToBank()">Bank</button><button onClick="goToImmigrationOffice()">Immigration Office</button>'
     string +='</p><hr/>'
     return string;
 }
@@ -24,6 +24,7 @@ function printTownHall(){
 
 function goToTownHall(){
     selectedBuilding = "TownHall"
+    loadScreen();
 }
 function goToConstrutionOffice(){
     selectedBuilding = "Constrution"

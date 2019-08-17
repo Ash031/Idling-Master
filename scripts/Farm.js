@@ -121,8 +121,8 @@ function Harvest(plotN){
 }
 
 function giveXPToPlot(plotN,xp){
-    plots[plotN].xp += xp;
-    plots[plotN].level = Math.floor(Math.sqrt(plots[plotN].xp)*farmStats.farmXPMult*getArenaFarmXPMultiplier());
+    plots[plotN].xp += xp*farmStats.farmXPMult*getArenaFarmXPMultiplier();
+    plots[plotN].level = Math.floor(Math.sqrt(plots[plotN].xp));
 }
 function getCrop(cropN,time,lvl){
     var crop = crops[cropN];

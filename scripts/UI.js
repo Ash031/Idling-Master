@@ -178,6 +178,7 @@ function goToRegroupShop(){
 }
 
 function goToCity(){
+    if(version!="DEV") return;
     options.reset = undefined;
     options.help=false;
     options.menu="City";
