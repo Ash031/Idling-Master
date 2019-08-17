@@ -45,4 +45,16 @@ function smallNumNot(number){
     if(number<1e84) return String(number/1e81).substr(0,5) + "Sxvg"
     if(number<1e87) return String(number/1e84).substr(0,5) + "Spvg"
     if(number<1e90) return String(number/1e87).substr(0,5) + "Ocvg"
+    if(number<1e93) return String(number/1e90).substr(0,5) + "Novg"
+    if(number<1e96) return String(number/1e93).substr(0,5) + "Tg"
+    if(number<1e99) return String(number/1e96).substr(0,5) + "Utg"
+    if(number<1e102) return String(number/1e99).substr(0,5) + "Dtg"
+    if(number<1e105) return String(number/1e102).substr(0,5) + "Ttg"
+    if(number<1e108) return String(number/1e105).substr(0,5) + "Qatg"
+    if(number<1e111) return String(number/1e108).substr(0,5) + "Qitg"
+    if(number<1e114) return String(number/1e111).substr(0,5) + "Sxtg"
+    if(number<1e117) return String(number/1e114).substr(0,5) + "Sptg"
+    if(number<1e120) return String(number/1e117).substr(0,5) + "Octg"
+    if(number<1e123) return String(number/1e120).substr(0,5) + "Notg"
+    return SciNot(number)
 }

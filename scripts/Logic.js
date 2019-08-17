@@ -78,7 +78,11 @@ function load(){
     Importload(localStorage.getItem('save',true));
 }
 
-function Importload(save,something){
+function nerfFarm(){
+    
+}
+
+function Importload(save){
     save = JSON.parse(save);
     if(save){
         plots=save.farm; farmStats=save.farmStats; setRLevels(save.perks,save.version);
@@ -91,8 +95,8 @@ function Importload(save,something){
         setArenaDefeated(save.arenaDefeated)
         setUnlockedSkills(save.skills)
         if(save.version!="1.0") setCrafting(save.items)
-        if(something==undefined)updateVersion(save.version);
-        else updateVersionImport(save.version);
+        if(save.version.substr(0,5)=="1.0.1"||save.version.substr(0,5)=="1.0.2"||save.version.substr(0,5)=="1.0.3") nerfFarm();
+        updateVersion(save.version);
         generateOffline((new Date().getTime()/1000)-save.time);
     }
 }

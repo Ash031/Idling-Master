@@ -223,11 +223,11 @@ function printTime(seconds){
 
 function loadPlayerScreen(){
     var string = "<h1>Player Stats:</h1><hr/>";
-    string+= '<h4>HP:'+printNumber(player.curhp)+'/'+printNumber(getHP())+'</h4>';
-    string+= '<h4>Strength:'+printNumber(getRawStrength())+'</h4>';
-    string+= '<h4>Defense:'+printNumber(getRawDefense())+'</h4>';
-    string+= '<h4>Clone Counter:'+printNumber(player.idleClones)+'/'+printNumber(player.maxClones)+'</h4>';
-    string+= '<h4>Moneys:'+printNumber(Math.floor(player.money))+'</h4>'
+    string+= '<h4>HP: '+printNumber(player.curhp)+'/'+printNumber(getHP())+'</h4>';
+    string+= '<h4>Strength: '+printNumber(getRawStrength())+'</h4>';
+    string+= '<h4>Defense: '+printNumber(getRawDefense())+'</h4>';
+    string+= '<h4>Clones: '+printNumber(player.idleClones)+'/'+printNumber(player.maxClones)+'</h4>';
+    string+= '<h4>Moneys: '+printNumber(Math.floor(player.money))+'</h4>'
     document.getElementById('Player').innerHTML=string;
 }
 

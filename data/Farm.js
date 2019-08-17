@@ -51,13 +51,6 @@ var crops = [
         unlockAt : 10
     },
     {
-        name : 'Lemon of Wisdom',
-        growthTime : 6000,
-        bonus : 0.01,
-        type : "FarmXP",
-        unlockAt : 15
-    },
-    {
         name : 'TumbleWeed',
         growthTime : 12000,
         bonus : 0.01,
