@@ -23,7 +23,6 @@ function getFarmBonusesText(){
     if(farmStats.defense>1) string+="<p>Defense Multiplier: "+printNumber(farmStats.defense)+"</p>"
     if(farmStats.hp>1) string+="<p>HP Multiplier: "+printNumber(farmStats.hp)+"</p>"
     if(farmStats.mining>1) string+="<p>Mining Multiplier: "+printNumber(farmStats.mining)+"</p>"
-    if(farmStats.farmXPMult>1) string+="<p>Farming XP Multiplier: "+printNumber(farmStats.farmXPMult)+"</p>"
     if(farmStats.farmDropMult>1) string+="<p>Farming Drops Multiplier: "+printNumber(farmStats.farmDropMult)+"</p>"
     if(farmStats.GoldMult>1) string+="<p>Gold Multiplier: "+printNumber(farmStats.GoldMult)+"</p>"
     if(farmStats.ClonesAmountMult>1) string+="<p>Clones Gaining Multiplier: "+printNumber(farmStats.ClonesAmountMult)+"</p>"

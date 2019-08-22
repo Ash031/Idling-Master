@@ -8,6 +8,8 @@ var warehouse = {
     upgradesNeeded: 5
 }
 
+var autoContract = false
+
 var warehouseStats = {
     strength: 1,
     defense: 1,

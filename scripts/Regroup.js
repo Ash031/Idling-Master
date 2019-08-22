@@ -28,20 +28,40 @@ function printRegroupShop(){
     string+="<table class='w3-table-all'><tr><th style=\"width:10%\">Name</th><th>Level</th><th>Price</th><th>Description</th><th>Total Bonus</th><th>Upgrade!</th></tr>";
     string+=getRBTable();
     string+="</table>";
+    string+='<button onclick="previousRebirthPage();"'
+    if(rebirthPage==0) string+='disabled'
+    string+='>&lt</button><button style="float:right" onclick="nextRebirthPage()"'
+    if(!canGoToNextRebirthPage()) string +="disabled"
+    string+='>&gt</button></div>';
     document.getElementById('Screen').innerHTML=string;
+}
+
+function previousRebirthPage(){
+    if(rebirthPage!=0)rebirthPage--;
+    loadScreen();
+}
+function nextRebirthPage(){
+    if(canGoToNextRebirthPage()) rebirthPage++;
+    loadScreen();
+}
+function canGoToNextRebirthPage(){
+    if(rebirthPage==0&&stats.highestBoss>13) return true;
+    return false;
 }
 
 function getRBTable(){
     var string="";
-    var i = 0;
-    rebirthPerks.forEach(e=>{
+    for(var i = rebirthPage*10;i<rebirthPerks.length&&i<(rebirthPage+1)*10;i++){
+        var e = rebirthPerks[i];
         if(stats.highestBoss>=e.boss){
             string+="<tr><td>"+e.name+"</td><td style='text-align:center'>"+e.lvl+"</td><td style='text-align:center'>"+printNumber(getPrice(e))+"</td><td style='text-align:center'>"+e.Description+"</td><td style='text-align:center'>"+printNumber(e.Bonus*e.lvl)+"</td><td><button onClick='upgradeRP("+i+")'"
             if(getPrice(e)>rebirth.rbPoints || (e.maxLevel!=-1 && e.maxLevel<=e.lvl)) string += "disabled"
-            string += ">Level Up!</button></td></tr>";
+            string += ">"
+            if(e.maxLevel!=-1 && e.maxLevel<=e.lvl)string += "Maxed"
+            else string += "Level Up!"
+            string += "</button></td></tr>";
         }
-        i++;
-    })
+    }
     return string;
 }
 

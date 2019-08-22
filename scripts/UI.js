@@ -223,13 +223,17 @@ function printTime(seconds){
 //Player UI 
 
 function loadPlayerScreen(){
-    var string = "<h1>Player Stats:</h1><hr/>";
+    var string = "<h3>Player Stats:</h3><hr/>";
     string+= '<h4>HP: '+printNumber(player.curhp)+'/'+printNumber(getHP())+'</h4>';
     string+= '<h4>Strength: '+printNumber(getRawStrength())+'</h4>';
     string+= '<h4>Defense: '+printNumber(getRawDefense())+'</h4>';
     string+= '<h4>Clones: '+printNumber(player.idleClones)+'/'+printNumber(player.maxClones)+'</h4>';
     string+= '<h4>Moneys: '+printNumber(Math.floor(player.money))+'</h4>'
     document.getElementById('Player').innerHTML=string;
+}
+
+function unlockAll(){
+    for(var i=1;i<=6;i++)unlockButton("Zone"+i);
 }
 
 function unlockButton(string){

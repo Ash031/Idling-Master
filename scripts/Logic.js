@@ -138,7 +138,7 @@ function download(filename, text) {
     document.body.removeChild(element);
   }
   function updateVersion(oldVersion){
-      if(version.substr(0,5)!=oldVersion.substr(0,5)) ExportData();
+      if(version.substr(0,5)!=oldVersion.substr(0,5) && oldVersion!="DEV") ExportData();
       if(farmStats.hp==undefined) farmStats.hp=1;
       if(!lifeStats.totalArenaBosses)lifeStats.totalArenaBosses=0;
       if(!lifeStats.totalContractsDone)lifeStats.totalContractsDone=0;
@@ -283,7 +283,7 @@ function getCraftingDefense(){
     var ret = 1.0;
     for(var i = 0;i<crafting.items.length;i++){
         if(crafting.items[i].bonus=="Defense"||crafting.items[i].bonus=="Mixed"){
-            ret += (crafting.items[i].level-1)*crafting.items[i].perLevel;
+            ret *= 1+(crafting.items[i].level-1)*crafting.items[i].perLevel;
         }
     }
     return ret;
@@ -293,7 +293,7 @@ function getCraftingHp(){
     var ret = 1.0;
     for(var i = 0;i<crafting.items.length;i++){
         if(crafting.items[i].bonus=="HP"||crafting.items[i].bonus=="Mixed"){
-            ret += (crafting.items[i].level-1)*crafting.items[i].perLevel;
+            ret *= 1+(crafting.items[i].level-1)*crafting.items[i].perLevel;
         }
     }
     return ret;
@@ -375,6 +375,7 @@ function passSecond(){
     train();
     grow();
     workOnWarehouse();
+    workOnCity();
     player.curhp+=player.hpRegen;
     if(player.curhp>getHP())player.curhp=getHP();
     if(action.attacking){
@@ -517,4 +518,11 @@ function clone(obj) {
         if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
     }
     return copy;
+}
+
+
+function setDev(){
+    version = "DEV"
+    lifeStats.totalDojoEnemies=10
+    unlockAll();
 }

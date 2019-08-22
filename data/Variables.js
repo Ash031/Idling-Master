@@ -1,6 +1,8 @@
-var version = "1.0.4"
+var version = "1.0.5"
 
 var shopAmount = 1;
+
+var rebirthPage = 0;
 
 var player = {
     strength : 1,
@@ -255,6 +257,17 @@ var rebirthPerks = [
         boss:20,
         maxLevel:10,
         type: "ContractSpeed"
+    },
+    {
+        name:"Robotic Contractor",
+        basePrice:1000,
+        lvl:0,
+        step:"*2",
+        Description:"You can automate Contracts",
+        Bonus:1,
+        boss:20,
+        maxLevel:1,
+        type: "AutoContract"
     }
 ]
 

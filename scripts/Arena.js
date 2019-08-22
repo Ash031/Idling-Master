@@ -303,7 +303,10 @@ function printArenaShop(){
     string += '<table class="w3-table-all"><tr><th>Name</th><th>Description</th><th>Level</th><th>Cost</th><th></th></tr>'
     var i = 0;
     selling.forEach(p=>{
-        string+="<tr><td>"+p.name+"</td><td>"+p.desc+"</td><td>"+p.lvl+"</td><td>"+printNumber(getPrice(p))+"<td><button onClick=\"buyArenaUpgrade("+i+")\" "+isAvailableToPurchase(p)+">Buy</button></td></tr>"
+        string+="<tr><td>"+p.name+"</td><td>"+p.desc+"</td><td>"+p.lvl+"</td><td>"+printNumber(getPrice(p))+"<td><button onClick=\"buyArenaUpgrade("+i+")\" "+isAvailableToPurchase(p)
+        if(p.lvl>=p.maxLvl&& p.maxLvl!=-1) string += ">Maxed"
+        else string += ">Buy"
+        string += "</button></td></tr>"
         i++;
     })
     string+="</table>"

@@ -27,7 +27,18 @@ function neededToUpgradeWarehouse(){
 function getWarehouseInfo(){
     var string = "<p><b>Warehouse Info:</b></p><p>Rank:"+warehouse.rank+" ("+warehouse.upgradeCrates+"/"+neededToUpgradeWarehouse()+")</p>"
     string += "<p>Capacity: "+warehouse.used+"/"+getWarehouseSpace()+"</p>"
+    if(getBonusRebirthSum("AutoContract",0)==1){
+        string += "<button onClick='switchedContractor()'>Auto Contractor: "
+        if(autoContract) string+= "ON"
+        else string += "OFF"
+        string += "</button>"
+    }
     return string;
+}
+
+function switchedContractor(){
+    autoContract=!autoContract;
+    loadScreen();
 }
 
 function getWarehouseMult(){
@@ -53,6 +64,10 @@ function getWarehouseTable(){
 
 function getWarehouseRowInfo(num){
     var contract = choosableContracts[num];
+    if(contract==undefined){
+        contract = ChooseRandomContract();
+        choosableContracts[num] = contract
+    }
     var string = "<tr><td>"+contract.gold+"</td><td>"+contract.clones+"</td><td>"+printTime(Math.floor(contract.time))+"</td><td>"
     string+=getWarehouseRowBonus(contract);
     string +="</td><td><button onClick=\"toggleContract("+num+")\">"
@@ -139,8 +154,15 @@ function ChooseRandomContract(){
     if(getWarehouseSpace()==warehouse.used) return Contrats[r][Contrats[r].length-1]
     var contract = clone(Contrats[r][Math.floor(Math.random()*Contrats[r].length)])
     contract.time*=(1-getBonusRebirthSum("ContractTimeRed",0))
-    contract.onGoing = false;
-    contract.paid = false;
+    if(autoContract && contract.clones<=player.idleClones && spendMoney(contract.gold)){
+        player.idleClones-=contract.clones
+        contract.paid = true;
+        contract.onGoing = true;
+    }
+    else{
+        contract.paid = false;
+        contract.onGoing = false;
+    }
     return contract
 }
 

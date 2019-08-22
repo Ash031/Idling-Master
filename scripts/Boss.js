@@ -26,7 +26,7 @@ function loadBoss(){
 
 function attack(){
     if(getDefense()<curBoss.attack){
-        pastConsole = "<p style='font-size: small'>You took "+(curBoss.attack-getDefense())+' damage.</p>'+pastConsole;
+        pastConsole = "<p style='font-size: small'>You took "+printNumber(curBoss.attack-getDefense())+' damage.</p>'+pastConsole;
         player.curhp-=(curBoss.attack-getDefense());
         if(player.curhp<=0){
             player.curhp=0;
@@ -38,7 +38,7 @@ function attack(){
         pastConsole="<p style='font-size: small'>You didn't take any damage, NICE!</p>"+pastConsole;
     }
     curBoss.curhp -= getStrength();
-    pastConsole="<p style='font-size: small'>The Boss took "+getStrength()+" damage.</p>"+pastConsole;
+    pastConsole="<p style='font-size: small'>The Boss took "+printNumber(getStrength())+" damage.</p>"+pastConsole;
     if(curBoss.curhp<=0) killBoss();
 }
 function killBoss(){
