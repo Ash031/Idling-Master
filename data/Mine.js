@@ -35,7 +35,7 @@ var crafting = {
         },
         {
             name : 'Bronze Stick',
-            bonus : 'Strength',
+            bonus : 'HP',
             perLevel : 0.05,
             level : 1,
             cost :[
@@ -219,7 +219,7 @@ var crafting = {
         },
         {
             name : 'Hardened Underpants',
-            bonus : 'Strength',
+            bonus : 'HP',
             perLevel : 0.7,
             level : 1,
             cost :[
