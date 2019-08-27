@@ -401,7 +401,7 @@ function getArenaMiners(){
 
 function getArenaFarmTimeRedMultiplier(){
     var ret = 1;
-    arenaShop.mine.forEach(p=>{
+    arenaShop.Farm.forEach(p=>{
         if(p.type=="TimeTaken")ret*=(1-p.Bonus*p.lvl);
     })
     return ret;
@@ -409,7 +409,7 @@ function getArenaFarmTimeRedMultiplier(){
 
 function getArenaFarmXPMultiplier(){
     var ret = 1;
-    arenaShop.mine.forEach(p=>{
+    arenaShop.Farm.forEach(p=>{
         if(p.type=="XP")ret*=(1+p.Bonus*p.lvl);
     })
     return ret;

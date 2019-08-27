@@ -50,7 +50,7 @@ function getSeeds(){
             str+=">"+crops[i].name+"</label><br/>"
         }
     }
-    str+="<hr/><p>Growth Time: "+printTime(crops[cropSelected].growthTime)+"</p><p>Bonus: "+getSeedBonus()+"</p>"
+    str+="<hr/><p>Growth Time: "+printTime(crops[cropSelected].growthTime*getArenaFarmTimeRedMultiplier())+"</p><p>Bonus: "+getSeedBonus()+"</p>"
     return str;
 }
 
@@ -80,7 +80,7 @@ function printPlots(){
         if(p.got){
             if(p.crop==-1) str+="<td><button onClick='Plant("+i+")'>Plant Crop</button></td></tr>"
             else{
-                if(p.curTime>=crops[p.crop].growthTime)str+="<td><button onClick='Harvest("+i+")'>Harvest</button></td></tr>"
+                if(p.curTime>=crops[p.crop].growthTime*getArenaFarmTimeRedMultiplier())str+="<td><button onClick='Harvest("+i+")'>Harvest</button></td></tr>"
                 else str+="<td><button onClick='Harvest("+i+")' disabled>Harvest</button></td></tr>"
             }
         }

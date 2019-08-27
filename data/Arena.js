@@ -287,7 +287,7 @@ var arenaShop = {
         },
         {
             name: "Better Fertelizers",
-            desc: "Crops takes less 1% time to grow8m",
+            desc: "Crops takes 1% less time to grow",
             type: "TimeTaken",
             Bonus: 0.01,
             lvl: 0,
