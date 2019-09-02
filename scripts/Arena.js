@@ -227,11 +227,12 @@ function winArena(){
     arenaLog=""
     var amount = 1;
     var i=1;
+    AddAction(1,"KillArenaBoss");
     if(arenaType=="Dojo"){
         arenaFighters.dojo.forEach(fig=>{
             if(fig.name==arenaEnemy.name){
                 fig.defeated=true
-                amount=i*i;
+                amount=i*i*getBountyArenaTokens();
             }
             i++;
         })
@@ -241,7 +242,7 @@ function winArena(){
         arenaFighters.Mine.forEach(fig=>{
             if(fig.name==arenaEnemy.name){
                 fig.defeated=true
-                amount=i*i;
+                amount=i*i*getBountyArenaTokens();
             }
             i++;
         })
@@ -251,7 +252,7 @@ function winArena(){
         arenaFighters.farm.forEach(fig=>{
             if(fig.name==arenaEnemy.name){
                 fig.defeated=true
-                amount=i*i;
+                amount=i*i*getBountyArenaTokens();
             }
             i++;
         })
@@ -261,7 +262,7 @@ function winArena(){
         arenaFighters.warehouse.forEach(fig=>{
             if(fig.name==arenaEnemy.name){
                 fig.defeated=true
-                amount=i*i;
+                amount=i*i*getBountyArenaTokens();
             }
             i++;
         })
@@ -322,6 +323,7 @@ function getArenaTokens(){
     if(arenaType=="Warehouse")return arenaTokens.warehouse;
 }
 function spendArenaTokens(price){
+    AddAction(price,"SpendArenaTokens");
     if(arenaType=="Dojo"){
         if(arenaTokens.dojo>=price){
             arenaTokens.dojo-=price;

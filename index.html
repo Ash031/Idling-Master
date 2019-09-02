@@ -2,28 +2,10 @@
     <head>
         <style>
         .btn-group button {
-            background-color: #4CAF50; /* Green background */
-            color: white; /* White text */
-            padding: 10px 24px; /* Some padding */
-            cursor: pointer; /* Pointer/hand icon */
             float: left; /* Float the buttons side by side */
         }
 
-        .btn-group button:not(:last-child) {
-            border-right: none; /* Prevent double borders */
-        }
 
-            /* Clear floats (clearfix hack) */
-        .btn-group:after {
-            content: "";
-            clear: both;
-            display: table;
-        }
-
-            /* Add a background color on hover */
-        .btn-group button:hover {
-            background-color: #3e8e41;
-        }
         </style>
         <meta charset="UTF-8"/>
         <title>Idling Master</title>
@@ -34,8 +16,11 @@
         <script src="data/Variables.js"></script>
         <script src="data/Mine.js"></script>
         <script src="data/Farm.js"></script>
+        <script src="data/Bounty.js"></script>
         <script src="data/Warehouse.js"></script>
         <script src="scripts/UI.js"></script>
+        <script src="scripts/Statistics.js"></script>
+        <script src="scripts/Bounty.js"></script>
         <script src="scripts/Notations.js"></script>
         <script src="scripts/City.js"></script>
         <script src="scripts/Boss.js"></script>

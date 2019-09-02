@@ -54,7 +54,7 @@ function getOres(){
 }
     
 function minePerSec(i){
-    return ores[i].mult*(ores[i].clones+getArenaMiners())*farmStats.mining*getBonusRebirth("Mining")*getWarehouseMining()*getArenaMineDropMultiplier();
+    return ores[i].mult*(ores[i].clones+getArenaMiners())*farmStats.mining*getBonusRebirth("Mining")*getWarehouseMining()*getArenaMineDropMultiplier()*getBountyMining();
 }
 
 function mineOffline(time){
@@ -68,7 +68,9 @@ function mineOffline(time){
 
 function mine(){
     for(var i=0;i<12;i++){
-        mined = minePerSec(i);
+        var mined = minePerSec(i);
+        AddAction(mined,"Mine");
+        if(i==11) AddAction(mined,"MineDiamantium")
         ores[i].quant += mined;
         stats.totalOresMined+=mined;
         lifeStats.totalOresMined+=mined;

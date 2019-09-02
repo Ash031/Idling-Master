@@ -68,6 +68,14 @@ function setArenaDefeated(fighters){
     for(var i=0;i<fighters.farm.length;i++){arenaFighters.farm[i].defeated=fighters.farm[i]}
     for(var i=0;i<fighters.warehouse.length;i++){arenaFighters.warehouse[i].defeated=fighters.warehouse[i]}
 }
+function setCitySave(citySave){
+    wishingStats = citySave.wish;
+    coinTosses = citySave.wishes;
+    city=citySave.city;
+    cityBuildings=citySave.buildings;
+    availableBounties = citySave.bounties;
+    bountyStats.perm = citySave.bountyStats;
+}
 
 function setUnlockedSkills(aSkills){
     for(var i=0;i<aSkills.length;i++){skills[i].got=aSkills[i]}    
@@ -101,13 +109,18 @@ function Importload(save){
         arenaTokens=save.arenaTokens; setArenaShopLevels(save.arenaShop);
         choosableContracts=save.contracts; warehouse=save.warehouse;
         warehouseStats=save.warehouseStats; arenaVouchers=save.arenaVouchers;
+        
         setArenaDefeated(save.arenaDefeated)
         setUnlockedSkills(save.skills)
         if(save.version!="1.0") setCrafting(save.items)
+        if(save.version.substr(0,3)!="1.0") setCitySave(save.city)
         if(save.version.substr(0,5)=="1.0.1"||save.version.substr(0,5)=="1.0.2"||save.version.substr(0,5)=="1.0.3") nerfFarm();
         updateVersion(save.version);
         checkErrors();
         generateOffline((new Date().getTime()/1000)-save.time);
+        if(save.version==="DEV") {
+            setDev()
+        }
     }
 }
 
@@ -136,20 +149,22 @@ function download(filename, text) {
     element.click();
   
     document.body.removeChild(element);
-  }
-  function updateVersion(oldVersion){
-      if(version.substr(0,5)!=oldVersion.substr(0,5) && oldVersion!="DEV") ExportData();
-      if(farmStats.hp==undefined) farmStats.hp=1;
-      if(!lifeStats.totalArenaBosses)lifeStats.totalArenaBosses=0;
-      if(!lifeStats.totalContractsDone)lifeStats.totalContractsDone=0;
-      if(!lifeStats.totalCropsGrown)lifeStats.totalCropsGrown=0;
-      if(!lifeStats.totalRankUpsWarehouse)lifeStats.totalRankUpsWarehouse=0;
-      if(!lifeStats.totalDojoEnemies)lifeStats.totalDojoEnemies=0;
-      if(!lifeStats.totalOresMined)lifeStats.totalOresMined=0;
-  }
-function updateVersionImport(oldVersion){
+}
+function updateVersion(oldVersion){
+    if(version.substr(0,5)!=oldVersion.substr(0,5) && oldVersion!="DEV") ExportData();
+    if(oldVersion.substr(0,3)=="1.0"){
+        city={clones:0}
+        wishingStats = {strength: 1,defense: 1,HP: 1,mining: 1,farm: 1,warehouseSpeed: 1}
+        cityBuildings = [{name: "Townhall",lvl: 0,bonus: 0.05,cost: 100000,time: 3.6e7,curTime: 3.6e7,paid: false,working: false,type: "Money"},{name : "Contruction Office",lvl: 0,bonus: 0.05,cost: 500000,time: 3.6e7,curTime: 3.6e7,paid: false,working: false,type: "CityTime"},{name: "Housing Facilities",lvl: 0,bonus: 0.5,cost: 1000000,time: 7.2e7,curTime: 7.2e7,paid: false,working: false,type: "ClonesAmount"},{name: "Quarry",lvl: 0,bonus: 0.5,cost: 1e8,time: 1.08e8,curTime: 1.08e8,paid: false,working: false,type: "Strength"},{name: "Food Producers",lvl: 0,bonus: 0.5,cost: 1e8,time: 1.08e8,curTime: 1.08e8,paid: false,working: false,type: "Defense"},{name: "Clothing Shop",lvl: 0,bonus: 1,cost: 1e8,time: 1.08e8,curTime: 1.08e8,paid: false,working: false,type: "HP"},{name: "Bank",lvl: 0,bonus: 100,cost: 2e8,time: 7.2e7,curTime: 7.2e7,paid: false,working: false,type: "PassiveGold"},{name: "Outpost",lvl: 0,bonus: 0.5,cost: 1e8,time: 1.08e8,curTime: 1.08e8,paid: false,working: false,type: "Dojo"},{name: "Bulletin Board",lvl: 0,bonus: 0.1,cost: 1e9,time: 1.8e8,curTime: 1.08e8,paid: false,working: false,type: "Bounty"},{name: "Wishing Well",lvl: 0,bonus: 0.1,cost: 1e9,time: 1.8e8,curTime: 1.08e8,paid: false,working: false,type: "Wishing"},{name: "Kiosk",lvl: 0,bonus: 0.1,cost: 1e9,time: 1.8e8,curTime: 1.08e8,paid: false,working: false,type: "Luck"}]
+    }
     if(farmStats.hp==undefined) farmStats.hp=1;
-  }
+    if(!lifeStats.totalArenaBosses)lifeStats.totalArenaBosses=0;
+    if(!lifeStats.totalContractsDone)lifeStats.totalContractsDone=0;
+    if(!lifeStats.totalCropsGrown)lifeStats.totalCropsGrown=0;
+    if(!lifeStats.totalRankUpsWarehouse)lifeStats.totalRankUpsWarehouse=0;
+    if(!lifeStats.totalDojoEnemies)lifeStats.totalDojoEnemies=0;
+    if(!lifeStats.totalOresMined)lifeStats.totalOresMined=0;
+}
 
 function generateOffline(offlineTime){
     arenaVouchers+=offlineTime/7200;
@@ -159,6 +174,17 @@ function generateOffline(offlineTime){
     for(var i=0;i<offlineTime;i++){
         train();
     }
+}
+
+function getCitySave(){
+    var ret = {}
+    ret.wish = wishingStats;
+    ret.wishes = coinTosses;
+    ret.city = city;
+    ret.buildings = cityBuildings;
+    ret.bounties = availableBounties;
+    ret.bountyStats = bountyStats.perm;
+    return ret;
 }
 
 function getRLevels(perks){
@@ -225,7 +251,8 @@ function save(){
         arenaVouchers: arenaVouchers,
         skills: getUnlockedSkills(skills),
         arenaDefeated: getArenaDefeated(arenaFighters),
-        items: saveCrafting()
+        items: saveCrafting(),
+        city: getCitySave()
     }
     localStorage.setItem('save',JSON.stringify(save));
 }
@@ -252,16 +279,6 @@ function getFarmDefense(){
     return farmStats.defense;
 }
 
-
-function getStrength(){
-    return Math.floor(player.strength
-        *(1+dojoStats.attack/100)
-        *getCraftingAttack()
-        *getRBAttack()
-        *getFarmAttack()
-        *getWarehouseStrength()
-        *crit());
-}
 function getHP(){
     return Math.floor(player.hp
         *(1+dojoStats.hp/100)
@@ -270,13 +287,19 @@ function getHP(){
         *getFarmHP());
 }
 
+function getStrength(){
+    return Math.floor(getRawStrength()*crit());
+}
+
 function getRawStrength(){
     return Math.floor(player.strength
         *(1+dojoStats.attack/100)
         *getCraftingAttack()
         *getFarmAttack()
         *getRBAttack()
-        *getWarehouseStrength());
+        *getWarehouseStrength()
+        *getCityStrength()
+        *getBountyMainStats());
 }
 
 function getCraftingDefense(){
@@ -300,12 +323,7 @@ function getCraftingHp(){
 }
 
 function getDefense(){
-    return Math.floor(player.defense
-        *(1+dojoStats.defense/100)
-        *getCraftingDefense()
-        *getFarmDefense()
-        *getRBDefense()
-        *getWarehouseDefense());
+    return getRawDefense();
 }
 
 function getRawDefense(){
@@ -314,14 +332,17 @@ function getRawDefense(){
         *getCraftingDefense()
         *getFarmDefense()
         *getRBDefense()
-        *getWarehouseDefense());
+        *getWarehouseDefense()
+        *getCityDefense()
+        *getBountyMainStats());
 }
 
 //Add Values with multipliers
 
 function addClones(num){
     num = Math.floor(num
-        *farmStats.ClonesAmountMult)
+        *farmStats.ClonesAmountMult
+        *getCityClonesAmount())
     player.baseClones+=num;
     player.idleClones+=num;
     player.maxClones+=num;
@@ -342,7 +363,9 @@ function putClonesToWork(num){
 function addMoney(num){
     num = num
         *farmStats.GoldMult
-        *getBonusRebirth("MoneyMult");
+        *getBonusRebirth("MoneyMult")
+        *getCityMoneyMult()
+        *getBountyMoney();
     player.money+=num;
 }
 
@@ -524,5 +547,6 @@ function clone(obj) {
 function setDev(){
     version = "DEV"
     lifeStats.totalDojoEnemies=10
+    values.boss=1000
     unlockAll();
 }

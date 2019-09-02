@@ -2,14 +2,6 @@
 
 Welcome to Idling Master. Your purpose in this game is to become as strong as possible, for that you must train, fight bosses, rob people, and unlock some new cool stuff to do with your clones.
 
-## Changelog
-
-Game not "Released" Yet Bub!
-
-## TODO
-
-You can look up the full TODO list [here](TODO.md)
-
 ## Credits
 
 This game is currently being developed by me, an idle games fanatic and kewl college guy.  

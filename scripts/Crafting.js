@@ -24,7 +24,7 @@ function getCraftingTable(){
         for(var j = 0;j<item.cost.length;j++){
             string += '<p>'+printNumber(Math.floor(Math.pow(item.level,1.1)*item.cost[j].baseCost*getArenaCraftingMultiplier()))+' '+ ores[item.cost[j].ore].name+'</p>';
         }
-        string += '</td><td>'+printNumber(1+(item.level-1)*item.perLevel)+'X '+item.bonus+'</td><td><button onclick="craft('+i+')">Craft</button></td></tr>';
+        string += '</td><td>'+printNumber(1+(item.level-1)*item.perLevel)+'X '+item.bonus+'</td><td><button onclick="craft('+i+')">Craft</button><button onclick="craftMax('+i+')">Craft Max</button></td></tr>';
     }
     return string;
 }
@@ -38,14 +38,19 @@ function nextCraftingPage(){
     loadScreen();
 }
 
+function craftMax(itemN){
+    while(craft(itemN));
+}
+
 function craft(itemN){
     var item = crafting.items[itemN];
     for(var i = 0;i<item.cost.length;i++){
-        if(ores[item.cost[i].ore].quant<Math.floor(Math.pow(item.level,1.1)*item.cost[i].baseCost*getArenaCraftingMultiplier())) return;
+        if(ores[item.cost[i].ore].quant<Math.floor(Math.pow(item.level,1.1)*item.cost[i].baseCost*getArenaCraftingMultiplier())) return false;
     }
     for(var i = 0;i<item.cost.length;i++){
         ores[item.cost[i].ore].quant-=Math.floor(Math.pow(item.level,1.1)*item.cost[i].baseCost*getArenaCraftingMultiplier());
     }
     crafting.items[itemN].level++;
     loadScreen();
+    return true;
 }

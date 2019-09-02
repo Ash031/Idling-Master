@@ -19,25 +19,19 @@ function printShop(){
 
 function buyMax(item,amount){
     console.log(1)
-    if(item==='Attack'){
-        player.money-=amount*20;
+    if(item==='Attack' && spendMoney(amount*20)){
         player.strength+=amount;
         dojoStats.attack+=amount;
     }
-    if(item==='Defense'){
-        player.money-=amount*30;
+    if(item==='Defense' && spendMoney(amount*30)){
         player.defense+=amount;
         dojoStats.defense+=amount;
     }
-    if(item==='HP'){
-        player.money-=amount*10;
+    if(item==='HP' && spendMoney(amount*10)){
         player.hp+=amount;
         dojoStats.hp+=amount;
     }
-    if(item==='Clone'){
-        player.money-=amount*150;
-        addClones(amount)
-    }
+    if(item==='Clone' && spendMoney(amount*150)) addClones(amount)
     loadScreen();
 }
 

@@ -1,6 +1,8 @@
-var version = "1.0.5.1"
+var version = "1.1"
 
 var shopAmount = 1;
+
+var statsPage=""
 
 var rebirthPage = 0;
 
@@ -268,7 +270,40 @@ var rebirthPerks = [
         boss:20,
         maxLevel:1,
         type: "AutoContract"
-    }
+    },
+    {
+        name:"Builders",
+        basePrice:1000,
+        lvl:0,
+        step:"*2",
+        Description:"The builders will take half the time to build stuff",
+        Bonus:1,
+        boss:25,
+        maxLevel:1,
+        type: "CitySpeed"
+    },
+    {
+        name:"More Bounties",
+        basePrice:100,
+        lvl:0,
+        step:"^1",
+        Description:"You get an extra Bounty per regroup",
+        Bonus:1,
+        boss:25,
+        maxLevel:5,
+        type: "ExtraBounty"
+    },
+    {
+        name:"Discount Architect",
+        basePrice:100,
+        lvl:0,
+        step:"*1",
+        Description:"You get 1% Discount in buildings",
+        Bonus:0.01,
+        boss:25,
+        maxLevel:25,
+        type: "CityDiscount"
+    },
 ]
 
 var assignedClones = {
@@ -303,7 +338,8 @@ var dojoEnemy = {
     curhp : 0,
     attack : 0,
     defense : 0,
-    prize : 0
+    prize : 0,
+    rarity: 1
 }
 
 var options = {

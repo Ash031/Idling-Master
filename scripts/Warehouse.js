@@ -96,7 +96,7 @@ function workOnWarehouse(){
             choosableContracts[i]=ChooseRandomContract();
         }
         else if(choosableContracts[i].onGoing){
-              choosableContracts[i].time-=(1+(getBonusRebirthSum("ContractSpeed",0)));
+              choosableContracts[i].time-=(1+(getBonusRebirthSum("ContractSpeed",0)+getBountyWarehouseSpeeed()));
               if(choosableContracts[i].time<=0) reedemContract(i);
         }
     }
@@ -125,6 +125,7 @@ function toggleContract(i){
 function reedemContract(i){
     lifeStats.totalContractsDone++;
     stats.totalContractsDone++;
+    AddAction(1,"Contract");
     var contract = choosableContracts[i];
     if(contract.type == "Strength") warehouseStats.strength += contract.bonus;
     if(contract.type == "Defense") warehouseStats.defense += contract.bonus;
@@ -133,9 +134,10 @@ function reedemContract(i){
     if(contract.type == "FarmDrops") warehouseStats.farmDrop += contract.bonus;
     if(contract.type == "Mining") warehouseStats.Mining += contract.bonus;
     if(contract.type == "Upgrade") {
-        warehouse.upgradeCrates += contract.bonus;
+        warehouse.upgradeCrates += Math.floor(contract.bonus*getBountyWarehouseCrate());
         if( warehouse.upgradeCrates >= neededToUpgradeWarehouse()){
             warehouse.rank++;
+            AddAction(1,"Upgrade")
             lifeStats.totalRankUpsWarehouse++;
             stats.totalRankUpsWarehouse++;
             warehouse.capacity*=5;

@@ -123,6 +123,7 @@ function rebirthNow(){
     resetButtons();
     rebirthFarm();
     rebirthWarehouse();
+    rebirthCity();
     loadBoss();
     loadScreen();
 }
@@ -244,11 +245,15 @@ function resetTraining(){
         boss:1,
         zone : 0
     }
-    lifeStats = {
+    var lifeStats = {
         totalBossesKilles : 0,
         totalDojoEnemies : 0,
         totalSeconds : 0,
-        totalOresMined : 0
+        totalOresMined : 0,
+        totalCropsGrown : 0,
+        totalRankUpsWarehouse: 0,
+        totalContractsDone: 0,
+        totalArenaBosses: 0
     }
     ores.forEach(e=>{
         e.clones=0;

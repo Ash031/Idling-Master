@@ -109,6 +109,7 @@ function Plant(plotN){
 
 function Harvest(plotN){
     if (plots[plotN].crop!=-1){
+        AddAction(1,"Harvest");
         var growth = getCrop(plots[plotN].crop,plots[plotN].curTime,plots[plotN].level);
         lifeStats.totalCropsGrown+=growth;
         stats.totalCropsGrown+=growth;
@@ -126,7 +127,7 @@ function giveXPToPlot(plotN,xp){
 function getCrop(cropN,time,lvl){
     var crop = crops[cropN];
     var growthAmount = getGrowth(crop.growthTime,time)
-    var bonus = crop.bonus * growthAmount * lvl * farmStats.farmDropMult *getBonusRebirth("FarmDrops") *getWarehouseFarmingDrops() *getArenaFarmDropMultiplier();
+    var bonus = crop.bonus * growthAmount * lvl * farmStats.farmDropMult *getBonusRebirth("FarmDrops") *getWarehouseFarmingDrops() *getArenaFarmDropMultiplier() *getBountyFarm();
     var type = crop.type;
     if(type=="Attack")  farmStats.attack+=bonus;
     else if(type=="Defense")    farmStats.defense+=bonus;

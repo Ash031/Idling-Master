@@ -61,26 +61,6 @@ function changeNotation(){
     else options.number++;
 }
 
-
-
-function printStats(){
-    var string = '<h1 style="text-align: center">Statistics</h1><hr/>';
-    string += '<p><b>Total Bosses Defeated:</b>'+stats.totalBossesKilles+' ('+lifeStats.totalBossesKilles+')</p>';
-    string += '<p><b>Total Dojo Enemies Defeated:</b>'+stats.totalDojoEnemies+' ('+lifeStats.totalDojoEnemies+')</p>';
-    string += '<p><b>Total Time:</b>'+printTime(stats.totalSeconds)+' ('+printTime(lifeStats.totalSeconds)+')</p>';
-    string += '<p><b>Total Ores Mined:</b>'+printNumber(stats.totalOresMined)+' ('+printNumber(lifeStats.totalOresMined)+')</p>';
-    string += '<p><b>Total Crops Grown:</b>'+printNumber(stats.totalCropsGrown)+' ('+printNumber(lifeStats.totalCropsGrown)+')</p>';
-    string += '<p><b>Total Arena Bosses Killed:</b>'+printNumber(stats.totalArenaBosses)+' ('+printNumber(lifeStats.totalArenaBosses)+')</p>';
-    string += '<p><b>Total Contracts Finished:</b>'+printNumber(stats.totalContractsDone)+' ('+printNumber(lifeStats.totalContractsDone)+')</p>';
-    string += '<p><b>Total Warehouse Rank Ups:</b>'+printNumber(stats.totalRankUpsWarehouse)+' ('+printNumber(lifeStats.totalRankUpsWarehouse)+')</p>';
-    string+='<button style="width: 100%" class="w3-button w3-dark-gray" onclick="newGame()">Reset Save</button><hr/>';
-    string+='<button style="width: 100%" class="w3-button w3-dark-gray" onclick="changeNotation()">Notation: '
-    if(options.number== undefined || options.number==0) string += "Scientific Notation"
-    if(options.number==1) string += "Short Number Notation"
-    string += '</button>';
-    document.getElementById('Screen').innerHTML=string;
-}
-
 function loadTutorial(){
     var string = '<h1 style="text-align: center">Welcome to Idling Master</h1><hr/>';
     string += "<p> Welcome to Idling Master, on this game you have the power to multiply yourself, with that power you decide to fight the local Bosses League. Do you have what it takes to overtake the challenge?</p>"
@@ -137,6 +117,7 @@ function goToShop(){
 }
 
 function goToStats(){
+    statsPage=""
     options.reset = undefined;
     options.help=false;
     options.menu="Stats";
@@ -178,7 +159,6 @@ function goToRegroupShop(){
 }
 
 function goToCity(){
-    if(version!="DEV") return;
     options.reset = undefined;
     options.help=false;
     options.menu="City";
@@ -201,6 +181,7 @@ function printBossHelp(){
 }
 
 function printTime(seconds){
+    seconds = Math.ceil(seconds)
     if(seconds<10) return "00:0"+seconds
     if(seconds<60) return "00:"+seconds
     if(seconds<600) {

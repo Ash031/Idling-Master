@@ -33,13 +33,17 @@ function getNextZoneInfo(){
 function getDojoAttackStatRaw(){
     return Math.floor(dojoStats.attack
         *farmStats.dojoMult
-        *getArenaDojoAttackMultiplier());
+        *getArenaDojoAttackMultiplier()
+        *getCityDojo()
+        *getBountyDojo());
 }
 
 function getDojoDefenseStatRaw(){
     return Math.floor(dojoStats.defense
         *farmStats.dojoMult
-        *getArenaDojoDefenseMultiplier());
+        *getArenaDojoDefenseMultiplier()
+        *getCityDojo()
+        *getBountyDojo());
 }
 
 function getDojoAttack(){
@@ -64,6 +68,7 @@ function dojoFight(){
 function killDojoEnemy(){
     stats.totalDojoEnemies++;
     lifeStats.totalDojoEnemies++;
+    AddAction(1,"Kill");
     addMoney(dojoEnemy.prize);
     generateEnemy();
 }
@@ -101,12 +106,14 @@ function canGoToNextZone(){
 
 function generateEnemy(){
     var num = Math.floor(Math.random()*dojoZones[values.zone].enemies.length);
+    var rarity = getRarity();
     var enemy = enemies[dojoZones[values.zone].enemies[num]];
     dojoEnemy.hp=dojoEnemy.curhp = enemy.hp;
     dojoEnemy.name = enemy.name;
     dojoEnemy.attack = enemy.attack;
     dojoEnemy.defense = enemy.defense;
-    dojoEnemy.prize = enemy.prize;
+    dojoEnemy.prize = enemy.prize * rarity;
+    dojoEnemy.rarity = rarity;
     if(lifeStats.totalDojoEnemies>=10)unlockButton("DojoShop")
     loadScreen();
 }
@@ -118,7 +125,12 @@ function printDojoFight(){
     string += '<h2><b>Attack</b>: '+printNumber(getDojoAttackStatRaw())+'</h2>';
     string += '<h2><b>Defense</b>: '+printNumber(getDojoDefenseStatRaw())+'</h2>';
     string += '</div><div class="w3-col m6 l6">';
-    string += '<h1><b>'+dojoEnemy.name+'</b></h>';
+    string += '<h1 '
+    if(dojoEnemy.rarity==2) string+= "style='color:green'"
+    if(dojoEnemy.rarity==3) string+= "style='color:blue'"
+    if(dojoEnemy.rarity==4) string+= "style='color:yellow'"
+    if(dojoEnemy.rarity==5) string+= "style='color:orange'"
+    string += '><b>'+dojoEnemy.name+'</b></h>';
     string += '<h2><b>HP</b>: '+printNumber(dojoEnemy.curhp)+'/'+printNumber(dojoEnemy.hp)+'</h2>';
     string += '<h2><b>Attack</b>: '+printNumber(dojoEnemy.attack)+'</h2>';
     string += '<h2><b>Defense</b>: '+printNumber(dojoEnemy.defense)+'</h2>';
