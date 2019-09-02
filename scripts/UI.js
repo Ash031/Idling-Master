@@ -67,7 +67,7 @@ function loadTutorial(){
     string+= "<p>You should start by heading out to the Training Area and get stronger to defeat the bosses on the Bosses Area.</p>"
     string+="<p>There are some locked areas too that you unlock by beating bosses. These new Menus unlock new ways to get stronger using your clones.</p>"
     string+="<p>If the game tries to Download a file automatically when you open the game, please download it since it happens when you open an old SaveFile to a new version. It is design this way so if an update somehow brakes your save you automatically have a backup save.</p>"
-    string+="<p>I hope you have fun with the game.</p><p>Have any questions or want to suggest stuff? Go to <a href=\"https://discord.gg/Txmw5ny\">Discord</a> and tell me. There is also a TODO list there so if you wanna checkout stuff that will be added to the game hop on and have fun!</p>"
+    string+="<p>I hope you have fun with the game.</p><p>Have any questions or want to suggest stuff? Go to <a href=\"https://discord.gg/Txmw5ny\">Discord</a> and tell me.</p>"
     string+="<p>Thanks for trying this game out!</p><hr/>"
     document.getElementById('Screen').innerHTML=string;
 }
