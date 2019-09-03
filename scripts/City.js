@@ -280,7 +280,7 @@ function getRarity(){
 function rebirthCity(){
     city.clones=0;
     cityBuildings.forEach(b=>{
-        b.curTime=b.time*b.lvl;
+        b.curTime=b.time*(1+b.lvl);
         b.paid=false;
         b.working= false;
     })
