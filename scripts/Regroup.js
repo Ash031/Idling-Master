@@ -119,7 +119,7 @@ function RBPointsAmount(){
 
 function rebirthNow(){
     rebirth.rbPoints+=RBPointsAmount();
-    resetTraining(); 
+    resetTraining();
     resetButtons();
     rebirthFarm();
     rebirthWarehouse();
@@ -245,7 +245,7 @@ function resetTraining(){
         boss:1,
         zone : 0
     }
-    var lifeStats = {
+    lifeStats = {
         totalBossesKilles : 0,
         totalDojoEnemies : 0,
         totalSeconds : 0,
