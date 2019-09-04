@@ -39,7 +39,7 @@ function nextCraftingPage(){
 }
 
 function craftMax(itemN){
-    while(craft(itemN));
+    for(var i = 0;i<100 && craft(itemN);i++);
 }
 
 function craft(itemN){

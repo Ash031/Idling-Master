@@ -8,7 +8,7 @@ const bounties = [
     },
     {
         objective: "Harvest",
-        amount: 100,
+        amount: 25,
         time:-1,
         bonus: 0.1,
         type: "Farm"
